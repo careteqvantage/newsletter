@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careteq Vantage | Issue 1 | April 6, 2026</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f4f6f9;
+      color: #1a1a2e;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    a { color: #1565c0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Wrapper ── */
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #0d1b4b;
+      color: #ffffff;
+      padding: 32px 40px 24px;
+      border-bottom: 4px solid #1565c0;
+    }
+    .header .masthead {
+      font-family: 'Arial', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+    .header .masthead span { color: #64b5f6; }
+    .header .issue-line {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #90caf9;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+    .header .tagline {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      color: #bbdefb;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ── Lead Story Banner ── */
+    .lead-banner {
+      background: #1565c0;
+      color: #ffffff;
+      padding: 18px 40px;
+      border-left: 6px solid #ffc107;
+    }
+    .lead-banner .label {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ffc107;
+      font-weight: 700;
+    }
+    .lead-banner .headline {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 4px;
+      font-family: 'Arial', sans-serif;
+      line-height: 1.4;
+    }
+    .lead-banner .sub {
+      font-size: 13px;
+      color: #e3f2fd;
+      margin-top: 6px;
+    }
+    .lead-banner a { color: #ffc107; font-weight: 600; }
+
+    /* ── Two-Column Layout ── */
+    .content-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .main-col {
+      flex: 1 1 62%;
+      padding: 32px 36px 32px 40px;
+      border-right: 1px solid #e0e6f0;
+    }
+    .sidebar {
+      flex: 0 0 34%;
+      width: 34%;
+      padding: 28px 24px 32px 24px;
+      background: #f7f9fc;
+    }
+
+    /* ── Section Styles ── */
+    .section {
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #e0e6f0;
+    }
+    .section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    .section-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #1565c0;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .section h2 {
+      font-family: 'Arial', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #0d1b4b;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .section p {
+      color: #2d3748;
+      margin-bottom: 10px;
+      font-size: 14.5px;
+    }
+    .section .story-source {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      color: #6b7280;
+      border-left: 3px solid #1565c0;
+      padding-left: 10px;
+      margin-top: 10px;
+    }
+    .section .story-source a { color: #1565c0; }
+
+    /* ── Sidebar Widgets ── */
+    .widget {
+      background: #ffffff;
+      border: 1px solid #dce6f0;
+      border-radius: 6px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+    }
+    .widget-title {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #0d1b4b;
+      font-weight: 700;
+      border-bottom: 2px solid #1565c0;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+    .widget p, .widget li {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .widget ul { padding-left: 16px; }
+    .widget .stat-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .widget .stat-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .widget .stat-num {
+      font-family: 'Arial', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1565c0;
+      line-height: 1;
+      min-width: 64px;
+      text-align: right;
+    }
+    .widget .stat-desc {
+      font-size: 12.5px;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+    .widget .date-item {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .widget .date-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .widget .date-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      color: #1565c0;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .widget .date-desc { font-size: 13px; color: #374151; }
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #1f2937;
+    }
+    .action-bullet {
+      min-width: 20px;
+      height: 20px;
+      background: #1565c0;
+      color: white;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Arial', sans-serif;
+      margin-top: 1px;
+    }
+    .quick-link {
+      display: block;
+      font-size: 12.5px;
+      margin-bottom: 8px;
+      padding-left: 12px;
+      border-left: 3px solid #90caf9;
+    }
+    .michigan-lens {
+      background: #e3f2fd;
+      border-left: 4px solid #1565c0;
+      padding: 12px 14px;
+      border-radius: 0 4px 4px 0;
+    }
+    .michigan-lens p { font-size: 13px; color: #1a237e; margin: 0; }
+
+    /* ── Know This Section ── */
+    .know-this-section {
+      background: #0d1b4b;
+      color: #e8eaf6;
+      padding: 28px 32px;
+      margin: 0 -36px -32px -40px;
+      border-radius: 0;
+    }
+    .know-this-section .section-label { color: #90caf9; }
+    .know-this-section h2 { color: #ffffff; font-size: 18px; }
+    .know-this-section p { color: #c5cae9; font-size: 14.5px; margin-bottom: 10px; }
+    .know-this-section .closing { color: #64b5f6; font-style: italic; font-weight: 600; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #0d1b4b;
+      color: #90caf9;
+      padding: 28px 40px;
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+    }
+    .footer h3 {
+      color: #ffffff;
+      font-size: 13px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .footer .source-list { list-style: none; padding: 0; }
+    .footer .source-list li {
+      margin-bottom: 6px;
+      padding-left: 12px;
+      border-left: 2px solid #1565c0;
+      color: #bbdefb;
+    }
+    .footer .source-list li a { color: #64b5f6; font-size: 11.5px; }
+    .footer .disclaimer {
+      margin-top: 20px;
+      color: #4a5568;
+      font-size: 11px;
+      border-top: 1px solid #1a2f6b;
+      padding-top: 14px;
+    }
+    .footer .brand-footer {
+      margin-top: 14px;
+      color: #90caf9;
+      font-style: italic;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .content-row { flex-direction: column; }
+      .main-col { padding: 24px 20px; border-right: none; }
+      .sidebar { width: 100%; padding: 20px; }
+      .header { padding: 24px 20px 16px; }
+      .lead-banner { padding: 14px 20px; }
+      .footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ══ HEADER ══ -->
+  <header class="header">
+    <div class="masthead">Careteq <span>Vantage</span></div>
+    <div class="issue-line">Issue 1 &nbsp;·&nbsp; April 6, 2026 &nbsp;·&nbsp; MSK &amp; Orthopedic Intelligence for Michigan Practice Leaders</div>
+    <div class="tagline">Curated by Santosh Mudiraj, MBBS, MPH · Analytics &amp; Strategy</div>
+  </header>
+
+  <!-- ══ LEAD STORY BANNER ══ -->
+  <div class="lead-banner">
+    <div class="label">⚡ Lead Story This Week</div>
+    <div class="headline">Medicare Advantage Prior-Authorization Denials Jumped 56% — New April Rules Aim to Fix It</div>
+    <div class="sub">
+      Effective April 2026, CMS mandates faster response timelines, protects approved services from reversal, and requires public reporting of denial rates.
+      &nbsp;<a href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">Read the full story →</a>
+    </div>
+  </div>
+
+  <!-- ══ MAIN CONTENT + SIDEBAR ══ -->
+  <div class="content-row">
+
+    <!-- ── MAIN COLUMN ── -->
+    <main class="main-col">
+
+      <!-- SECTION 1: POLICY & REIMBURSEMENT -->
+      <div class="section">
+        <div class="section-label">Section 1</div>
+        <h2>Policy &amp; Reimbursement</h2>
+
+        <p>
+          Orthopedic and MSK practices face a transformed reimbursement landscape in April 2026. The most immediate headline: Medicare Advantage (MA) prior-authorization denial rates have climbed 56% in recent years, prompting CMS to enforce a new set of reforms now taking effect. Under the updated rules, MA plans must respond to urgent prior-auth requests within 72 hours and standard requests within 7 calendar days. Crucially, once a service is approved, plans must honor that decision — closing a loophole that allowed reversed authorizations mid-treatment. Plans are now also required to publicly report their approval, denial, and appeal metrics annually, giving providers and patients their first meaningful benchmarking tool. For orthopedic practices dealing with high prior-auth burdens for joint replacements, spine procedures, and physical therapy, these changes represent real operational relief.
+        </p>
+        <p>
+          At the federal level, the 2026 CMS Physician Fee Schedule delivers a net 3.26% conversion factor increase for most physicians, with a higher 3.77% bump for advanced APM participants. However, CMS also introduced a 2.5% efficiency cut for non-time-based procedures — including many orthopedic surgeries and injections — partially offsetting gains. The TEAM Model (Transforming Episode Accountability Model), now mandatory for hospital-affiliated orthopedic practices beginning January 1, 2026, adds episode-based accountability for lower extremity joint replacements. Meanwhile, MDHHS issued updated Outpatient APC and ASC payment rate software effective April 1, 2026, requiring CHAMPS system verification by all Michigan Medicaid-participating outpatient surgical centers.
+        </p>
+        <div class="story-source">
+          Sources: <a href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">SavingAdvice.com — Medicare Advantage Prior-Authorization Denials Jumped 56% (Apr 2, 2026)</a> &nbsp;|&nbsp;
+          <a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" target="_blank">CMS — CY 2026 Physician Fee Schedule Final Rule</a> &nbsp;|&nbsp;
+          <a href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">MDHHS — April 1, 2026 APC &amp; ASC Updates</a>
+        </div>
+      </div>
+
+      <!-- SECTION 2: QUALITY METRICS SPOTLIGHT -->
+      <div class="section">
+        <div class="section-label">Section 2</div>
+        <h2>Quality Metrics Spotlight</h2>
+
+        <p>
+          Quality reporting requirements for orthopedic practices have grown more precise in 2026, with CMS finalizing significant updates to the MIPS Value Pathway (MVP) for orthopedic surgery. Under the revised Improving Care for Lower Extremity Joint Repair MVP, orthopedic providers must now attest to four of seven available quality measures, with at least one being a patient-reported outcome measure (PROM). This requirement directly elevates the role of tools like the FOTO Lower Extremity Physical Function PROM and equivalent instruments for spine, shoulder, and upper extremity cases. Quality still accounts for 30% of total MIPS score, requiring reporting on at least 75% of denominator-eligible encounters.
+        </p>
+        <p>
+          The push toward outcomes measurement comes at a moment when denial pressures are also challenging quality workflows. New Q1 2026 data from orthopedic revenue cycle analysts shows that 41% of providers now report claim denial rates of 10% or higher — a trend that erodes margins and distorts quality reporting by shifting staff time to rework. CMS has signaled intent to sunset traditional MIPS entirely, with MVPs expected to become mandatory as early as 2029. Michigan orthopedic practices should begin aligning their EHR-based outcome capture workflows now to stay ahead of the transition and maximize MIPS scoring under the new MVP structure.
+        </p>
+        <div class="story-source">
+          Sources: <a href="https://anatomyit.com/blog/finalized-changes-to-mips-value-pathway-for-orthopedic-surgery-in-2026/" target="_blank">Anatomy IT — 2026 MIPS Orthopedic Surgery MVP Changes</a> &nbsp;|&nbsp;
+          <a href="https://www.adsc.com/blog/q1-2026-reality-check-is-your-orthopedic-revenue-cycle-built-for-2027" target="_blank">ADSC — Q1 2026 Reality Check: Orthopedic Revenue Cycle</a>
+        </div>
+      </div>
+
+      <!-- SECTION 3: MICHIGAN COLLABORATIVE SPOTLIGHT -->
+      <div class="section">
+        <div class="section-label">Section 3</div>
+        <h2>Michigan Collaborative Spotlight</h2>
+
+        <p>
+          Michigan's orthopedic collaborative infrastructure is as robust as any state's, and 2026 brings fresh momentum to two flagship programs. MARCQI — the Michigan Arthroplasty Registry Collaborative Quality Initiative, a BCBSM/BCN-funded CQI now spanning over 90 participating sites — has released its 2026 abstraction forms, updated New Clinical Data Abstractor (CDA) training materials and a revised training calendar for hip and knee arthroplasty data submission. MARCQI's ongoing focus areas include opioid prescribing optimization, transfusion reduction, appropriate post-acute care utilization, and patient-reported outcomes collection. Practices not yet enrolled should note that MARCQI participation remains a key differentiator in BCBSM PGIP performance assessments.
+        </p>
+        <p>
+          On the infrastructure side, Covenant HealthCare in Saginaw announced it will break ground April 8, 2026, on a new $25 million, 25,700-square-foot orthopedic facility at its Mackinaw campus. The center will consolidate outpatient orthopedic services with 44 exam rooms, four X-ray suites, and an integrated OrthoExpress urgent care clinic for walk-in bone, joint, and muscle injuries — with a projected opening in summer 2027. This investment reflects broader statewide trends: Michigan practices are expanding access to ambulatory MSK care in response to rising demand, payer incentives favoring lower-cost sites of service, and growing patient preference for outpatient care settings.
+        </p>
+        <div class="story-source">
+          Sources: <a href="https://marcqi.org/" target="_blank">MARCQI — Michigan Arthroplasty Registry Collaborative Quality Initiative (2026)</a> &nbsp;|&nbsp;
+          <a href="https://www.beckersasc.com/new-asc-development/covenant-to-build-25m-orthopedic-facility-in-michigan/" target="_blank">Becker's ASC — Covenant to Build $25M Orthopedic Facility in Michigan</a>
+        </div>
+      </div>
+
+      <!-- SECTION 4: AI & ANALYTICS -->
+      <div class="section">
+        <div class="section-label">Section 4</div>
+        <h2>AI &amp; Analytics</h2>
+
+        <p>
+          The convergence of ambient AI documentation and prior authorization automation is emerging as the most consequential health IT development for orthopedic practices in 2026. Modern Healthcare reported this week that companies including Abridge and Cohere are deploying ambient AI specifically to tackle prior authorization workflows — generating supporting documentation, predicting approval likelihood, and flagging missing clinical information before submission. This represents a significant evolution from ambient scribing as a documentation tool alone; the same capture layer is now being wired directly into payer-facing workflows, with early adopters reporting dramatic reductions in PA processing time.
+        </p>
+        <p>
+          Closer to home, IntelePeer — working directly with Michigan Orthopedic Center, a mid-Michigan fellowship-trained group practice — introduced the SmartAgent™ Clinical Assessment Agent, a voice-powered AI solution that automates structured post-procedure clinical assessments. The system was designed to accelerate care decisions, identify complications earlier, and reduce the burden on clinical staff conducting routine follow-up calls. On the EHR side, ModMed's AI Scribe — trained on over 750 million de-identified patient encounters — continues to gain traction in orthopedic-specific settings, with the platform's orthopedic clinical language model cited as a differentiator. For Michigan MSK practices, the practical near-term priority is ensuring ambient AI investments are integrated with prior auth and outcomes workflows, not siloed as documentation-only tools.
+        </p>
+        <div class="story-source">
+          Sources: <a href="https://www.modernhealthcare.com/health-tech/mh-abridge-cohere-ambient-ai-prior-authorizations/" target="_blank">Modern Healthcare — How Abridge, Cohere Are Using Ambient AI for Prior Authorizations</a> &nbsp;|&nbsp;
+          <a href="https://www.beckershospitalreview.com/podcasts/uncategorized/the-2026-orthopedic-playbook-automation-ai-and-the-future-of-msk-care-2/" target="_blank">Becker's Hospital Review — The 2026 Orthopedic Playbook: Automation, AI, and the Future of MSK Care</a>
+        </div>
+      </div>
+
+      <!-- SECTION 5: PRACTICE OPERATIONS -->
+      <div class="section">
+        <div class="section-label">Section 5</div>
+        <h2>Practice Operations</h2>
+
+        <p>
+          Orthopedic practice leaders are entering Q2 2026 under compound margin pressure. Becker's ASC reported that ambulatory leaders are in structural redesign mode as three forces converge simultaneously: rising musculoskeletal demand, clinician burnout from administrative burden, and reimbursement volatility. Staffing remains the dominant operational challenge — many Michigan MSK markets are experiencing wage growth of 4–15%, with orthopedic practices expanding advanced practice clinician (APC) roles and adopting team-based care models to protect access while managing payroll costs. Data-driven staffing alignment — matching scheduling supply to historical demand patterns — has shown potential to reduce payroll costs by 8–14%.
+        </p>
+        <p>
+          Revenue cycle performance has become the most urgent financial priority for Q2. Industry data shows 41% of orthopedic providers now experience denial rates exceeding 10%, driven by payer algorithm updates, coding changes, and the ongoing shift in site-of-service payment rules as CMS expands the outpatient procedure list. The Q1 2026 revenue cycle analysis from orthopedic billing specialists at ADSC emphasizes that practices must audit their denial root causes before mid-year, recalibrate coding workflows for 2026 MPFS changes, and evaluate whether AI-powered revenue intelligence tools — now available through most major orthopedic EHR platforms — are deployed to full capacity. Private equity interest in ASCs continues, with $18.9 billion invested in the first half of 2025 alone, maintaining upward pressure on acquisition multiples.
+        </p>
+        <div class="story-source">
+          Sources: <a href="https://www.beckersasc.com/private-equity/from-anxiety-to-action-how-ambulatory-leaders-are-rebuilding-margins-in-2026/" target="_blank">Becker's ASC — From Anxiety to Action: How Ambulatory Leaders Are Rebuilding Margins in 2026</a> &nbsp;|&nbsp;
+          <a href="https://www.adsc.com/blog/q1-2026-reality-check-is-your-orthopedic-revenue-cycle-built-for-2027" target="_blank">ADSC — Q1 2026 Reality Check: Is Your Orthopedic Revenue Cycle Built for 2027?</a>
+        </div>
+      </div>
+
+      <!-- SECTION 6: KNOW THIS -->
+      <div class="section know-this-section">
+        <div class="section-label">Section 6 · Know This</div>
+        <h2>MSK Medicine: A Foundation Built Over Centuries</h2>
+
+        <p>
+          Musculoskeletal medicine has a lineage stretching back millennia, yet its emergence as a distinct clinical discipline is surprisingly recent. Ancient Egyptian papyri dating to 1600 BCE document fracture management and joint manipulation techniques. Hippocrates described traction methods for hip dislocations and spinal deformities that remained largely unchanged for centuries. The Renaissance brought the first systematic anatomical study of the musculoskeletal system, with Vesalius's 1543 <em>De Humani Corporis Fabrica</em> establishing the foundational atlas of bone and muscle anatomy that still informs medical education.
+        </p>
+        <p>
+          Modern orthopedic surgery traces its formal origins to the late 18th century, when Nicholas Andry coined the term "orthopaedics" in 1741 — combining the Greek words for "straight" and "child" — reflecting early focus on correcting childhood deformities. The 20th century transformed the field: total hip arthroplasty was pioneered by Sir John Charnley in the 1960s, and the introduction of arthroscopic surgery in the 1970s–80s shifted procedures from open inpatient operations to outpatient interventions. The rise of evidence-based registries — including Michigan's own MARCQI, established in 2011 — represents the current era's defining contribution: the systematic measurement and improvement of outcomes at a population level.
+        </p>
+        <p class="closing">
+          For Michigan MSK practice leaders today, understanding this arc — from bone-setting to registry-driven quality science — provides critical context for the shift from volume-based to value-based care that now defines how orthopedic excellence is measured and rewarded.
+        </p>
+      </div>
+
+    </main>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+
+      <!-- BY THE NUMBERS -->
+      <div class="widget">
+        <div class="widget-title">📊 By the Numbers</div>
+        <div class="stat-item">
+          <div class="stat-num">56%</div>
+          <div class="stat-desc">Increase in Medicare Advantage prior-authorization denial rates in recent years, prompting new April 2026 CMS reforms. <em>(SavingAdvice.com, Apr 2)</em></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3.26%</div>
+          <div class="stat-desc">Net Medicare Physician Fee Schedule conversion factor increase for 2026 — partially offset by a 2.5% efficiency cut on surgical procedures. <em>(CMS)</em></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">41%</div>
+          <div class="stat-desc">Share of orthopedic providers now reporting claim denial rates of 10% or higher in Q1 2026. <em>(ADSC)</em></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$25M</div>
+          <div class="stat-desc">Investment by Covenant HealthCare in a new Saginaw-area orthopedic facility, breaking ground April 8. <em>(Becker's ASC)</em></div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">90+</div>
+          <div class="stat-desc">Michigan hospitals and ASCs participating in MARCQI, BCBSM's statewide arthroplasty CQI program. <em>(MARCQI.org)</em></div>
+        </div>
+      </div>
+
+      <!-- KEY DATES -->
+      <div class="widget">
+        <div class="widget-title">📅 Key Dates</div>
+        <div class="date-item">
+          <div class="date-label">April 7, 2026</div>
+          <div class="date-desc">New Medicare Advantage prior-auth rules fully in effect — verify plan compliance with your top payers.</div>
+        </div>
+        <div class="date-item">
+          <div class="date-label">April 8, 2026</div>
+          <div class="date-desc">Groundbreaking: Covenant HealthCare $25M orthopedic facility, Saginaw, MI.</div>
+        </div>
+        <div class="date-item">
+          <div class="date-label">April 1, 2026 (Effective)</div>
+          <div class="date-desc">MDHHS updated APC/ASC payment rates active in CHAMPS — verify your system is current.</div>
+        </div>
+        <div class="date-item">
+          <div class="date-label">June 11–13, 2026</div>
+          <div class="date-desc">Becker's 23rd Annual Spine, Orthopedic &amp; Pain Management-Driven ASC Conference — Swissotel Chicago.</div>
+        </div>
+      </div>
+
+      <!-- MICHIGAN LENS -->
+      <div class="widget">
+        <div class="widget-title">🔍 Michigan Lens</div>
+        <div class="michigan-lens">
+          <p>
+            The most significant Michigan-specific development this week is Covenant HealthCare's April 8 groundbreaking on a $25 million orthopedic facility in Saginaw — signaling that mid-Michigan health systems are investing in dedicated MSK ambulatory infrastructure ahead of rising regional demand. Combined with IntelePeer's AI clinical assessment collaboration with Michigan Orthopedic Center and MARCQI's updated 2026 training infrastructure, Michigan's orthopedic ecosystem is aligning clinical investment, technology adoption, and quality measurement simultaneously. Practice leaders should evaluate how their own facilities compare in outpatient capacity, AI integration readiness, and MARCQI/BCBSM CQI participation status.
+          </p>
+        </div>
+      </div>
+
+      <!-- ACTION ITEMS -->
+      <div class="widget">
+        <div class="widget-title">✅ Action Items This Week</div>
+        <div class="action-item">
+          <div class="action-bullet">1</div>
+          <div>Contact your top 3 Medicare Advantage payers to confirm new prior-auth response-time compliance under April 2026 CMS rules. Document your baseline denial rates now for before/after comparison.</div>
+        </div>
+        <div class="action-item">
+          <div class="action-bullet">2</div>
+          <div>Verify CHAMPS APC/ASC payment rate update is loaded for your Michigan Medicaid billing — effective April 1, 2026 (MDHHS alert).</div>
+        </div>
+        <div class="action-item">
+          <div class="action-bullet">3</div>
+          <div>Review your MIPS Value Pathway election for the 2026 performance year. Confirm you are reporting at least one outcome measure under the orthopedic surgery MVP.</div>
+        </div>
+        <div class="action-item">
+          <div class="action-bullet">4</div>
+          <div>Audit Q1 denial root causes — 41% of orthopedic practices exceed 10% denial rates. Prioritize top 3 CPT codes with highest denial frequency for coding team review.</div>
+        </div>
+        <div class="action-item">
+          <div class="action-bullet">5</div>
+          <div>If your practice uses an ambient AI scribing tool, ask your vendor whether it integrates with prior-auth documentation generation — Abridge and Cohere now offer this capability.</div>
+        </div>
+        <div class="action-item">
+          <div class="action-bullet">6</div>
+          <div>If not already a MARCQI participant, request enrollment information at <a href="https://marcqi.org/prospective-sites/" target="_blank">marcqi.org/prospective-sites</a> to strengthen your BCBSM PGIP standing.</div>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="widget">
+        <div class="widget-title">🔗 Quick Links</div>
+        <a class="quick-link" href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">MA Prior-Auth Reform — Full Coverage (Apr 2, 2026)</a>
+        <a class="quick-link" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" target="_blank">CMS CY 2026 Physician Fee Schedule Final Rule</a>
+        <a class="quick-link" href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">MDHHS April 1, 2026 APC/ASC Update</a>
+        <a class="quick-link" href="https://anatomyit.com/blog/finalized-changes-to-mips-value-pathway-for-orthopedic-surgery-in-2026/" target="_blank">2026 MIPS Orthopedic MVP Changes — Anatomy IT</a>
+        <a class="quick-link" href="https://marcqi.org/" target="_blank">MARCQI — 2026 Resources &amp; Training</a>
+        <a class="quick-link" href="https://www.modernhealthcare.com/health-tech/mh-abridge-cohere-ambient-ai-prior-authorizations/" target="_blank">Modern Healthcare — Ambient AI for Prior Auth</a>
+        <a class="quick-link" href="https://www.beckersasc.com/private-equity/from-anxiety-to-action-how-ambulatory-leaders-are-rebuilding-margins-in-2026/" target="_blank">Becker's ASC — Rebuilding ASC Margins in 2026</a>
+      </div>
+
+      <!-- COMING UP -->
+      <div class="widget">
+        <div class="widget-title">👀 Coming Up Next Issue</div>
+        <p><strong>Know This — Week 2:</strong> AI in Healthcare</p>
+        <p>Next week's deep dive will explore the state of artificial intelligence in MSK and orthopedic care — from machine-learning diagnostic imaging and fracture detection to predictive risk stratification and AI-powered care navigation for joint replacement patients. We'll connect the technology landscape to what Michigan practice leaders can realistically implement in 2026.</p>
+      </div>
+
+    </aside>
+  </div><!-- end .content-row -->
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <h3>Sources Cited in This Issue</h3>
+    <ul class="source-list">
+      <li><a href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">SavingAdvice.com — "Medicare Advantage Prior-Authorization Denials Jumped 56% — New April Rules Aim to Fix It" (April 2, 2026)</a></li>
+      <li><a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" target="_blank">CMS.gov — Calendar Year 2026 Medicare Physician Fee Schedule Final Rule (CMS-1832-F)</a></li>
+      <li><a href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">Michigan.gov / MDHHS — April 1, 2026 Outpatient Hospital Providers APC and ASC Updates</a></li>
+      <li><a href="https://anatomyit.com/blog/finalized-changes-to-mips-value-pathway-for-orthopedic-surgery-in-2026/" target="_blank">Anatomy IT — "2026 MIPS Orthopedic Surgery MVP Changes: What You Need to Know"</a></li>
+      <li><a href="https://www.adsc.com/blog/q1-2026-reality-check-is-your-orthopedic-revenue-cycle-built-for-2027" target="_blank">ADSC — "Q1 2026 Reality Check: Is Your Orthopedic Revenue Cycle Built for 2027?"</a></li>
+      <li><a href="https://marcqi.org/" target="_blank">MARCQI.org — Michigan Arthroplasty Registry Collaborative Quality Initiative (2026 Resources)</a></li>
+      <li><a href="https://www.beckersasc.com/new-asc-development/covenant-to-build-25m-orthopedic-facility-in-michigan/" target="_blank">Becker's ASC — "Covenant to Build $25M Orthopedic Facility in Michigan"</a></li>
+      <li><a href="https://www.modernhealthcare.com/health-tech/mh-abridge-cohere-ambient-ai-prior-authorizations/" target="_blank">Modern Healthcare — "How Abridge, Cohere Are Using Ambient AI for Prior Authorizations"</a></li>
+      <li><a href="https://www.beckershospitalreview.com/podcasts/uncategorized/the-2026-orthopedic-playbook-automation-ai-and-the-future-of-msk-care-2/" target="_blank">Becker's Hospital Review — "The 2026 Orthopedic Playbook: Automation, AI, and the Future of MSK Care"</a></li>
+      <li><a href="https://www.beckersasc.com/private-equity/from-anxiety-to-action-how-ambulatory-leaders-are-rebuilding-margins-in-2026/" target="_blank">Becker's ASC — "From Anxiety to Action: How Ambulatory Leaders Are Rebuilding Margins in 2026"</a></li>
+    </ul>
+    <div class="disclaimer">
+      Careteq Vantage is produced for informational purposes for Michigan MSK and orthopedic practice leaders. Policy summaries are based on publicly available sources and do not constitute legal or billing advice. Verify all reimbursement and policy details with your compliance team or payer contracts before making operational decisions.
+    </div>
+    <div class="brand-footer">
+      Careteq Vantage · Issue 1 · April 6, 2026 · Curated by Santosh Mudiraj, MBBS, MPH · Analytics &amp; Strategy
+    </div>
+  </footer>
+
+</div><!-- end .wrapper -->
+</body>
+</html>
