@@ -1,572 +1,615 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careteq Vantage | Issue 1 | April 6, 2026</title>
-  <style>
-    /* ── Reset & Base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Georgia', 'Times New Roman', serif;
-      background: #f4f6f9;
-      color: #1a1a2e;
-      font-size: 15px;
-      line-height: 1.7;
-    }
-    a { color: #1565c0; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careteq Vantage — Executive Intelligence Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #181c24;
+    --border: #1e2330;
+    --border2: #252b3a;
+    --text: #e8eaf0;
+    --text2: #8b92a8;
+    --text3: #555e78;
+    --accent: #4f8ef7;
+    --accent2: #6ea3ff;
+    --gold2: #e8c96a;
+    --red: #e05c5c;
+    --yellow: #d4a84b;
+    --green: #4caf7d;
+    --purple: #9b72cf;
+    --msk-color: #4f8ef7;
+    --comp-color: #e05c5c;
+    --qual-color: #4caf7d;
+    --ai-color: #9b72cf;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:14px; line-height:1.6; min-height:100vh; }
 
-    /* ── Wrapper ── */
-    .wrapper {
-      max-width: 960px;
-      margin: 0 auto;
-      background: #ffffff;
-    }
+  /* TOP BAR */
+  .topbar { background:var(--surface); border-bottom:1px solid var(--border); padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:56px; position:sticky; top:0; z-index:100; }
+  .brand { display:flex; align-items:center; gap:10px; cursor:pointer; }
+  .brand-mark { width:28px; height:28px; background:linear-gradient(135deg,var(--accent) 0%,var(--purple) 100%); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:white; font-family:'DM Serif Display',serif; }
+  .brand-name { font-family:'DM Serif Display',serif; font-size:17px; color:var(--text); }
+  .brand-name span { color:var(--gold2); }
+  .nav { display:flex; align-items:center; gap:4px; }
+  .nav a { color:var(--text2); text-decoration:none; padding:6px 14px; border-radius:6px; font-size:13px; font-weight:500; transition:all 0.15s; }
+  .nav a:hover { background:var(--surface2); color:var(--text); }
+  .nav a.active { background:var(--border2); color:var(--text); }
+  .topbar-meta { display:flex; align-items:center; gap:12px; font-size:12px; color:var(--text3); }
+  .live-badge { display:flex; align-items:center; gap:5px; background:rgba(76,175,125,0.1); border:1px solid rgba(76,175,125,0.25); color:var(--green); padding:3px 8px; border-radius:20px; font-size:11px; font-weight:500; }
+  .live-dot { width:6px; height:6px; background:var(--green); border-radius:50%; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-    /* ── Header ── */
-    .header {
-      background: #0d1b4b;
-      color: #ffffff;
-      padding: 32px 40px 24px;
-      border-bottom: 4px solid #1565c0;
-    }
-    .header .masthead {
-      font-family: 'Arial', sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #ffffff;
-    }
-    .header .masthead span { color: #64b5f6; }
-    .header .issue-line {
-      font-family: 'Arial', sans-serif;
-      font-size: 13px;
-      color: #90caf9;
-      margin-top: 4px;
-      letter-spacing: 0.5px;
-    }
-    .header .tagline {
-      font-family: 'Arial', sans-serif;
-      font-size: 12px;
-      color: #bbdefb;
-      margin-top: 8px;
-      font-style: italic;
-    }
+  /* PAGES */
+  .page { display:none; }
+  .page.active { display:block; }
 
-    /* ── Lead Story Banner ── */
-    .lead-banner {
-      background: #1565c0;
-      color: #ffffff;
-      padding: 18px 40px;
-      border-left: 6px solid #ffc107;
-    }
-    .lead-banner .label {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #ffc107;
-      font-weight: 700;
-    }
-    .lead-banner .headline {
-      font-size: 18px;
-      font-weight: 700;
-      margin-top: 4px;
-      font-family: 'Arial', sans-serif;
-      line-height: 1.4;
-    }
-    .lead-banner .sub {
-      font-size: 13px;
-      color: #e3f2fd;
-      margin-top: 6px;
-    }
-    .lead-banner a { color: #ffc107; font-weight: 600; }
+  /* HERO */
+  .hero { padding:40px 32px 28px; border-bottom:1px solid var(--border); background:linear-gradient(180deg,rgba(79,142,247,0.04) 0%,transparent 100%); }
+  .hero-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:8px; }
+  .hero h1 { font-family:'DM Serif Display',serif; font-size:28px; font-weight:400; letter-spacing:-0.01em; }
+  .hero-sub { color:var(--text2); font-size:13px; margin-top:4px; }
+  .hero-date { font-size:12px; color:var(--text3); font-family:'DM Mono',monospace; text-align:right; }
 
-    /* ── Two-Column Layout ── */
-    .content-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 0;
-    }
-    .main-col {
-      flex: 1 1 62%;
-      padding: 32px 36px 32px 40px;
-      border-right: 1px solid #e0e6f0;
-    }
-    .sidebar {
-      flex: 0 0 34%;
-      width: 34%;
-      padding: 28px 24px 32px 24px;
-      background: #f7f9fc;
-    }
+  /* BRIEFING TABS */
+  .briefing-tabs { padding:20px 32px 0; border-bottom:1px solid var(--border); display:flex; overflow-x:auto; }
+  .btab { padding:12px 20px; border:none; background:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; color:var(--text3); border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; display:flex; align-items:center; gap:8px; margin-bottom:-1px; }
+  .btab:hover { color:var(--text2); }
+  .btab[data-type="msk"].active { border-bottom-color:var(--msk-color); color:var(--msk-color); }
+  .btab[data-type="compliance"].active { border-bottom-color:var(--comp-color); color:var(--comp-color); }
+  .btab[data-type="quality"].active { border-bottom-color:var(--qual-color); color:var(--qual-color); }
+  .btab[data-type="ai"].active { border-bottom-color:var(--ai-color); color:var(--ai-color); }
+  .tab-count { font-size:11px; padding:2px 7px; border-radius:20px; font-family:'DM Mono',monospace; font-weight:500; }
+  .btab[data-type="msk"] .tab-count { background:rgba(79,142,247,0.12); color:var(--msk-color); }
+  .btab[data-type="compliance"] .tab-count { background:rgba(224,92,92,0.12); color:var(--comp-color); }
+  .btab[data-type="quality"] .tab-count { background:rgba(76,175,125,0.12); color:var(--qual-color); }
+  .btab[data-type="ai"] .tab-count { background:rgba(155,114,207,0.12); color:var(--ai-color); }
 
-    /* ── Section Styles ── */
-    .section {
-      margin-bottom: 36px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid #e0e6f0;
-    }
-    .section:last-of-type {
-      border-bottom: none;
-      margin-bottom: 0;
-    }
-    .section-label {
-      font-family: 'Arial', sans-serif;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #1565c0;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .section h2 {
-      font-family: 'Arial', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: #0d1b4b;
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-    .section p {
-      color: #2d3748;
-      margin-bottom: 10px;
-      font-size: 14.5px;
-    }
-    .section .story-source {
-      font-family: 'Arial', sans-serif;
-      font-size: 12px;
-      color: #6b7280;
-      border-left: 3px solid #1565c0;
-      padding-left: 10px;
-      margin-top: 10px;
-    }
-    .section .story-source a { color: #1565c0; }
+  /* BRIEFING CONTENT */
+  .briefing-content { display:none; padding:28px 32px; }
+  .briefing-content.active { display:block; }
+  .briefing-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+  .briefing-title { font-family:'DM Serif Display',serif; font-size:18px; font-weight:400; }
+  .briefing-meta { font-size:12px; color:var(--text3); display:flex; gap:16px; font-family:'DM Mono',monospace; }
+  .briefing-desc { font-size:13px; color:var(--text2); margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid var(--border); }
 
-    /* ── Sidebar Widgets ── */
-    .widget {
-      background: #ffffff;
-      border: 1px solid #dce6f0;
-      border-radius: 6px;
-      padding: 16px 18px;
-      margin-bottom: 20px;
-    }
-    .widget-title {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #0d1b4b;
-      font-weight: 700;
-      border-bottom: 2px solid #1565c0;
-      padding-bottom: 6px;
-      margin-bottom: 12px;
-    }
-    .widget p, .widget li {
-      font-size: 13px;
-      color: #374151;
-      line-height: 1.6;
-      margin-bottom: 8px;
-    }
-    .widget ul { padding-left: 16px; }
-    .widget .stat-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #f0f4f8;
-    }
-    .widget .stat-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .widget .stat-num {
-      font-family: 'Arial', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: #1565c0;
-      line-height: 1;
-      min-width: 64px;
-      text-align: right;
-    }
-    .widget .stat-desc {
-      font-size: 12.5px;
-      color: #4b5563;
-      line-height: 1.5;
-    }
-    .widget .date-item {
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #f0f4f8;
-    }
-    .widget .date-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .widget .date-label {
-      font-family: 'Arial', sans-serif;
-      font-size: 11px;
-      color: #1565c0;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .widget .date-desc { font-size: 13px; color: #374151; }
-    .action-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 10px;
-      font-size: 13px;
-      color: #1f2937;
-    }
-    .action-bullet {
-      min-width: 20px;
-      height: 20px;
-      background: #1565c0;
-      color: white;
-      border-radius: 50%;
-      font-size: 11px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Arial', sans-serif;
-      margin-top: 1px;
-    }
-    .quick-link {
-      display: block;
-      font-size: 12.5px;
-      margin-bottom: 8px;
-      padding-left: 12px;
-      border-left: 3px solid #90caf9;
-    }
-    .michigan-lens {
-      background: #e3f2fd;
-      border-left: 4px solid #1565c0;
-      padding: 12px 14px;
-      border-radius: 0 4px 4px 0;
-    }
-    .michigan-lens p { font-size: 13px; color: #1a237e; margin: 0; }
+  /* CARDS */
+  .item-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; margin-bottom:12px; transition:border-color 0.15s,transform 0.15s; position:relative; overflow:hidden; }
+  .item-card:hover { border-color:var(--border2); transform:translateY(-1px); }
+  .item-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:3px 0 0 3px; }
+  .item-card.high::before { background:var(--red); }
+  .item-card.medium::before { background:var(--yellow); }
+  .item-card.low::before { background:var(--green); }
+  .card-header { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; }
+  .priority-dot { font-size:14px; margin-top:1px; flex-shrink:0; }
+  .card-main { flex:1; }
+  .card-headline { font-size:14px; font-weight:600; color:var(--text); margin-bottom:4px; line-height:1.4; }
+  .card-badges { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+  .badge { font-size:10px; font-weight:600; padding:2px 8px; border-radius:4px; letter-spacing:0.05em; text-transform:uppercase; font-family:'DM Mono',monospace; }
+  .badge-category { background:var(--surface2); color:var(--text2); border:1px solid var(--border2); }
+  .badge-high { background:rgba(224,92,92,0.12); color:var(--red); border:1px solid rgba(224,92,92,0.2); }
+  .badge-medium { background:rgba(212,168,75,0.12); color:var(--yellow); border:1px solid rgba(212,168,75,0.2); }
+  .badge-low { background:rgba(76,175,125,0.12); color:var(--green); border:1px solid rgba(76,175,125,0.2); }
+  .card-summary { font-size:13px; color:var(--text2); line-height:1.55; margin-bottom:10px; }
+  .card-why { font-size:12px; color:var(--text3); background:var(--surface2); border-radius:6px; padding:8px 12px; margin-bottom:10px; border-left:2px solid var(--border2); }
+  .card-why strong { color:var(--text2); }
+  .actions-toggle { background:none; border:1px solid var(--border2); color:var(--text2); font-size:11px; padding:4px 10px; border-radius:5px; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:500; transition:all 0.15s; margin-bottom:8px; }
+  .actions-toggle:hover { background:var(--surface2); color:var(--text); }
+  .action-list { display:none; list-style:none; margin-bottom:10px; }
+  .action-list.open { display:block; }
+  .action-list li { font-size:12px; color:var(--text2); padding:4px 0 4px 16px; position:relative; }
+  .action-list li::before { content:'→'; position:absolute; left:0; color:var(--text3); }
+  .card-sources { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; padding-top:8px; border-top:1px solid var(--border); }
+  .source-link { font-size:11px; color:var(--accent2); text-decoration:none; padding:3px 8px; background:rgba(79,142,247,0.07); border:1px solid rgba(79,142,247,0.15); border-radius:4px; transition:all 0.15s; font-family:'DM Mono',monospace; }
+  .source-link:hover { background:rgba(79,142,247,0.14); border-color:rgba(79,142,247,0.3); }
+  .card-dates { display:flex; gap:14px; font-size:11px; color:var(--text3); font-family:'DM Mono',monospace; margin-top:6px; }
 
-    /* ── Know This Section ── */
-    .know-this-section {
-      background: #0d1b4b;
-      color: #e8eaf6;
-      padding: 28px 32px;
-      margin: 0 -36px -32px -40px;
-      border-radius: 0;
-    }
-    .know-this-section .section-label { color: #90caf9; }
-    .know-this-section h2 { color: #ffffff; font-size: 18px; }
-    .know-this-section p { color: #c5cae9; font-size: 14.5px; margin-bottom: 10px; }
-    .know-this-section .closing { color: #64b5f6; font-style: italic; font-weight: 600; }
+  /* ARCHIVE */
+  .archive-wrap { padding:32px; }
+  .page-title { font-family:'DM Serif Display',serif; font-size:24px; font-weight:400; margin-bottom:6px; }
+  .page-subtitle { font-size:13px; color:var(--text2); margin-bottom:28px; }
+  .archive-filter-row { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
+  .filter-btn { padding:6px 14px; border-radius:20px; border:1px solid var(--border2); background:none; color:var(--text2); font-size:12px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; transition:all 0.15s; }
+  .filter-btn:hover,.filter-btn.active { background:var(--surface2); color:var(--text); border-color:var(--text3); }
+  .archive-entry { background:var(--surface); border:1px solid var(--border); border-radius:10px; margin-bottom:10px; transition:border-color 0.15s; }
+  .archive-entry:hover { border-color:var(--border2); }
+  .archive-entry-header { padding:14px 18px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; }
+  .archive-entry-left { display:flex; align-items:center; gap:12px; }
+  .archive-type-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .archive-entry-title { font-size:13px; font-weight:500; }
+  .archive-entry-date { font-size:11px; color:var(--text3); font-family:'DM Mono',monospace; }
+  .archive-entry-right { display:flex; align-items:center; gap:12px; font-size:11px; color:var(--text3); font-family:'DM Mono',monospace; }
+  .archive-items-count { background:var(--surface2); padding:2px 8px; border-radius:4px; border:1px solid var(--border2); }
+  .archive-badge { padding:2px 8px; border-radius:4px; font-size:10px; font-weight:600; }
+  .archive-badge.latest { background:rgba(201,168,76,0.15); color:var(--gold2); border:1px solid rgba(201,168,76,0.25); }
 
-    /* ── Footer ── */
-    .footer {
-      background: #0d1b4b;
-      color: #90caf9;
-      padding: 28px 40px;
-      font-family: 'Arial', sans-serif;
-      font-size: 12px;
-    }
-    .footer h3 {
-      color: #ffffff;
-      font-size: 13px;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .footer .source-list { list-style: none; padding: 0; }
-    .footer .source-list li {
-      margin-bottom: 6px;
-      padding-left: 12px;
-      border-left: 2px solid #1565c0;
-      color: #bbdefb;
-    }
-    .footer .source-list li a { color: #64b5f6; font-size: 11.5px; }
-    .footer .disclaimer {
-      margin-top: 20px;
-      color: #4a5568;
-      font-size: 11px;
-      border-top: 1px solid #1a2f6b;
-      padding-top: 14px;
-    }
-    .footer .brand-footer {
-      margin-top: 14px;
-      color: #90caf9;
-      font-style: italic;
-    }
+  /* PREFERENCES */
+  .prefs-wrap { padding:32px; max-width:640px; }
+  .pref-section { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:16px; }
+  .pref-section-title { font-size:14px; font-weight:600; margin-bottom:4px; }
+  .pref-section-desc { font-size:12px; color:var(--text2); margin-bottom:20px; }
+  .pref-item { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border); }
+  .pref-item:last-child { border-bottom:none; padding-bottom:0; }
+  .pref-item:first-child { padding-top:0; }
+  .pref-item-info { flex:1; }
+  .pref-item-label { font-size:13px; font-weight:500; display:flex; align-items:center; gap:8px; }
+  .pref-item-sub { font-size:11px; color:var(--text3); margin-top:2px; }
+  .pref-type-pill { font-size:10px; padding:2px 7px; border-radius:4px; font-weight:600; font-family:'DM Mono',monospace; }
+  .toggle { width:38px; height:22px; background:var(--border2); border-radius:20px; position:relative; cursor:pointer; border:none; transition:background 0.2s; flex-shrink:0; }
+  .toggle.on { background:var(--accent); }
+  .toggle::after { content:''; width:16px; height:16px; background:white; border-radius:50%; position:absolute; top:3px; left:3px; transition:left 0.2s; box-shadow:0 1px 3px rgba(0,0,0,0.3); }
+  .toggle.on::after { left:19px; }
+  .pref-input { width:100%; background:var(--surface2); border:1px solid var(--border2); border-radius:8px; padding:10px 14px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:13px; margin-bottom:12px; transition:border-color 0.15s; }
+  .pref-input:focus { outline:none; border-color:var(--accent); }
+  .pref-input::placeholder { color:var(--text3); }
+  .subscribe-btn { background:var(--accent); color:white; border:none; padding:10px 24px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.15s; width:100%; }
+  .subscribe-btn:hover { background:var(--accent2); transform:translateY(-1px); }
 
-    /* ── Responsive ── */
-    @media (max-width: 680px) {
-      .content-row { flex-direction: column; }
-      .main-col { padding: 24px 20px; border-right: none; }
-      .sidebar { width: 100%; padding: 20px; }
-      .header { padding: 24px 20px 16px; }
-      .lead-banner { padding: 14px 20px; }
-      .footer { padding: 20px; }
-    }
-  </style>
+  .empty-state { text-align:center; padding:48px 24px; color:var(--text3); }
+  .empty-state .icon { font-size:32px; margin-bottom:12px; }
+  .empty-state p { font-size:13px; }
+
+  footer { text-align:center; padding:24px 32px; border-top:1px solid var(--border); font-size:12px; color:var(--text3); margin-top:40px; }
+  footer a { color:var(--text3); text-decoration:none; margin:0 8px; }
+  footer a:hover { color:var(--text2); }
+
+  @media(max-width:640px) {
+    .topbar,.hero,.briefing-content,.archive-wrap,.prefs-wrap { padding-left:16px; padding-right:16px; }
+    .briefing-tabs { padding:0 16px; }
+    .hero h1 { font-size:22px; }
+  }
+</style>
 </head>
 <body>
-<div class="wrapper">
 
-  <!-- ══ HEADER ══ -->
-  <header class="header">
-    <div class="masthead">Careteq <span>Vantage</span></div>
-    <div class="issue-line">Issue 1 &nbsp;·&nbsp; April 6, 2026 &nbsp;·&nbsp; MSK &amp; Orthopedic Intelligence for Michigan Practice Leaders</div>
-    <div class="tagline">Curated by Santosh Mudiraj, MBBS, MPH · Analytics &amp; Strategy</div>
-  </header>
+<header class="topbar">
+  <div class="brand" onclick="showPage('dashboard')">
+    <div class="brand-mark">CV</div>
+    <span class="brand-name">Careteq <span>Vantage</span></span>
+  </div>
+  <nav class="nav">
+    <a href="#" class="active" id="nav-dashboard" onclick="showPage('dashboard');return false;">Dashboard</a>
+    <a href="#" id="nav-archive" onclick="showPage('archive');return false;">Archive</a>
+    <a href="#" id="nav-preferences" onclick="showPage('preferences');return false;">Preferences</a>
+  </nav>
+  <div class="topbar-meta">
+    <div class="live-badge"><div class="live-dot"></div>Live</div>
+    <span id="topbar-date"></span>
+  </div>
+</header>
 
-  <!-- ══ LEAD STORY BANNER ══ -->
-  <div class="lead-banner">
-    <div class="label">⚡ Lead Story This Week</div>
-    <div class="headline">Medicare Advantage Prior-Authorization Denials Jumped 56% — New April Rules Aim to Fix It</div>
-    <div class="sub">
-      Effective April 2026, CMS mandates faster response timelines, protects approved services from reversal, and requires public reporting of denial rates.
-      &nbsp;<a href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">Read the full story →</a>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE: DASHBOARD                                           -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-dashboard">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <h1>Executive Intelligence Dashboard</h1>
+        <p class="hero-sub">Verified MSK &amp; healthcare intelligence for Michigan's orthopedic leaders</p>
+      </div>
+      <div class="hero-date">
+        <!-- DASHBOARD HERO DATE --><div id="hero-date-display"></div><!-- END DASHBOARD HERO DATE -->
+        <div style="color:var(--text3);margin-top:2px;">Santosh Mudiraj, MBBS, MPH</div>
+      </div>
     </div>
   </div>
 
-  <!-- ══ MAIN CONTENT + SIDEBAR ══ -->
-  <div class="content-row">
+  <div class="briefing-tabs">
+    <button class="btab active" data-type="msk" onclick="showBriefing('msk')">
+      MSK Executive Daily
+      <!-- MSK TAB COUNT --><span class="tab-count" id="msk-tab-count">8</span><!-- END MSK TAB COUNT -->
+    </button>
+    <button class="btab" data-type="compliance" onclick="showBriefing('compliance')">
+      Healthcare Compliance
+      <!-- COMPLIANCE TAB COUNT --><span class="tab-count" id="compliance-tab-count">—</span><!-- END COMPLIANCE TAB COUNT -->
+    </button>
+    <button class="btab" data-type="quality" onclick="showBriefing('quality')">
+      Quality Metrics &amp; CQI
+      <!-- QUALITY TAB COUNT --><span class="tab-count" id="quality-tab-count">—</span><!-- END QUALITY TAB COUNT -->
+    </button>
+    <button class="btab" data-type="ai" onclick="showBriefing('ai')">
+      AI &amp; Analytics
+      <!-- AI TAB COUNT --><span class="tab-count" id="ai-tab-count">—</span><!-- END AI TAB COUNT -->
+    </button>
+  </div>
 
-    <!-- ── MAIN COLUMN ── -->
-    <main class="main-col">
 
-      <!-- SECTION 1: POLICY & REIMBURSEMENT -->
-      <div class="section">
-        <div class="section-label">Section 1</div>
-        <h2>Policy &amp; Reimbursement</h2>
-
-        <p>
-          Orthopedic and MSK practices face a transformed reimbursement landscape in April 2026. The most immediate headline: Medicare Advantage (MA) prior-authorization denial rates have climbed 56% in recent years, prompting CMS to enforce a new set of reforms now taking effect. Under the updated rules, MA plans must respond to urgent prior-auth requests within 72 hours and standard requests within 7 calendar days. Crucially, once a service is approved, plans must honor that decision — closing a loophole that allowed reversed authorizations mid-treatment. Plans are now also required to publicly report their approval, denial, and appeal metrics annually, giving providers and patients their first meaningful benchmarking tool. For orthopedic practices dealing with high prior-auth burdens for joint replacements, spine procedures, and physical therapy, these changes represent real operational relief.
-        </p>
-        <p>
-          At the federal level, the 2026 CMS Physician Fee Schedule delivers a net 3.26% conversion factor increase for most physicians, with a higher 3.77% bump for advanced APM participants. However, CMS also introduced a 2.5% efficiency cut for non-time-based procedures — including many orthopedic surgeries and injections — partially offsetting gains. The TEAM Model (Transforming Episode Accountability Model), now mandatory for hospital-affiliated orthopedic practices beginning January 1, 2026, adds episode-based accountability for lower extremity joint replacements. Meanwhile, MDHHS issued updated Outpatient APC and ASC payment rate software effective April 1, 2026, requiring CHAMPS system verification by all Michigan Medicaid-participating outpatient surgical centers.
-        </p>
-        <div class="story-source">
-          Sources: <a href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">SavingAdvice.com — Medicare Advantage Prior-Authorization Denials Jumped 56% (Apr 2, 2026)</a> &nbsp;|&nbsp;
-          <a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" target="_blank">CMS — CY 2026 Physician Fee Schedule Final Rule</a> &nbsp;|&nbsp;
-          <a href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">MDHHS — April 1, 2026 APC &amp; ASC Updates</a>
-        </div>
+  <!-- ─── MSK DAILY ─── -->
+  <div class="briefing-content active" id="bc-msk">
+    <div class="briefing-header">
+      <div class="briefing-title" style="color:var(--msk-color)">MSK Executive Daily</div>
+      <div class="briefing-meta">
+        <!-- MSK TAB LAST UPDATED --><span id="msk-last-updated">Updated April 14, 2026</span><!-- END MSK TAB LAST UPDATED -->
+        <span>Daily · Mon–Fri</span>
       </div>
-
-      <!-- SECTION 2: QUALITY METRICS SPOTLIGHT -->
-      <div class="section">
-        <div class="section-label">Section 2</div>
-        <h2>Quality Metrics Spotlight</h2>
-
-        <p>
-          Quality reporting requirements for orthopedic practices have grown more precise in 2026, with CMS finalizing significant updates to the MIPS Value Pathway (MVP) for orthopedic surgery. Under the revised Improving Care for Lower Extremity Joint Repair MVP, orthopedic providers must now attest to four of seven available quality measures, with at least one being a patient-reported outcome measure (PROM). This requirement directly elevates the role of tools like the FOTO Lower Extremity Physical Function PROM and equivalent instruments for spine, shoulder, and upper extremity cases. Quality still accounts for 30% of total MIPS score, requiring reporting on at least 75% of denominator-eligible encounters.
-        </p>
-        <p>
-          The push toward outcomes measurement comes at a moment when denial pressures are also challenging quality workflows. New Q1 2026 data from orthopedic revenue cycle analysts shows that 41% of providers now report claim denial rates of 10% or higher — a trend that erodes margins and distorts quality reporting by shifting staff time to rework. CMS has signaled intent to sunset traditional MIPS entirely, with MVPs expected to become mandatory as early as 2029. Michigan orthopedic practices should begin aligning their EHR-based outcome capture workflows now to stay ahead of the transition and maximize MIPS scoring under the new MVP structure.
-        </p>
-        <div class="story-source">
-          Sources: <a href="https://anatomyit.com/blog/finalized-changes-to-mips-value-pathway-for-orthopedic-surgery-in-2026/" target="_blank">Anatomy IT — 2026 MIPS Orthopedic Surgery MVP Changes</a> &nbsp;|&nbsp;
-          <a href="https://www.adsc.com/blog/q1-2026-reality-check-is-your-orthopedic-revenue-cycle-built-for-2027" target="_blank">ADSC — Q1 2026 Reality Check: Orthopedic Revenue Cycle</a>
-        </div>
-      </div>
-
-      <!-- SECTION 3: MICHIGAN COLLABORATIVE SPOTLIGHT -->
-      <div class="section">
-        <div class="section-label">Section 3</div>
-        <h2>Michigan Collaborative Spotlight</h2>
-
-        <p>
-          Michigan's orthopedic collaborative infrastructure is as robust as any state's, and 2026 brings fresh momentum to two flagship programs. MARCQI — the Michigan Arthroplasty Registry Collaborative Quality Initiative, a BCBSM/BCN-funded CQI now spanning over 90 participating sites — has released its 2026 abstraction forms, updated New Clinical Data Abstractor (CDA) training materials and a revised training calendar for hip and knee arthroplasty data submission. MARCQI's ongoing focus areas include opioid prescribing optimization, transfusion reduction, appropriate post-acute care utilization, and patient-reported outcomes collection. Practices not yet enrolled should note that MARCQI participation remains a key differentiator in BCBSM PGIP performance assessments.
-        </p>
-        <p>
-          On the infrastructure side, Covenant HealthCare in Saginaw announced it will break ground April 8, 2026, on a new $25 million, 25,700-square-foot orthopedic facility at its Mackinaw campus. The center will consolidate outpatient orthopedic services with 44 exam rooms, four X-ray suites, and an integrated OrthoExpress urgent care clinic for walk-in bone, joint, and muscle injuries — with a projected opening in summer 2027. This investment reflects broader statewide trends: Michigan practices are expanding access to ambulatory MSK care in response to rising demand, payer incentives favoring lower-cost sites of service, and growing patient preference for outpatient care settings.
-        </p>
-        <div class="story-source">
-          Sources: <a href="https://marcqi.org/" target="_blank">MARCQI — Michigan Arthroplasty Registry Collaborative Quality Initiative (2026)</a> &nbsp;|&nbsp;
-          <a href="https://www.beckersasc.com/new-asc-development/covenant-to-build-25m-orthopedic-facility-in-michigan/" target="_blank">Becker's ASC — Covenant to Build $25M Orthopedic Facility in Michigan</a>
-        </div>
-      </div>
-
-      <!-- SECTION 4: AI & ANALYTICS -->
-      <div class="section">
-        <div class="section-label">Section 4</div>
-        <h2>AI &amp; Analytics</h2>
-
-        <p>
-          The convergence of ambient AI documentation and prior authorization automation is emerging as the most consequential health IT development for orthopedic practices in 2026. Modern Healthcare reported this week that companies including Abridge and Cohere are deploying ambient AI specifically to tackle prior authorization workflows — generating supporting documentation, predicting approval likelihood, and flagging missing clinical information before submission. This represents a significant evolution from ambient scribing as a documentation tool alone; the same capture layer is now being wired directly into payer-facing workflows, with early adopters reporting dramatic reductions in PA processing time.
-        </p>
-        <p>
-          Closer to home, IntelePeer — working directly with Michigan Orthopedic Center, a mid-Michigan fellowship-trained group practice — introduced the SmartAgent™ Clinical Assessment Agent, a voice-powered AI solution that automates structured post-procedure clinical assessments. The system was designed to accelerate care decisions, identify complications earlier, and reduce the burden on clinical staff conducting routine follow-up calls. On the EHR side, ModMed's AI Scribe — trained on over 750 million de-identified patient encounters — continues to gain traction in orthopedic-specific settings, with the platform's orthopedic clinical language model cited as a differentiator. For Michigan MSK practices, the practical near-term priority is ensuring ambient AI investments are integrated with prior auth and outcomes workflows, not siloed as documentation-only tools.
-        </p>
-        <div class="story-source">
-          Sources: <a href="https://www.modernhealthcare.com/health-tech/mh-abridge-cohere-ambient-ai-prior-authorizations/" target="_blank">Modern Healthcare — How Abridge, Cohere Are Using Ambient AI for Prior Authorizations</a> &nbsp;|&nbsp;
-          <a href="https://www.beckershospitalreview.com/podcasts/uncategorized/the-2026-orthopedic-playbook-automation-ai-and-the-future-of-msk-care-2/" target="_blank">Becker's Hospital Review — The 2026 Orthopedic Playbook: Automation, AI, and the Future of MSK Care</a>
-        </div>
-      </div>
-
-      <!-- SECTION 5: PRACTICE OPERATIONS -->
-      <div class="section">
-        <div class="section-label">Section 5</div>
-        <h2>Practice Operations</h2>
-
-        <p>
-          Orthopedic practice leaders are entering Q2 2026 under compound margin pressure. Becker's ASC reported that ambulatory leaders are in structural redesign mode as three forces converge simultaneously: rising musculoskeletal demand, clinician burnout from administrative burden, and reimbursement volatility. Staffing remains the dominant operational challenge — many Michigan MSK markets are experiencing wage growth of 4–15%, with orthopedic practices expanding advanced practice clinician (APC) roles and adopting team-based care models to protect access while managing payroll costs. Data-driven staffing alignment — matching scheduling supply to historical demand patterns — has shown potential to reduce payroll costs by 8–14%.
-        </p>
-        <p>
-          Revenue cycle performance has become the most urgent financial priority for Q2. Industry data shows 41% of orthopedic providers now experience denial rates exceeding 10%, driven by payer algorithm updates, coding changes, and the ongoing shift in site-of-service payment rules as CMS expands the outpatient procedure list. The Q1 2026 revenue cycle analysis from orthopedic billing specialists at ADSC emphasizes that practices must audit their denial root causes before mid-year, recalibrate coding workflows for 2026 MPFS changes, and evaluate whether AI-powered revenue intelligence tools — now available through most major orthopedic EHR platforms — are deployed to full capacity. Private equity interest in ASCs continues, with $18.9 billion invested in the first half of 2025 alone, maintaining upward pressure on acquisition multiples.
-        </p>
-        <div class="story-source">
-          Sources: <a href="https://www.beckersasc.com/private-equity/from-anxiety-to-action-how-ambulatory-leaders-are-rebuilding-margins-in-2026/" target="_blank">Becker's ASC — From Anxiety to Action: How Ambulatory Leaders Are Rebuilding Margins in 2026</a> &nbsp;|&nbsp;
-          <a href="https://www.adsc.com/blog/q1-2026-reality-check-is-your-orthopedic-revenue-cycle-built-for-2027" target="_blank">ADSC — Q1 2026 Reality Check: Is Your Orthopedic Revenue Cycle Built for 2027?</a>
-        </div>
-      </div>
-
-      <!-- SECTION 6: KNOW THIS -->
-      <div class="section know-this-section">
-        <div class="section-label">Section 6 · Know This</div>
-        <h2>MSK Medicine: A Foundation Built Over Centuries</h2>
-
-        <p>
-          Musculoskeletal medicine has a lineage stretching back millennia, yet its emergence as a distinct clinical discipline is surprisingly recent. Ancient Egyptian papyri dating to 1600 BCE document fracture management and joint manipulation techniques. Hippocrates described traction methods for hip dislocations and spinal deformities that remained largely unchanged for centuries. The Renaissance brought the first systematic anatomical study of the musculoskeletal system, with Vesalius's 1543 <em>De Humani Corporis Fabrica</em> establishing the foundational atlas of bone and muscle anatomy that still informs medical education.
-        </p>
-        <p>
-          Modern orthopedic surgery traces its formal origins to the late 18th century, when Nicholas Andry coined the term "orthopaedics" in 1741 — combining the Greek words for "straight" and "child" — reflecting early focus on correcting childhood deformities. The 20th century transformed the field: total hip arthroplasty was pioneered by Sir John Charnley in the 1960s, and the introduction of arthroscopic surgery in the 1970s–80s shifted procedures from open inpatient operations to outpatient interventions. The rise of evidence-based registries — including Michigan's own MARCQI, established in 2011 — represents the current era's defining contribution: the systematic measurement and improvement of outcomes at a population level.
-        </p>
-        <p class="closing">
-          For Michigan MSK practice leaders today, understanding this arc — from bone-setting to registry-driven quality science — provides critical context for the shift from volume-based to value-based care that now defines how orthopedic excellence is measured and rewarded.
-        </p>
-      </div>
-
-    </main>
-
-    <!-- ── SIDEBAR ── -->
-    <aside class="sidebar">
-
-      <!-- BY THE NUMBERS -->
-      <div class="widget">
-        <div class="widget-title">📊 By the Numbers</div>
-        <div class="stat-item">
-          <div class="stat-num">56%</div>
-          <div class="stat-desc">Increase in Medicare Advantage prior-authorization denial rates in recent years, prompting new April 2026 CMS reforms. <em>(SavingAdvice.com, Apr 2)</em></div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">3.26%</div>
-          <div class="stat-desc">Net Medicare Physician Fee Schedule conversion factor increase for 2026 — partially offset by a 2.5% efficiency cut on surgical procedures. <em>(CMS)</em></div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">41%</div>
-          <div class="stat-desc">Share of orthopedic providers now reporting claim denial rates of 10% or higher in Q1 2026. <em>(ADSC)</em></div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">$25M</div>
-          <div class="stat-desc">Investment by Covenant HealthCare in a new Saginaw-area orthopedic facility, breaking ground April 8. <em>(Becker's ASC)</em></div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">90+</div>
-          <div class="stat-desc">Michigan hospitals and ASCs participating in MARCQI, BCBSM's statewide arthroplasty CQI program. <em>(MARCQI.org)</em></div>
-        </div>
-      </div>
-
-      <!-- KEY DATES -->
-      <div class="widget">
-        <div class="widget-title">📅 Key Dates</div>
-        <div class="date-item">
-          <div class="date-label">April 7, 2026</div>
-          <div class="date-desc">New Medicare Advantage prior-auth rules fully in effect — verify plan compliance with your top payers.</div>
-        </div>
-        <div class="date-item">
-          <div class="date-label">April 8, 2026</div>
-          <div class="date-desc">Groundbreaking: Covenant HealthCare $25M orthopedic facility, Saginaw, MI.</div>
-        </div>
-        <div class="date-item">
-          <div class="date-label">April 1, 2026 (Effective)</div>
-          <div class="date-desc">MDHHS updated APC/ASC payment rates active in CHAMPS — verify your system is current.</div>
-        </div>
-        <div class="date-item">
-          <div class="date-label">June 11–13, 2026</div>
-          <div class="date-desc">Becker's 23rd Annual Spine, Orthopedic &amp; Pain Management-Driven ASC Conference — Swissotel Chicago.</div>
-        </div>
-      </div>
-
-      <!-- MICHIGAN LENS -->
-      <div class="widget">
-        <div class="widget-title">🔍 Michigan Lens</div>
-        <div class="michigan-lens">
-          <p>
-            The most significant Michigan-specific development this week is Covenant HealthCare's April 8 groundbreaking on a $25 million orthopedic facility in Saginaw — signaling that mid-Michigan health systems are investing in dedicated MSK ambulatory infrastructure ahead of rising regional demand. Combined with IntelePeer's AI clinical assessment collaboration with Michigan Orthopedic Center and MARCQI's updated 2026 training infrastructure, Michigan's orthopedic ecosystem is aligning clinical investment, technology adoption, and quality measurement simultaneously. Practice leaders should evaluate how their own facilities compare in outpatient capacity, AI integration readiness, and MARCQI/BCBSM CQI participation status.
-          </p>
-        </div>
-      </div>
-
-      <!-- ACTION ITEMS -->
-      <div class="widget">
-        <div class="widget-title">✅ Action Items This Week</div>
-        <div class="action-item">
-          <div class="action-bullet">1</div>
-          <div>Contact your top 3 Medicare Advantage payers to confirm new prior-auth response-time compliance under April 2026 CMS rules. Document your baseline denial rates now for before/after comparison.</div>
-        </div>
-        <div class="action-item">
-          <div class="action-bullet">2</div>
-          <div>Verify CHAMPS APC/ASC payment rate update is loaded for your Michigan Medicaid billing — effective April 1, 2026 (MDHHS alert).</div>
-        </div>
-        <div class="action-item">
-          <div class="action-bullet">3</div>
-          <div>Review your MIPS Value Pathway election for the 2026 performance year. Confirm you are reporting at least one outcome measure under the orthopedic surgery MVP.</div>
-        </div>
-        <div class="action-item">
-          <div class="action-bullet">4</div>
-          <div>Audit Q1 denial root causes — 41% of orthopedic practices exceed 10% denial rates. Prioritize top 3 CPT codes with highest denial frequency for coding team review.</div>
-        </div>
-        <div class="action-item">
-          <div class="action-bullet">5</div>
-          <div>If your practice uses an ambient AI scribing tool, ask your vendor whether it integrates with prior-auth documentation generation — Abridge and Cohere now offer this capability.</div>
-        </div>
-        <div class="action-item">
-          <div class="action-bullet">6</div>
-          <div>If not already a MARCQI participant, request enrollment information at <a href="https://marcqi.org/prospective-sites/" target="_blank">marcqi.org/prospective-sites</a> to strengthen your BCBSM PGIP standing.</div>
-        </div>
-      </div>
-
-      <!-- QUICK LINKS -->
-      <div class="widget">
-        <div class="widget-title">🔗 Quick Links</div>
-        <a class="quick-link" href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">MA Prior-Auth Reform — Full Coverage (Apr 2, 2026)</a>
-        <a class="quick-link" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" target="_blank">CMS CY 2026 Physician Fee Schedule Final Rule</a>
-        <a class="quick-link" href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">MDHHS April 1, 2026 APC/ASC Update</a>
-        <a class="quick-link" href="https://anatomyit.com/blog/finalized-changes-to-mips-value-pathway-for-orthopedic-surgery-in-2026/" target="_blank">2026 MIPS Orthopedic MVP Changes — Anatomy IT</a>
-        <a class="quick-link" href="https://marcqi.org/" target="_blank">MARCQI — 2026 Resources &amp; Training</a>
-        <a class="quick-link" href="https://www.modernhealthcare.com/health-tech/mh-abridge-cohere-ambient-ai-prior-authorizations/" target="_blank">Modern Healthcare — Ambient AI for Prior Auth</a>
-        <a class="quick-link" href="https://www.beckersasc.com/private-equity/from-anxiety-to-action-how-ambulatory-leaders-are-rebuilding-margins-in-2026/" target="_blank">Becker's ASC — Rebuilding ASC Margins in 2026</a>
-      </div>
-
-      <!-- COMING UP -->
-      <div class="widget">
-        <div class="widget-title">👀 Coming Up Next Issue</div>
-        <p><strong>Know This — Week 2:</strong> AI in Healthcare</p>
-        <p>Next week's deep dive will explore the state of artificial intelligence in MSK and orthopedic care — from machine-learning diagnostic imaging and fracture detection to predictive risk stratification and AI-powered care navigation for joint replacement patients. We'll connect the technology landscape to what Michigan practice leaders can realistically implement in 2026.</p>
-      </div>
-
-    </aside>
-  </div><!-- end .content-row -->
-
-  <!-- ══ FOOTER ══ -->
-  <footer class="footer">
-    <h3>Sources Cited in This Issue</h3>
-    <ul class="source-list">
-      <li><a href="https://www.savingadvice.com/articles/2026/04/02/10728756_medicare-advantage-prior-authorization-denials-jumped-56-new-april-rules-aim-to-fix-it.html" target="_blank">SavingAdvice.com — "Medicare Advantage Prior-Authorization Denials Jumped 56% — New April Rules Aim to Fix It" (April 2, 2026)</a></li>
-      <li><a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" target="_blank">CMS.gov — Calendar Year 2026 Medicare Physician Fee Schedule Final Rule (CMS-1832-F)</a></li>
-      <li><a href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">Michigan.gov / MDHHS — April 1, 2026 Outpatient Hospital Providers APC and ASC Updates</a></li>
-      <li><a href="https://anatomyit.com/blog/finalized-changes-to-mips-value-pathway-for-orthopedic-surgery-in-2026/" target="_blank">Anatomy IT — "2026 MIPS Orthopedic Surgery MVP Changes: What You Need to Know"</a></li>
-      <li><a href="https://www.adsc.com/blog/q1-2026-reality-check-is-your-orthopedic-revenue-cycle-built-for-2027" target="_blank">ADSC — "Q1 2026 Reality Check: Is Your Orthopedic Revenue Cycle Built for 2027?"</a></li>
-      <li><a href="https://marcqi.org/" target="_blank">MARCQI.org — Michigan Arthroplasty Registry Collaborative Quality Initiative (2026 Resources)</a></li>
-      <li><a href="https://www.beckersasc.com/new-asc-development/covenant-to-build-25m-orthopedic-facility-in-michigan/" target="_blank">Becker's ASC — "Covenant to Build $25M Orthopedic Facility in Michigan"</a></li>
-      <li><a href="https://www.modernhealthcare.com/health-tech/mh-abridge-cohere-ambient-ai-prior-authorizations/" target="_blank">Modern Healthcare — "How Abridge, Cohere Are Using Ambient AI for Prior Authorizations"</a></li>
-      <li><a href="https://www.beckershospitalreview.com/podcasts/uncategorized/the-2026-orthopedic-playbook-automation-ai-and-the-future-of-msk-care-2/" target="_blank">Becker's Hospital Review — "The 2026 Orthopedic Playbook: Automation, AI, and the Future of MSK Care"</a></li>
-      <li><a href="https://www.beckersasc.com/private-equity/from-anxiety-to-action-how-ambulatory-leaders-are-rebuilding-margins-in-2026/" target="_blank">Becker's ASC — "From Anxiety to Action: How Ambulatory Leaders Are Rebuilding Margins in 2026"</a></li>
-    </ul>
-    <div class="disclaimer">
-      Careteq Vantage is produced for informational purposes for Michigan MSK and orthopedic practice leaders. Policy summaries are based on publicly available sources and do not constitute legal or billing advice. Verify all reimbursement and policy details with your compliance team or payer contracts before making operational decisions.
     </div>
-    <div class="brand-footer">
-      Careteq Vantage · Issue 1 · April 6, 2026 · Curated by Santosh Mudiraj, MBBS, MPH · Analytics &amp; Strategy
+    <p class="briefing-desc">Daily intelligence on orthopedic market trends, ASC performance, technology innovations, regulatory updates, reimbursement, and the Michigan healthcare landscape.</p>
+
+    <!-- MSK DAILY TAB CONTENT -->
+    <div class="item-card high">
+      <div class="card-header"><span class="priority-dot">🔴</span><div class="card-main">
+        <div class="card-headline">ASC Expansion Accelerates — Higher-Acuity Procedures Leading 2026 Growth</div>
+        <div class="card-badges"><span class="badge badge-category">ASC Intelligence</span><span class="badge badge-high">High Priority</span></div>
+      </div></div>
+      <p class="card-summary">Ambulatory surgery centers continue to absorb higher-complexity orthopedic cases as CMS expands the ASC-covered procedures list for 2026. Volume growth is concentrated in total joint and spine procedures previously requiring hospital stays.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> Michigan MSK practices are positioned to capture this migration from hospital ORs, but payer contracts and staffing plans must be updated to reflect the expanded case mix.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Evaluate ASC case mix expansion opportunities for orthopedic service lines</li>
+        <li>Assess capital and staffing requirements for higher-acuity procedure uptake</li>
+        <li>Review payer contracts for updated ASC coverage policies effective 2026</li>
+      </ul>
+      <div class="card-dates"><span>📅 Effective: 2026-01-01</span></div>
+      <div class="card-sources">
+        <a href="https://ascnews.com/2026/02/top-ambulatory-surgery-center-trends-for-2026/" class="source-link" target="_blank">↗ ASC News</a>
+        <a href="https://www.beckersasc.com/orthopedics-tjr/good-news-bad-news-for-orthopedic-surgery-in-2026/" class="source-link" target="_blank">↗ Becker's ASC Review</a>
+      </div>
     </div>
+
+    <div class="item-card high">
+      <div class="card-header"><span class="priority-dot">🔴</span><div class="card-main">
+        <div class="card-headline">CMS CY 2026 OPPS/ASC Final Rule — April 1 Enforcement Now Active</div>
+        <div class="card-badges"><span class="badge badge-category">Regulatory Updates</span><span class="badge badge-high">High Priority</span></div>
+      </div></div>
+      <p class="card-summary">The CY 2026 OPPS and ASC final rule enforcement began April 1, 2026. Key changes include updated payment rates, expanded ASC-covered procedures, and new hospital price transparency requirements.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> Billing systems must reflect April 1 changes immediately. Non-compliance with price transparency requirements carries CMS civil monetary penalties up to $2M/year for large facilities.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Confirm billing system updates are live for April 1 rule enforcement</li>
+        <li>Review price transparency posting requirements for all locations</li>
+        <li>Communicate payment rate changes to clinical and administrative staff</li>
+      </ul>
+      <div class="card-dates"><span>📅 Effective: 2026-04-01</span><span>⚠️ Deadline: 2026-04-01</span></div>
+      <div class="card-sources">
+        <a href="https://www.cms.gov/newsroom/fact-sheets/cy-2026-opps-ambulatory-surgical-center-final-rule-hospital-price-transparency-policy-changes" class="source-link" target="_blank">↗ CMS Fact Sheet</a>
+      </div>
+    </div>
+
+    <div class="item-card medium">
+      <div class="card-header"><span class="priority-dot">🟡</span><div class="card-main">
+        <div class="card-headline">Medicare Physician Fee Schedule 2026 — Positive Conversion Factor First Time in Six Years</div>
+        <div class="card-badges"><span class="badge badge-category">Reimbursement & Payment</span><span class="badge badge-medium">Medium Priority</span></div>
+      </div></div>
+      <p class="card-summary">CMS finalized a modest increase to the Medicare conversion factor for CY 2026, ending a multi-year streak of cuts. Orthopedic CPT codes see mixed impacts with some procedure valuations adjusted upward.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> First positive CF adjustment since 2020 improves revenue forecasting for Michigan orthopedic physician groups.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Update 2026 revenue projections based on confirmed conversion factor</li>
+        <li>Review CPT code valuations for your top 20 orthopedic procedures</li>
+        <li>Assess specialty-level impact across spine, joints, and sports medicine</li>
+      </ul>
+      <div class="card-dates"><span>📅 Effective: 2026-01-01</span></div>
+      <div class="card-sources">
+        <a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" class="source-link" target="_blank">↗ CMS PFS Final Rule</a>
+      </div>
+    </div>
+
+    <div class="item-card medium">
+      <div class="card-header"><span class="priority-dot">🟡</span><div class="card-main">
+        <div class="card-headline">MARCQI 2025 Annual Report Released — Michigan Arthroplasty Benchmarks Updated</div>
+        <div class="card-badges"><span class="badge badge-category">Michigan Healthcare Landscape</span><span class="badge badge-medium">Medium Priority</span></div>
+      </div></div>
+      <p class="card-summary">The Michigan Arthroplasty Registry Collaborative Quality Initiative published its 2025 annual report with updated benchmarks for 90-day complication rates, revision rates, and patient-reported outcomes.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> Performance relative to MARCQI benchmarks directly affects BCBSM PGIP incentive payments and payer contract negotiations.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Pull MARCQI performance data and compare to updated 2025 benchmarks</li>
+        <li>Identify outlier procedures requiring targeted quality improvement</li>
+        <li>Prepare MARCQI performance summary for Q2 PGIP submission</li>
+      </ul>
+      <div class="card-sources">
+        <a href="https://www.marcqi.org" class="source-link" target="_blank">↗ MARCQI.org</a>
+      </div>
+    </div>
+
+    <div class="item-card medium">
+      <div class="card-header"><span class="priority-dot">🟡</span><div class="card-main">
+        <div class="card-headline">Orthopedic Surgeon Supply Projected to Decline 4.3% Through 2037</div>
+        <div class="card-badges"><span class="badge badge-category">Workforce & Talent</span><span class="badge badge-medium">Medium Priority</span></div>
+      </div></div>
+      <p class="card-summary">Federal workforce projections indicate a 4.3% decline in practicing orthopedic surgeons by 2037, driven by retirement-age demographics and insufficient residency pipeline growth.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> Michigan MSK organizations will face escalating compensation pressure competing for a shrinking surgeon pool.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Develop proactive physician recruitment strategy targeting Michigan residency programs</li>
+        <li>Evaluate NP/PA utilization models to offset future surgeon capacity constraints</li>
+        <li>Benchmark current compensation against regional and national surveys</li>
+      </ul>
+      <div class="card-sources">
+        <a href="https://pubmed.ncbi.nlm.nih.gov/41636430/" class="source-link" target="_blank">↗ PubMed</a>
+      </div>
+    </div>
+
+    <div class="item-card high">
+      <div class="card-header"><span class="priority-dot">🔴</span><div class="card-main">
+        <div class="card-headline">Cardiac Ablation Codes Approved for ASC Setting — Complex Procedure Scope Expands</div>
+        <div class="card-badges"><span class="badge badge-category">Regulatory Updates</span><span class="badge badge-high">High Priority</span></div>
+      </div></div>
+      <p class="card-summary">CMS added cardiac ablation CPT codes to the 2026 ASC covered procedures list, signaling further orthopedic procedure migration likely in CY 2027 rulemaking.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> The regulatory direction confirms CMS intent to keep expanding ASC procedure scope. Anticipate additional complex spine and joint procedures becoming ASC-eligible.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Monitor CY 2027 OPPS proposed rule for additional orthopedic ASC additions</li>
+        <li>Assess ASC facility capability for expanding surgical complexity</li>
+        <li>Review anesthesia and post-op monitoring protocols for expanded case types</li>
+      </ul>
+      <div class="card-sources">
+        <a href="https://ascnews.com/2026/02/top-ambulatory-surgery-center-trends-for-2026/" class="source-link" target="_blank">↗ ASC News</a>
+      </div>
+    </div>
+
+    <div class="item-card medium">
+      <div class="card-header"><span class="priority-dot">🟡</span><div class="card-main">
+        <div class="card-headline">Orthopedic Device Market to Reach $80.8B by 2030 — Robotics Leading Premium Growth</div>
+        <div class="card-badges"><span class="badge badge-category">Orthopedic Market Trends</span><span class="badge badge-medium">Medium Priority</span></div>
+      </div></div>
+      <p class="card-summary">Global orthopedic device market projected at $80.8B by 2030, with robotic-assisted surgery and AI-guided implant placement as the fastest-growing subcategories.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> Device procurement strategy should factor in robotic platform negotiations before per-procedure cost structures solidify with dominant vendors.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Identify high-growth device categories for 2026–2027 procurement planning</li>
+        <li>Evaluate robotic platform ROI for high-volume joint replacement locations</li>
+        <li>Monitor emerging AI-assisted surgery clearances through FDA database</li>
+      </ul>
+      <div class="card-sources">
+        <a href="https://www.grandviewresearch.com/industry-analysis/orthopedic-devices-market" class="source-link" target="_blank">↗ Grand View Research</a>
+      </div>
+    </div>
+
+    <div class="item-card medium">
+      <div class="card-header"><span class="priority-dot">🟡</span><div class="card-main">
+        <div class="card-headline">FDA Grants IDE Approval for Biodynamik XT3 System — Pivotal Trial Begins</div>
+        <div class="card-badges"><span class="badge badge-category">Technology & Innovation</span><span class="badge badge-medium">Medium Priority</span></div>
+      </div></div>
+      <p class="card-summary">Biodynamik received FDA IDE approval for its XT3 System, initiating a pivotal U.S. trial targeting diabetic foot ulcer treatment with a novel biomechanical approach.</p>
+      <div class="card-why"><strong>Why It Matters:</strong> IDE approvals signal 18–36 month pipeline to potential clearance. Early monitoring allows vendor relationship development before commercial availability.</div>
+      <button class="actions-toggle" onclick="toggleActions(this)">▸ Action Items</button>
+      <ul class="action-list">
+        <li>Add Biodynamik XT3 to device pipeline watch list for 510(k) clearance tracking</li>
+        <li>Evaluate applicability to wound care and podiatry patient populations</li>
+        <li>Monitor FDA device database monthly for new orthopedic IDE approvals</li>
+      </ul>
+      <div class="card-sources">
+        <a href="https://ryortho.com/2026/04/biodynamik-receives-fda-ide-approval-for-pivotal-u-s-trial-of-xt3-system-in-diabetic-foot-ulcers/" class="source-link" target="_blank">↗ RY Ortho</a>
+        <a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm" class="source-link" target="_blank">↗ FDA Device Database</a>
+      </div>
+    </div>
+    <!-- END MSK DAILY TAB CONTENT -->
+  </div>
+
+
+  <!-- ─── COMPLIANCE ─── -->
+  <div class="briefing-content" id="bc-compliance">
+    <div class="briefing-header">
+      <div class="briefing-title" style="color:var(--comp-color)">Healthcare Compliance Weekly</div>
+      <div class="briefing-meta">
+        <!-- COMPLIANCE TAB LAST UPDATED --><span id="compliance-last-updated">Publishes every Monday</span><!-- END COMPLIANCE TAB LAST UPDATED -->
+      </div>
+    </div>
+    <p class="briefing-desc">Weekly regulatory intelligence covering CMS updates, Medicare/Medicaid policy, state regulations, HIPAA, fraud &amp; abuse, billing &amp; coding, and legal developments affecting Michigan orthopedic practices.</p>
+    <!-- COMPLIANCE TAB CONTENT -->
+    <div class="empty-state">
+      <div class="icon">📋</div>
+      <p>Next issue publishes Monday. Cowork generates verified items each week.</p>
+    </div>
+    <!-- END COMPLIANCE TAB CONTENT -->
+  </div>
+
+
+  <!-- ─── QUALITY ─── -->
+  <div class="briefing-content" id="bc-quality">
+    <div class="briefing-header">
+      <div class="briefing-title" style="color:var(--qual-color)">Quality Metrics &amp; CQI Weekly</div>
+      <div class="briefing-meta">
+        <!-- QUALITY TAB LAST UPDATED --><span id="quality-last-updated">Publishes every Wednesday</span><!-- END QUALITY TAB LAST UPDATED -->
+      </div>
+    </div>
+    <p class="briefing-desc">Weekly quality intelligence covering MARCQI, MSSIC, MIPS, hospital rankings, patient safety, infection prevention, readmissions, and Michigan quality collaborative initiatives.</p>
+    <!-- QUALITY TAB CONTENT -->
+    <div class="empty-state">
+      <div class="icon">📊</div>
+      <p>Next issue publishes Wednesday. Cowork generates verified items each week.</p>
+    </div>
+    <!-- END QUALITY TAB CONTENT -->
+  </div>
+
+
+  <!-- ─── AI ─── -->
+  <div class="briefing-content" id="bc-ai">
+    <div class="briefing-header">
+      <div class="briefing-title" style="color:var(--ai-color)">AI &amp; Healthcare Analytics</div>
+      <div class="briefing-meta">
+        <!-- AI TAB LAST UPDATED --><span id="ai-last-updated">Publishes Tuesday &amp; Thursday</span><!-- END AI TAB LAST UPDATED -->
+      </div>
+    </div>
+    <p class="briefing-desc">Twice-weekly intelligence on healthcare AI adoption, digital health, analytics, AI regulation, startups, big tech, and automation impacting MSK and orthopedic operations.</p>
+    <!-- AI TAB CONTENT -->
+    <div class="empty-state">
+      <div class="icon">🤖</div>
+      <p>Next issue publishes Tuesday. Cowork generates verified items twice weekly.</p>
+    </div>
+    <!-- END AI TAB CONTENT -->
+  </div>
+
+  <footer>
+    <span>© 2026 Careteq Vantage — All rights reserved</span>
+    <a href="#" onclick="showPage('archive');return false;">Archive</a>
+    <a href="#" onclick="showPage('preferences');return false;">Preferences</a>
   </footer>
 
-</div><!-- end .wrapper -->
+</div><!-- /page-dashboard -->
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE: ARCHIVE                                             -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-archive">
+  <div class="archive-wrap">
+    <h1 class="page-title">Briefing Archive</h1>
+    <p class="page-subtitle">Browse all historical briefings. New issues are added after each Cowork run.</p>
+    <div class="archive-filter-row">
+      <button class="filter-btn active" onclick="filterArchive('all',this)">All Types</button>
+      <button class="filter-btn" onclick="filterArchive('msk',this)" style="color:var(--msk-color)">MSK Daily</button>
+      <button class="filter-btn" onclick="filterArchive('compliance',this)" style="color:var(--comp-color)">Compliance</button>
+      <button class="filter-btn" onclick="filterArchive('quality',this)" style="color:var(--qual-color)">Quality</button>
+      <button class="filter-btn" onclick="filterArchive('ai',this)" style="color:var(--ai-color)">AI &amp; Analytics</button>
+    </div>
+
+    <!-- ARCHIVE ENTRY LIST — Cowork appends new entries above this comment as new issues publish -->
+    <div class="archive-entry" data-type="msk">
+      <div class="archive-entry-header" onclick="toggleArchive(this)">
+        <div class="archive-entry-left">
+          <div class="archive-type-dot" style="background:var(--msk-color)"></div>
+          <div>
+            <div class="archive-entry-title">MSK Executive Daily</div>
+            <div class="archive-entry-date">Tuesday, April 14, 2026</div>
+          </div>
+        </div>
+        <div class="archive-entry-right">
+          <span class="archive-badge latest">Latest</span>
+          <span class="archive-items-count">8 items</span>
+          <span>▾</span>
+        </div>
+      </div>
+    </div>
+    <!-- END ARCHIVE ENTRY LIST -->
+  </div>
+
+  <footer>
+    <span>© 2026 Careteq Vantage</span>
+    <a href="#" onclick="showPage('dashboard');return false;">Dashboard</a>
+    <a href="#" onclick="showPage('preferences');return false;">Preferences</a>
+  </footer>
+</div><!-- /page-archive -->
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- PAGE: PREFERENCES                                         -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="page" id="page-preferences">
+  <div class="prefs-wrap">
+    <h1 class="page-title">Preferences &amp; Subscriptions</h1>
+    <p class="page-subtitle">Manage your briefing subscriptions and delivery preferences.</p>
+
+    <div class="pref-section">
+      <div class="pref-section-title">Email Subscription</div>
+      <div class="pref-section-desc">Subscribe to receive briefings directly in your inbox. Each briefing type is delivered on its own schedule.</div>
+      <input class="pref-input" type="email" placeholder="your@email.com">
+      <button class="subscribe-btn">Subscribe to Selected Briefings</button>
+    </div>
+
+    <div class="pref-section">
+      <div class="pref-section-title">Select Your Briefings</div>
+      <div class="pref-section-desc">Choose which briefing types you want to receive. Subscribe to one or all four.</div>
+      <div class="pref-item">
+        <div class="pref-item-info">
+          <div class="pref-item-label"><span style="color:var(--msk-color)">●</span> MSK Executive Daily <span class="pref-type-pill" style="background:rgba(79,142,247,0.1);color:var(--msk-color)">Daily</span></div>
+          <div class="pref-item-sub">Orthopedic market, ASC intelligence, regulatory, Michigan landscape · Mon–Fri</div>
+        </div>
+        <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="pref-item">
+        <div class="pref-item-info">
+          <div class="pref-item-label"><span style="color:var(--comp-color)">●</span> Healthcare Compliance Weekly <span class="pref-type-pill" style="background:rgba(224,92,92,0.1);color:var(--comp-color)">Weekly</span></div>
+          <div class="pref-item-sub">CMS updates, HIPAA, billing &amp; coding, fraud &amp; abuse · Every Monday</div>
+        </div>
+        <button class="toggle" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="pref-item">
+        <div class="pref-item-info">
+          <div class="pref-item-label"><span style="color:var(--qual-color)">●</span> Quality Metrics &amp; CQI Weekly <span class="pref-type-pill" style="background:rgba(76,175,125,0.1);color:var(--qual-color)">Weekly</span></div>
+          <div class="pref-item-sub">MARCQI, MSSIC, MIPS, Michigan quality initiatives · Every Wednesday</div>
+        </div>
+        <button class="toggle" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="pref-item">
+        <div class="pref-item-info">
+          <div class="pref-item-label"><span style="color:var(--ai-color)">●</span> AI &amp; Healthcare Analytics <span class="pref-type-pill" style="background:rgba(155,114,207,0.1);color:var(--ai-color)">2× Weekly</span></div>
+          <div class="pref-item-sub">Healthcare AI, digital health, analytics, big tech · Tuesday &amp; Thursday</div>
+        </div>
+        <button class="toggle" onclick="this.classList.toggle('on')"></button>
+      </div>
+    </div>
+
+    <div class="pref-section">
+      <div class="pref-section-title">Delivery Preferences</div>
+      <div class="pref-section-desc">Control how and when you receive your briefings.</div>
+      <div class="pref-item">
+        <div class="pref-item-info">
+          <div class="pref-item-label">Send time: 7:00 AM ET</div>
+          <div class="pref-item-sub">All briefings deliver at 7:00 AM Eastern on their scheduled day</div>
+        </div>
+        <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+      </div>
+      <div class="pref-item">
+        <div class="pref-item-info">
+          <div class="pref-item-label">Michigan-first content filter</div>
+          <div class="pref-item-sub">Prioritize Michigan-specific items (MARCQI, BCBSM, MVC, MPRO) in every briefing</div>
+        </div>
+        <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+      </div>
+    </div>
+
+    <p style="font-size:11px;color:var(--text3);margin-top:12px;">Subscription management powered by Beehiiv. Unsubscribe at any time via the link in any email.</p>
+  </div>
+
+  <footer>
+    <span>© 2026 Careteq Vantage</span>
+    <a href="#" onclick="showPage('dashboard');return false;">Dashboard</a>
+    <a href="#" onclick="showPage('archive');return false;">Archive</a>
+  </footer>
+</div><!-- /page-preferences -->
+
+
+<script>
+  const now = new Date();
+  const full = {weekday:'long',year:'numeric',month:'long',day:'numeric'};
+  const short = {month:'short',day:'numeric',year:'numeric'};
+  document.getElementById('topbar-date').textContent = now.toLocaleDateString('en-US', short);
+  document.getElementById('hero-date-display').textContent = now.toLocaleDateString('en-US', full);
+
+  function showPage(p) {
+    document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav a').forEach(el => el.classList.remove('active'));
+    document.getElementById('page-' + p).classList.add('active');
+    document.getElementById('nav-' + p).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showBriefing(type) {
+    document.querySelectorAll('.btab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.briefing-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('.btab[data-type="' + type + '"]').classList.add('active');
+    document.getElementById('bc-' + type).classList.add('active');
+  }
+
+  function toggleActions(btn) {
+    const list = btn.nextElementSibling;
+    list.classList.toggle('open');
+    btn.textContent = list.classList.contains('open') ? '▾ Action Items' : '▸ Action Items';
+  }
+
+  function filterArchive(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.archive-entry').forEach(e => {
+      e.style.display = (type === 'all' || e.dataset.type === type) ? 'block' : 'none';
+    });
+  }
+
+  function toggleArchive(header) {
+    const arrow = header.querySelector('span:last-child');
+    arrow.textContent = arrow.textContent === '▾' ? '▸' : '▾';
+  }
+</script>
 </body>
 </html>
