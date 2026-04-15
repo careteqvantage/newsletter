@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quality Metrics &amp; CQI Weekly — April 15, 2026 | Careteq Vantage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0c10;
+      --surface:   #111318;
+      --surface2:  #181c24;
+      --border:    #242832;
+      --text:      #e2e8f0;
+      --muted:     #8892a4;
+      --accent:    #4f80ff;
+      --red:       #ef4444;
+      --yellow:    #f59e0b;
+      --green:     #22c55e;
+      --red-dim:   rgba(239,68,68,.12);
+      --yellow-dim:rgba(245,158,11,.12);
+      --green-dim: rgba(34,197,94,.12);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,12,16,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--text);
+      letter-spacing: .02em;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .badge-live {
+      background: rgba(34,197,94,.15);
+      color: var(--green);
+      border: 1px solid rgba(34,197,94,.3);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .nav-date { color: var(--muted); font-size: .8rem; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0d1120 0%, #0a0c10 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 32px 52px;
+      text-align: center;
+    }
+    .hero-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .hero-meta {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 6px;
+    }
+    .hero-byline {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    .hero-byline strong { color: var(--text); font-weight: 600; }
+    .hero-range {
+      display: inline-block;
+      margin-top: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .section-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-left-width: 4px;
+      transition: border-color .2s;
+    }
+    .card.high   { border-left-color: var(--red); }
+    .card.medium { border-left-color: var(--yellow); }
+    .card.low    { border-left-color: var(--green); }
+
+    .card-header {
+      padding: 22px 24px 0;
+    }
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .priority-emoji { font-size: 1.1rem; line-height: 1; margin-top: 2px; }
+    .card-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: #fff;
+      line-height: 1.3;
+      flex: 1;
+    }
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+    .badge {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .badge-cat {
+      background: rgba(79,128,255,.12);
+      color: #7da4ff;
+      border: 1px solid rgba(79,128,255,.25);
+    }
+    .badge-high   { background: var(--red-dim);    color: #f87171; border: 1px solid rgba(239,68,68,.3); }
+    .badge-medium { background: var(--yellow-dim); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
+    .badge-low    { background: var(--green-dim);  color: #4ade80; border: 1px solid rgba(34,197,94,.3); }
+
+    .card-body { padding: 16px 24px; }
+    .card-summary {
+      color: var(--text);
+      font-size: .92rem;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .why-matters {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+    .why-matters-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .why-matters p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* collapsible actions */
+    .actions-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 8px 0;
+      width: 100%;
+      text-align: left;
+      transition: color .2s;
+    }
+    .actions-toggle:hover { color: var(--text); }
+    .toggle-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-align: center;
+      line-height: 14px;
+      font-size: .75rem;
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+    .actions-body {
+      display: none;
+      padding: 8px 0 4px 24px;
+    }
+    .actions-body.open { display: block; }
+    .actions-body ul { list-style: none; padding: 0; }
+    .actions-body li {
+      font-size: .88rem;
+      color: var(--text);
+      padding: 5px 0;
+      display: flex;
+      gap: 8px;
+    }
+    .actions-body li::before {
+      content: "→";
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .card-footer {
+      padding: 10px 24px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .date-chip {
+      font-size: .75rem;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .date-chip strong { color: var(--text); }
+    .source-pill {
+      display: inline-block;
+      text-decoration: none;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--accent);
+      background: rgba(79,128,255,.08);
+      border: 1px solid rgba(79,128,255,.2);
+      border-radius: 20px;
+      padding: 2px 12px;
+      transition: background .2s;
+    }
+    .source-pill:hover { background: rgba(79,128,255,.18); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--text); }
+    .footer-links { display: flex; gap: 20px; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 40px 16px 36px; }
+      .container { padding: 32px 14px 60px; }
+      .card-header, .card-body, .card-footer { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="nav-brand">Careteq <span>Vantage</span></div>
+  <div class="nav-links">
+    <a href="#">Dashboard</a>
+    <a href="#">Archive</a>
+    <a href="#">Preferences</a>
+  </div>
+  <div class="nav-right">
+    <span class="badge-live">Live</span>
+    <span class="nav-date">Wednesday, April 15, 2026</span>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero">
+  <div class="hero-label">Careteq Vantage Executive Intelligence</div>
+  <h1>Quality Metrics &amp; CQI Weekly</h1>
+  <div class="hero-meta">Wednesday, April 15, 2026</div>
+  <div class="hero-byline">Prepared for <strong>Santosh Mudiraj, MBBS, MPH</strong></div>
+  <div class="hero-range">Week of April 8 – April 15, 2026</div>
+</div>
+
+<!-- ══════════ CONTENT ══════════ -->
+<div class="container">
+  <div class="section-label">12 Briefing Items — Michigan MSK &amp; Orthopedic Quality Intelligence</div>
+
+  <!-- ═══ ITEM 1 ═══ -->
+  <div class="card high">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🔴</span>
+        <div>
+          <div class="card-headline">MIPS 2026 Annual Call for Quality Measures Open Through May 7</div>
+          <div class="badges">
+            <span class="badge badge-cat">MIPS</span>
+            <span class="badge badge-high">HIGH Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        CMS has opened the 2026 MIPS Annual Call for Quality Measures, accepting candidate quality measure specifications and supporting data files via the Measures Information Tool (MERIT) from March 19 through May 7, 2026 (8:00 PM ET). Per MACRA Section 101(c)(1), each submitted measure must be accompanied by a peer-reviewed journal article template before implementation. Measure developers must submit through CMS's MERIT portal, and the CMS MERIT Quick Start Guide is available for submitters.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>Michigan orthopedic and MSK practices that develop or advocate for specialty-specific quality measures have a narrow window to shape the 2026 MIPS quality landscape. Submitting orthopedic-relevant measures now influences what metrics will be available for reporting in future performance years.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Review the CMS 2026 Annual Call for Quality Measures Fact Sheet and confirm whether your practice or specialty society intends to submit a measure before the May 7, 2026 deadline.</li>
+          <li>Coordinate with your orthopedic specialty society (e.g., AAOS) to identify any candidate measures relevant to MSK or joint replacement quality that should be advanced.</li>
+          <li>Register in the MERIT portal and complete measure submission documentation, including the required peer-reviewed journal article template, no later than May 7, 2026 at 8:00 PM ET.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Compliance Deadline:</strong> May 7, 2026 — 8:00 PM ET</span>
+      <a href="https://mmshub.cms.gov/sites/default/files/2026-MIPS-Annual-Call-for-Quality-Measures-Fact-Sheet.pdf" class="source-pill" target="_blank">CMS MERIT — 2026 MIPS Call for Measures Fact Sheet</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 2 ═══ -->
+  <div class="card high">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🔴</span>
+        <div>
+          <div class="card-headline">285 MSK Procedures Exit CMS Inpatient-Only List for 2026</div>
+          <div class="badges">
+            <span class="badge badge-cat">CMS Quality Programs</span>
+            <span class="badge badge-high">HIGH Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        CMS finalized the Calendar Year 2026 OPPS and ASC Payment Systems Final Rule (CMS-1834-FC), removing 285 procedures — predominantly musculoskeletal — from the Inpatient-Only (IPO) list. These procedures are now assigned to ambulatory payment classifications, including a newly finalized Level 7 Musculoskeletal Procedures APC. All IPO codes are on a phased elimination track, with complete removal scheduled by January 1, 2029. OPPS and ASC payment rates increased 2.6% for CY 2026, based on a 3.3% market basket increase offset by a 0.7% productivity adjustment.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>This is a structural shift in how Medicare reimburses orthopedic surgical care. Michigan MSK practices and ASCs should audit their procedure mix, update site-of-service designations, and prepare quality reporting under new outpatient APC classifications as the IPO migration accelerates toward 2029.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Audit your facility's top 20 orthopedic CPT codes against the 2026 updated IPO removal list to confirm appropriate site-of-service billing under the new APCs.</li>
+          <li>Brief your revenue cycle team on the new Level 7 Musculoskeletal Procedures APC and its payment implications for CY 2026 claims processing.</li>
+          <li>Develop a timeline for transitioning remaining inpatient-only procedures to outpatient settings ahead of the full IPO list elimination by January 1, 2029.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Effective Date:</strong> January 1, 2026</span>
+      <a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-2026-hospital-outpatient-prospective-payment-system-opps-ambulatory-surgical-center" class="source-pill" target="_blank">CMS — CY 2026 OPPS &amp; ASC Final Rule Fact Sheet</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 3 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">MARCQI Releases 2026 VBR Measures and Performance Timelines</div>
+          <div class="badges">
+            <span class="badge badge-cat">MARCQI</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        The Michigan Arthroplasty Registry Collaborative Quality Initiative (MARCQI) has issued 2026 Value-Based Reimbursement (VBR) measures, metrics, and timelines, now available to participating surgeons through individual MARCQI database accounts. The 2026 measurement period carries a 2027 payout year. MARCQI has more than 90 participating hospital and ambulatory surgical center sites across Michigan and historically links VBR payments to functional assessment completion rates and reductions in extended care facility (ECF) and skilled nursing facility (SNF) placement rates post-arthroplasty.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>MARCQI VBR performance directly affects financial reimbursement for Michigan orthopedic surgeons performing hip and knee replacement. Reviewing 2026 measures now — at the start of the measurement year — allows surgeons and quality teams to course-correct early and maximize payout in 2027.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Log in to the MARCQI participant portal and download the 2026 VBR Measures Metrics &amp; Timelines PDF to brief your quality team on specific performance targets.</li>
+          <li>Review your 2025 SNF/ECF discharge rates and functional assessment completion rates as baselines to benchmark against the 2026 VBR thresholds.</li>
+          <li>Schedule a mid-year MARCQI data review (target: July 2026) to identify any metric gaps and implement corrective workflows before year-end.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Measurement Period:</strong> CY 2026 | Payout: 2027</span>
+      <a href="https://marcqi.org/participants/overview/" class="source-pill" target="_blank">MARCQI — Participant Quick Links</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 4 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">MSQC Launches 2026 Surgical Quality Initiative Slate</div>
+          <div class="badges">
+            <span class="badge badge-cat">Michigan Quality Initiatives</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        The Michigan Surgical Quality Collaborative (MSQC) — a statewide network of 69 hospitals — has officially launched its 2026 quality improvement projects. The slate includes the SUCCESS Project (Surgical Urinary Catheter Care Enhancement Safety Study), the Frailty Project, the Breast Surgical Quality Measures Project, the CRC Project, and the Abdominal Hernia Surgeon Engagement Project. The Frailty Project builds on prior years' validated frailty screening tool deployment, requiring pre-operative frailty assessment and informed patient discussion during the surgical planning phase. The 2026 VBR measurement period carries a 2027 payout.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>The MSQC Frailty Project is directly relevant to Michigan orthopedic practices, where pre-operative frailty screening improves surgical risk stratification for MSK and joint replacement patients. The SUCCESS catheter care project also touches post-surgical infection prevention protocols applicable to orthopedic hospital settings.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Access the 2026 MSQC Quality Initiatives page at msqc.org to download project summary documents and review the kickoff meeting materials for the Frailty and SUCCESS projects.</li>
+          <li>Confirm your facility's MSQC site coordinator is enrolled in the 2026 Frailty Project and using the validated frailty screening tool during surgical planning consultations for orthopedic candidates.</li>
+          <li>Benchmark your current catheter-associated urinary tract infection (CAUTI) rate against MSQC norms and adopt the SUCCESS project protocols for post-surgical catheter management.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Measurement Period:</strong> CY 2026 | Payout: 2027</span>
+      <a href="https://www.msqc.org/quality-improvement/2026-msqc-quality-initiatives" class="source-pill" target="_blank">MSQC — 2026 Quality Initiatives</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 5 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">Joint Commission Replaces NPSGs with 14 National Performance Goals</div>
+          <div class="badges">
+            <span class="badge badge-cat">Patient Safety</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        Effective January 1, 2026, The Joint Commission replaced its National Patient Safety Goals (NPSGs) with a new National Performance Goals (NPG) chapter — 14 high-priority, measurable topics with clearly defined goals. No net-new requirements were added; the NPGs consolidate and reorganize existing requirements into a sharper outcome framework. Two requirements previously tied to CMS Conditions of Participation — reducing suicide risk and health professional resource management — were elevated to NPG status. Nurse staffing was identified as a new standalone NPG topic.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>Michigan orthopedic hospitals and ASCs that have built compliance workflows around the former NPSG numbering and structure must update internal audit tools, staff education, and documentation to reflect the 2026 NPG framework ahead of any Joint Commission survey activity this year.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Download the 2026 NPG chapter from jointcommission.org and distribute a crosswalk map to department heads showing how former NPSG elements map to the new 14 NPG topics.</li>
+          <li>Update all internal compliance checklists, mock survey tools, and staff competency assessments to use NPG terminology and goal numbering effective immediately.</li>
+          <li>Review the nurse staffing NPG requirements and confirm your facility's staffing documentation is survey-ready under the new elevated standard.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Effective Date:</strong> January 1, 2026</span>
+      <a href="https://www.jointcommission.org/en-us/standards/national-performance-goals" class="source-pill" target="_blank">Joint Commission — National Performance Goals</a>
+      <a href="https://www.lammico.com/article/NPG-2026" class="source-pill" target="_blank">LAMMICO — NPG 2026 Summary</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 6 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">2026 Orthopedic Surgery MVP Requires Outcome Measure for Joint Repair</div>
+          <div class="badges">
+            <span class="badge badge-cat">MIPS</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        CMS finalized changes to the 2026 Improving Care for Lower Extremity Joint Repair MIPS Value Pathway (MVP) — the primary orthopedic surgery quality pathway. Participants must now attest to four of seven available quality measures, with at least one required to be an outcome measure. Additionally, at least one of ten improvement activities must be reported. CMS also finalized six new MVPs for 2026 in adjacent specialties, and beginning with the 2026 performance year, multispecialty groups (except small practices of 15 or fewer clinicians) can no longer report an MVP as a group and must report at the subgroup or individual level.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>The mandatory outcome measure requirement raises the performance bar for Michigan orthopedic surgeons reporting under the joint repair MVP. Practices that previously met requirements without an outcome measure must adjust their quality measure selection for the 2026 performance year to remain compliant and avoid MIPS penalties.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Confirm your practice's current MIPS MVP registration for 2026 and verify that at least one of your four selected quality measures is classified as an outcome measure under the Lower Extremity Joint Repair pathway.</li>
+          <li>If your group is multispecialty and has more than 15 clinicians, immediately update your 2026 MIPS registration to reflect subgroup or individual-level reporting as required by the new rule.</li>
+          <li>Review the full list of available improvement activities in the orthopedic MVP and select at least one to document and attest to by the close of the 2026 performance year.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Measurement Period:</strong> CY 2026</span>
+      <a href="https://anatomyit.com/blog/finalized-changes-to-mips-value-pathway-for-orthopedic-surgery-in-2026/" class="source-pill" target="_blank">Anatomy IT — 2026 Orthopedic MVP Changes</a>
+      <a href="https://ecqi.healthit.gov/cms-publishes-2026-policy-changes-quality-payment-program" class="source-pill" target="_blank">eCQI — 2026 QPP Policy Changes</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 7 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">CMS Finalizes Removal of Four Hospital Quality Reporting Measures</div>
+          <div class="badges">
+            <span class="badge badge-cat">CMS Quality Programs</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        Through the 2026 OPPS Final Rule, CMS finalized the removal of four measures from the Hospital Inpatient Quality Reporting (IQR) and Outpatient Quality Reporting (OQR) Programs: COVID-19 Vaccination Coverage Among Healthcare Personnel (effective CY 2024 reporting/CY 2026 payment), Hospital Commitment to Health Equity structural measure, Screening for Social Drivers of Health, and Screen Positive Rate for Social Drivers of Health. CMS cited that these measures no longer provide meaningful performance distinctions and impose undue administrative burden. CMS also finalized future removal of two emergency department timeliness measures beginning with the CY 2028 reporting period, to be replaced by a new Emergency Care Access &amp; Timeliness eCQM.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>Michigan orthopedic hospitals should remove the four retired measures from their quality dashboards and reporting workflows to reduce administrative burden and reallocate resources toward actively scored metrics. Facilities should also begin planning for the 2028 ED timeliness measure transition.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Instruct your quality data team to retire the four removed measures from your Hospital IQR and OQR dashboards and confirm they are no longer included in CY 2026 reporting submissions.</li>
+          <li>Notify department heads that the COVID-19 HCP Vaccination Coverage and Health Equity structural measures are no longer required, and redirect tracking resources to remaining scored quality measures.</li>
+          <li>Flag the CY 2028 ED timeliness measure sunset on your three-year quality roadmap and begin evaluating readiness for the replacement Emergency Care Access &amp; Timeliness eCQM.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Effective Date:</strong> CY 2024 reporting / CY 2026 payment (COVID-19 measure)</span>
+      <a href="https://blog.medisolv.com/articles/2026-opps-proposed-rule-the-major-changes-to-outpatient-quality-reporting" class="source-pill" target="_blank">Medisolv — 2026 OPPS Quality Reporting Changes</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 8 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">ECRI Names AI Diagnostic Errors Top Patient Safety Threat for 2026</div>
+          <div class="badges">
+            <span class="badge badge-cat">Patient Safety</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        ECRI published its annual Top 10 Patient Safety Concerns for 2026, placing AI diagnostic errors — "the AI Diagnostic Dilemma" — at the top of the list. ECRI warns that AI models can embed data bias and training gaps that worsen health disparities, and that "automation bias" can lead clinicians to defer to AI outputs rather than applying independent clinical judgment. Rural healthcare access gaps, rising preventable acute disease rates, and federal healthcare funding cuts (following significant reductions enacted in July 2025) round out the top four concerns. ECRI recommends AI governance frameworks and mandatory clinical oversight protocols.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>As Michigan orthopedic practices adopt AI-assisted imaging, diagnostic, and surgical planning tools, ECRI's warning about automation bias and lack of governance is directly applicable. Practices using AI diagnostics without formal oversight protocols face elevated liability and patient safety risk.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Conduct an inventory of all AI diagnostic tools currently in use at your practice or facility and assess whether each has a formal clinical oversight and governance protocol in place.</li>
+          <li>Develop and distribute an AI use policy for clinical staff that explicitly defines AI tools as decision-support instruments requiring independent clinical verification before action.</li>
+          <li>Review ECRI's full 2026 Top 10 Patient Safety Concerns report at ecri.org and share the AI governance section with your quality committee and medical executive committee.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="https://home.ecri.org/blogs/ecri-thought-leadership-resources/top-10-patient-safety-concerns-2026" class="source-pill" target="_blank">ECRI — Top 10 Patient Safety Concerns 2026</a>
+      <a href="https://healthjournalism.org/blog/2026/03/ai-diagnostic-risks-top-ecris-2026-patient-safety-concerns/" class="source-pill" target="_blank">AHCJ — ECRI 2026 Safety Concerns Coverage</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 9 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">AHRQ National Healthcare Safety Dashboard Goes Live</div>
+          <div class="badges">
+            <span class="badge badge-cat">Patient Safety</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        AHRQ and the National Action Alliance for Patient and Workforce Safety launched the National Healthcare Safety Dashboard, a publicly accessible tool tracking progress toward the national goal of reducing patient and workforce harm by 50% from pandemic-era highs by 2026. The dashboard draws data from AHRQ's Patient Safety Indicators (PSI) via the Healthcare Cost and Utilization Project (HCUP), Medicare Adverse Events from the Quality and Safety Review System, CMS Hospital Safety Measures, and AHRQ's SOPS Hospital Survey. The initial release covers hospital-setting safety data, with future expansion planned for ambulatory clinics and nursing homes.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>Michigan orthopedic hospitals can now benchmark their PSI performance directly against national safety data on the public dashboard, creating new transparency and accountability expectations. Leadership should proactively review their facility's position before payers or accreditors reference the dashboard in negotiations or surveys.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Access the AHRQ National Healthcare Safety Dashboard at datatools.ahrq.gov/action-alliance and review your facility's performance on relevant Patient Safety Indicators compared to national benchmarks.</li>
+          <li>Share dashboard findings with your quality committee and identify any AHRQ PSI metrics where your facility's performance falls below the national median, prioritizing those for CQI projects in 2026.</li>
+          <li>Incorporate the national 50% harm reduction target into your facility's annual quality goals and update your quality improvement plan to reference this benchmark explicitly.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="https://www.ahrq.gov/news/newsroom/press-releases/new-national-healthcare-safety-dashboard.html" class="source-pill" target="_blank">AHRQ — National Healthcare Safety Dashboard Launch</a>
+      <a href="https://datatools.ahrq.gov/action-alliance/" class="source-pill" target="_blank">AHRQ — Live Dashboard</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 10 ═══ -->
+  <div class="card medium">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟡</span>
+        <div>
+          <div class="card-headline">Joint Commission and NQF Align Sentinel Events with 2025 SRE List</div>
+          <div class="badges">
+            <span class="badge badge-cat">Patient Safety</span>
+            <span class="badge badge-medium">MEDIUM Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        Effective January 1, 2027, The Joint Commission will adopt the updated 2025 National Quality Forum Serious Reportable Events (SRE) list, aligning its Sentinel Events framework with the NQF's updated 27-event list — which includes four newly added events and 23 updated entries across four categories: Procedural Events, Product or Device Events, Patient Protection Events, and Care Provision Events. Reporting to The Joint Commission remains voluntary under the new framework. The Joint Commission published "Aligning Patient Safety Event Reporting" in January 2026, which includes a full crosswalk between legacy Sentinel Events and the new SRE list.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>Wrong-site and wrong-patient surgical events — cardinal "never events" in orthopedics — remain prominently featured in the updated SRE list. Michigan orthopedic facilities should review the crosswalk document now to assess which internal sentinel event categories and reporting workflows will require updating ahead of the January 2027 effective date.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Download the Joint Commission's "Aligning Patient Safety Event Reporting" crosswalk document from digitalassets.jointcommission.org and distribute it to your risk management and patient safety officer teams.</li>
+          <li>Map your current internal sentinel event categories and reporting workflows against the 2025 NQF SRE list to identify gaps that will require policy or process updates before January 2027.</li>
+          <li>Schedule a patient safety committee review session for Q3 2026 focused on the four newly added SRE events and their relevance to your orthopedic and surgical service lines.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Effective Date:</strong> January 1, 2027</span>
+      <a href="https://www.jointcommission.org/en-us/knowledge-library/news/2026-01-joint-commission-and-nqf-aligning" class="source-pill" target="_blank">Joint Commission — NQF SRE Alignment Announcement</a>
+      <a href="https://www.qualityforum.org/en-us/key-initiatives/updating-the-serious-reportable-events-sre-list" class="source-pill" target="_blank">NQF — 2025 SRE List Update</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 11 ═══ -->
+  <div class="card low">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟢</span>
+        <div>
+          <div class="card-headline">MIPS Performance Threshold Held Steady at 75 Points Through 2028</div>
+          <div class="badges">
+            <span class="badge badge-cat">MIPS</span>
+            <span class="badge badge-low">LOW Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        In the CY 2026 Quality Payment Program Final Rule, CMS finalized the continuation of the 75-point MIPS performance threshold through the 2028 performance year, providing multi-year scoring stability for eligible clinicians. CMS also revised the scoring methodology for claims-based measures, shifting to median-based scoring with standard deviations to determine performance thresholds — aligning claims scoring with cost measure benchmarking. The total number of cost measures remains at 35 for 2026, with no additions or removals.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>Threshold stability through 2028 gives Michigan orthopedic practices reliable planning targets for MIPS compliance over the next three performance years. The revised claims-based scoring methodology may affect individual measure scores and should be reviewed with your MIPS reporting consultant or registry.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Update your practice's three-year MIPS compliance plan to reflect the confirmed 75-point threshold through 2028, and communicate this stability to clinicians who are close to the penalty threshold.</li>
+          <li>Request a methodology briefing from your MIPS registry or consultant on how the new median-based claims scoring approach will affect your practice's quality score calculations in 2026.</li>
+          <li>Conduct a mid-year MIPS score projection (target: July 2026) using the updated benchmarking methodology to ensure you are tracking above the 75-point threshold before year-end.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Effective Period:</strong> CY 2026 – CY 2028</span>
+      <a href="https://ecqi.healthit.gov/cms-publishes-2026-policy-changes-quality-payment-program" class="source-pill" target="_blank">eCQI — CMS 2026 QPP Policy Changes</a>
+      <a href="https://mdinteractive.com/mips-blog/breaking-down-2026-qpp-final-rule-key-mips-aco-updates" class="source-pill" target="_blank">MDinteractive — 2026 QPP Final Rule Breakdown</a>
+    </div>
+  </div>
+
+  <!-- ═══ ITEM 12 ═══ -->
+  <div class="card low">
+    <div class="card-header">
+      <div class="card-top">
+        <span class="priority-emoji">🟢</span>
+        <div>
+          <div class="card-headline">HRRP FY 2026 Payment Penalties Based on July 2021–June 2024 Data</div>
+          <div class="badges">
+            <span class="badge badge-cat">Readmissions</span>
+            <span class="badge badge-low">LOW Priority</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        CMS has confirmed that FY 2026 Hospital Readmissions Reduction Program (HRRP) payment adjustments are based on hospital performance data from July 1, 2021 through June 30, 2024. The HRRP continues to measure excess readmission ratios for targeted conditions including acute myocardial infarction, heart failure, pneumonia, COPD, hip and knee arthroplasty (THA/TKA), and CABG. Hospitals with excess readmissions face Medicare payment reductions. The HAC Reduction Program, which runs in parallel, targets healthcare-associated infections including CLABSI, CAUTI, surgical site infections (SSI), and MRSA bacteremia for FY 2026 payment determinations.
+      </div>
+      <div class="why-matters">
+        <div class="why-matters-label">Why It Matters</div>
+        <p>THA/TKA readmissions remain an explicit HRRP target condition, making 30-day readmission reduction a direct financial priority for Michigan orthopedic practices and their hospital partners. Facilities whose readmission rates from 2021–2024 were elevated will see payment penalties in FY 2026 and should be actively managing their 2025–2026 readmission improvement trajectory now.</p>
+      </div>
+      <button class="actions-toggle" onclick="toggleActions(this)">
+        <span class="toggle-icon">+</span> Action Items
+      </button>
+      <div class="actions-body">
+        <ul>
+          <li>Obtain your facility's FY 2026 HRRP excess readmission ratio for THA/TKA from QualityNet and determine whether your hospital is subject to a Medicare payment reduction for the current fiscal year.</li>
+          <li>Review the clinical drivers of THA/TKA 30-day readmissions at your facility (e.g., surgical site infection, VTE, falls, implant complications) and confirm active CQI interventions are in place for each.</li>
+          <li>Engage your care transitions and discharge planning team to ensure post-arthroplasty patients receive structured follow-up contact within 72 hours and 7 days of discharge to reduce avoidable readmissions.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="date-chip"><strong>Performance Period:</strong> July 1, 2021 – June 30, 2024 (FY 2026)</span>
+      <a href="https://www.cms.gov/medicare/quality/value-based-programs/hospital-readmissions" class="source-pill" target="_blank">CMS — Hospital Readmissions Reduction Program</a>
+      <a href="https://qualitynet.cms.gov/inpatient/hrrp/measures" class="source-pill" target="_blank">QualityNet — HRRP Measures</a>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div>&copy; 2026 Careteq Vantage. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Archive</a>
+    <a href="#">Preferences</a>
+    <a href="#">Santosh Mudiraj, MBBS, MPH</a>
+  </div>
+</footer>
+
+<script>
+  function toggleActions(btn) {
+    const body = btn.nextElementSibling;
+    const icon = btn.querySelector('.toggle-icon');
+    const isOpen = body.classList.toggle('open');
+    icon.textContent = isOpen ? '−' : '+';
+  }
+</script>
+
+</body>
+</html>
