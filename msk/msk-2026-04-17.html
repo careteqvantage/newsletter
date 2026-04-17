@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSK Executive Daily — April 17, 2026 | Careteq Vantage</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f8f9fc;
+      color: #1a1d23;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e4e7ef;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: #1a1d23;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-brand span {
+      color: #2e6be6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5a6375;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #1a1d23; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .live-badge {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .live-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #4caf7d;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .nav-date {
+      font-size: 13px;
+      color: #5a6375;
+      font-weight: 400;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0f1724 0%, #1a2d4f 60%, #1e3a5f 100%);
+      padding: 52px 32px 44px;
+      color: #ffffff;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7baaf7;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-date {
+      font-size: 15px;
+      color: #adc8f7;
+      font-weight: 400;
+    }
+
+    .hero-divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .hero-byline {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-byline strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
+
+    .hero-count {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 36px 32px 60px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e4e7ef;
+      border-left: 5px solid #e4e7ef;
+      margin-bottom: 22px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+    .card.high   { border-left-color: #e05c5c; }
+    .card.medium { border-left-color: #d4a84b; }
+    .card.low    { border-left-color: #4caf7d; }
+
+    .card-body {
+      padding: 22px 24px 20px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .card-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 19px;
+      line-height: 1.3;
+      color: #1a1d23;
+      flex: 1;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .badge-category {
+      background: #1a1d23;
+      color: #f0f2f7;
+    }
+
+    .badge-high   { background: #fdecea; color: #c0392b; }
+    .badge-medium { background: #fdf3e0; color: #a0700a; }
+    .badge-low    { background: #e8f5ee; color: #267a52; }
+
+    .priority-emoji {
+      font-size: 15px;
+    }
+
+    .card-summary {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #3a4054;
+      margin-bottom: 14px;
+    }
+
+    .why-box {
+      background: #1a1d23;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+
+    .why-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #7baaf7;
+      margin-bottom: 5px;
+    }
+
+    .why-text {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #d0d7e8;
+    }
+
+    /* ── ACTION ITEMS (collapsible) ── */
+    .action-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2e6be6;
+      user-select: none;
+      margin-bottom: 10px;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    .action-toggle:hover { color: #1a4fb8; }
+
+    .toggle-icon {
+      font-size: 10px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .toggle-icon.open { transform: rotate(90deg); }
+
+    .action-content {
+      display: none;
+      padding: 10px 0 6px 4px;
+    }
+
+    .action-content.open { display: block; }
+
+    .action-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .action-content ul li {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #3a4054;
+      padding: 5px 0 5px 20px;
+      position: relative;
+      border-bottom: 1px solid #f0f2f7;
+    }
+
+    .action-content ul li:last-child { border-bottom: none; }
+
+    .action-content ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #2e6be6;
+      font-weight: 700;
+    }
+
+    /* ── DATES ── */
+    .card-dates {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .date-item {
+      font-size: 12px;
+      color: #5a6375;
+    }
+
+    .date-label {
+      font-weight: 700;
+      color: #1a1d23;
+    }
+
+    .deadline-item {
+      font-size: 12px;
+      color: #c0392b;
+      font-weight: 600;
+    }
+
+    .deadline-item .date-label {
+      color: #c0392b;
+    }
+
+    /* ── FOOTER ROW ── */
+    .card-footer {
+      padding: 10px 24px 14px;
+      border-top: 1px solid #f0f2f7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .source-link {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      background: #f0f2f7;
+      border-radius: 100px;
+      text-decoration: none;
+      color: #2e6be6;
+      transition: background 0.15s;
+    }
+
+    .source-link:hover { background: #dce5f9; }
+
+    .source-name {
+      font-size: 12px;
+      color: #8892a4;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8892a4;
+      margin: 32px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e4e7ef;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1d23;
+      color: rgba(255,255,255,0.45);
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: #ffffff; }
+
+    footer .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 36px 16px 30px; }
+      .hero h1 { font-size: 30px; }
+      main { padding: 24px 16px 48px; }
+      .card-body { padding: 16px; }
+      .card-footer { padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════ NAV ══════════════════════════════════════ -->
+<nav>
+  <div class="nav-brand">Careteq <span>Vantage</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Dashboard</a></li>
+    <li><a href="#">Archive</a></li>
+    <li><a href="#">Preferences</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="live-badge">Live</span>
+    <span class="nav-date">April 17, 2026</span>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════ HERO ════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Michigan MSK Intelligence</div>
+    <h1>MSK Executive Daily</h1>
+    <div class="hero-meta">
+      <span class="hero-date">Friday, April 17, 2026</span>
+      <span class="hero-divider"></span>
+      <span class="hero-byline">Prepared for <strong>Santosh Mudiraj, MBBS, MPH</strong></span>
+    </div>
+    <p class="hero-count">9 briefing items — 3 HIGH priority · 4 MEDIUM priority · 2 LOW priority</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ MAIN ════════════════════════════════════ -->
+<main>
+
+  <!-- ── HIGH PRIORITY ── -->
+  <div class="section-label">🔴 High Priority</div>
+
+  <!-- CARD 1 -->
+  <article class="card high">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">CMS Proposes Mandatory Nationwide CJR-X Joint Replacement Bundle</h2>
+        <div class="badges">
+          <span class="priority-emoji">🔴</span>
+          <span class="badge badge-high">HIGH</span>
+          <span class="badge badge-category">Reimbursement &amp; Payment</span>
+        </div>
+      </div>
+
+      <p class="card-summary">On April 10, 2026, CMS proposed the CJR-X (Comprehensive Care for Joint Replacement Expanded) Model as part of the FY2027 Inpatient Prospective Payment System proposed rule. The mandatory model would require most IPPS-paid hospitals to manage 90-day episodes of care for Medicare patients undergoing hip, knee, and ankle replacements, beginning October 1, 2027. The model builds on the prior CJR program, which generated an estimated $112.7 million in net Medicare savings during performance years 6 and 7 (2021–2023) while maintaining quality of care.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan hospitals performing joint replacements—including those within Henry Ford Health, Corewell Health, and University of Michigan Health systems—will be required to participate in CJR-X, directly tying their reimbursement to 90-day cost and quality outcomes. Michigan MSK practices and orthopedic ASCs operating outside the IPPS framework may benefit from accelerated case migration away from mandatory-model hospital settings.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Review your hospital's current joint replacement cost and quality performance data against the expected CJR-X 90-day episode target price methodology before the public comment deadline</li>
+          <li>Submit organizational comments to CMS by June 9, 2026 outlining the operational impact of mandatory bundled payment requirements on Michigan hospitals and affiliated MSK practices</li>
+          <li>Convene an episode care committee to map 30-, 60-, and 90-day post-discharge touchpoints and identify cost reduction opportunities in SNF, PT, and follow-up visit utilization under CJR-X</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Effective Date:</span> October 1, 2027 (if finalized)</span>
+        <span class="deadline-item"><span class="date-label">⚠ Compliance Deadline:</span> June 9, 2026 — Public Comment Period Closes</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Centers for Medicare &amp; Medicaid Services (CMS)</span>
+      <a class="source-link" href="https://www.cms.gov/priorities/innovation/innovation-models/cjr-x" target="_blank" rel="noopener">CJR-X Model Page ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 2 -->
+  <article class="card high">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">CMS FY2027 IPPS Rule Proposes 2.4% Hospital Rate Bump and TEAM Model Expansion</h2>
+        <div class="badges">
+          <span class="priority-emoji">🔴</span>
+          <span class="badge badge-high">HIGH</span>
+          <span class="badge badge-category">Reimbursement &amp; Payment</span>
+        </div>
+      </div>
+
+      <p class="card-summary">CMS issued the FY2027 Inpatient Prospective Payment System proposed rule on April 10, 2026, offering a net 2.4% increase in Medicare inpatient rates—reflecting a 3.2% market basket update offset by a 0.8% productivity adjustment. The rule would increase total hospital payments by approximately $1.9 billion in FY2027. It also proposes updates to the TEAM (Transforming Episode Accountability Model), including expanded eligible spinal fusion episodes, refined quality measure alignment, and updated pricing methodologies for the mandatory bundled payment program launched January 1, 2026.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan hospitals performing joint replacement and spinal procedures under the TEAM model will face updated episode pricing and expanded spinal fusion episode definitions in FY2027, requiring recalibration of care coordination workflows and cost management strategies. The 2.4% IPPS rate increase offers modest relief but falls significantly short of the inflation pressures and implant cost escalation facing Michigan health systems.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Model the proposed 2.4% IPPS rate update against your hospital's FY2026 cost growth trajectory to project FY2027 margin impacts across orthopedic and spine service lines</li>
+          <li>Review the proposed TEAM model updates on expanded spinal fusion episodes to assess how they affect volume attribution, target pricing, and financial exposure at your facility</li>
+          <li>Submit comments to CMS by June 9, 2026 on TEAM refinements, particularly around episode attribution methodology and quality measure alignment, to advocate for Michigan-specific operational realities</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Effective Date:</span> October 1, 2026 (FY2027, if finalized)</span>
+        <span class="deadline-item"><span class="date-label">⚠ Compliance Deadline:</span> June 9, 2026 — Public Comment Period Closes</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Centers for Medicare &amp; Medicaid Services (CMS)</span>
+      <a class="source-link" href="https://www.cms.gov/newsroom/fact-sheets/fy-2027-hospital-inpatient-prospective-payment-system-ipps-long-term-care-hospital-prospective" target="_blank" rel="noopener">FY2027 IPPS Fact Sheet ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 3 -->
+  <article class="card high">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Site-Neutral Payments Accelerate ASC-Hospital Competition in Orthopedics</h2>
+        <div class="badges">
+          <span class="priority-emoji">🔴</span>
+          <span class="badge badge-high">HIGH</span>
+          <span class="badge badge-category">Regulatory Updates</span>
+        </div>
+      </div>
+
+      <p class="card-summary">CMS's 2026 OPPS site-neutral payment approach narrows the longstanding reimbursement gap between hospitals and physician offices, with the agency projecting a reduction of approximately $290 million in OPPS spending—including $220 million in Medicare savings and $70 million in beneficiary coinsurance savings. Hospitals currently receive about 60% higher Medicare payments for comparable services, and the policy shift is expected to reduce hospital OPPS payments rather than increase ASC rates. Industry analysts warn this will drive accelerated case migration to ASCs, pressure hospital-employed physician models, and catalyze further healthcare consolidation across orthopedic markets.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan orthopedic practices affiliated with hospital outpatient departments face direct revenue impact as site-neutral policies erode facility fee advantages, while independent orthopedic ASCs gain a structural competitive edge in commercial contracting. Michigan MSK leaders should anticipate accelerated renegotiation of physician employment arrangements and prepare for consolidation pressure across the region.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Model the financial impact of site-neutral reimbursement on your highest-volume orthopedic procedures performed in hospital outpatient versus ASC settings, using the 60% hospital premium as a baseline reduction scenario</li>
+          <li>Evaluate partnership or acquisition opportunities with independent orthopedic ASCs as hospital outpatient margins narrow under site-neutral payment pressure from CMS</li>
+          <li>Engage your payer contracting team to review commercial rate schedules for alignment with evolving CMS site-neutral benchmarks to protect revenue across all sites of care</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's ASC Review</span>
+      <a class="source-link" href="https://www.beckersasc.com/orthopedics-tjr/how-site-neutral-payment-rules-could-reshape-orthopedics/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- ── MEDIUM PRIORITY ── -->
+  <div class="section-label">🟡 Medium Priority</div>
+
+  <!-- CARD 4 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">CMS CY2026 Rule Removes 285 MSK Procedures from Inpatient-Only List</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">ASC Intelligence</span>
+        </div>
+      </div>
+
+      <p class="card-summary">The CMS CY2026 OPPS and ASC Payment System final rule removed 285 mostly musculoskeletal procedures from the Medicare inpatient-only list while simultaneously adding 289 procedures to the ASC covered procedure list. The ASC payment system received a 2.6% rate increase for facilities meeting quality reporting requirements. These changes represent the largest single-year expansion of outpatient- and ASC-eligible orthopedic procedures under Medicare in recent history, continuing CMS's multi-year strategy to migrate lower-acuity MSK cases out of hospital inpatient settings.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan orthopedic and spine surgeons now have expanded clinical and financial flexibility to perform more complex MSK procedures in ASC settings under Medicare, unlocking new revenue streams for facilities that have the staffing, equipment, and post-discharge infrastructure to safely treat these patients. Ensuring quality reporting compliance is essential to capture the full 2.6% ASC rate update.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Audit your current case mix against the list of 285 newly outpatient-eligible MSK procedures to identify specific migration opportunities aligned with your ASC's clinical capabilities and payer mix</li>
+          <li>Verify your ASC is fully compliant with CMS quality reporting requirements to ensure capture of the 2.6% ASC payment rate update throughout CY2026</li>
+          <li>Brief surgical, anesthesia, and nursing teams on newly eligible complex MSK cases moving into the ASC setting and assess staffing, equipment, implant inventory, and discharge planning readiness</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Effective Date:</span> January 1, 2026</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Centers for Medicare &amp; Medicaid Services (CMS)</span>
+      <a class="source-link" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-2026-hospital-outpatient-prospective-payment-system-opps-ambulatory-surgical-center" target="_blank" rel="noopener">CY2026 OPPS/ASC Fact Sheet ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 5 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Complex Joint Replacements and Revisions Now Approved for ASC Setting</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">ASC Intelligence</span>
+        </div>
+      </div>
+
+      <p class="card-summary">CMS's CY2026 final rule approved complex joint replacement surgeries—including complex total knee arthroplasty revisions and complex hip replacements—for performance in the ambulatory surgical center setting, removing prior restrictions that had limited these higher-acuity procedures to hospital inpatient settings. The expansion covers both new and revision arthroplasty procedures that were previously deemed too clinically complex for outpatient care. This change builds on CMS's sustained effort to broaden the ASC-covered procedure list and reduce Medicare spending through outpatient site migration.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan orthopedic ASCs and high-volume arthroplasty practices can now perform a broader range of complex joint procedures outside the hospital, unlocking new revenue streams and throughput potential for practices affiliated with BCBSM Blue Distinction Centers participating in MARCQI. This access requires careful clinical pathway development and robust post-discharge care coordination to maintain quality metrics.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Identify specific complex joint replacement and revision CPT codes now eligible for your ASC and integrate them into case scheduling, implant ordering, and billing workflows immediately</li>
+          <li>Assess clinical readiness—including anesthesia depth of service, implant inventory, OR suite capacity, and post-discharge care coordination—to safely perform complex arthroplasty in your ASC</li>
+          <li>Negotiate with commercial payers to update facility fee schedules and authorization criteria to reflect newly ASC-eligible complex joint replacement procedures under CY2026 CMS policy</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Effective Date:</span> January 1, 2026</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Healio Orthopedics</span>
+      <a class="source-link" href="https://www.healio.com/news/orthopedics/20260112/complex-joint-replacements-revisions-approved-for-ascs-in-2026" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 6 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Covenant HealthCare Breaks Ground on $25M Orthopedic Facility in Saginaw</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">Michigan Healthcare Landscape</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Saginaw, Michigan-based Covenant HealthCare broke ground on April 8, 2026 on a $25 million, 25,700-square-foot orthopedic facility at its Mackinaw campus. The center will consolidate outpatient orthopedic services and feature 44 exam rooms, four X-ray suites, casting and procedure rooms, orthotics and prosthetics services, and a new OrthoExpress urgent care clinic offering walk-in treatment for bone, joint, and muscle injuries. The facility is expected to open in summer 2027 and will deepen Covenant's integrated outpatient orthopedic footprint across mid-Michigan.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Covenant's $25 million orthopedic investment signals intensifying competitive pressure across Michigan's MSK market, particularly in mid-Michigan markets like Saginaw where facility capacity and urgent care access are rapidly expanding. Synergy Health and affiliated practices should factor this new orthopedic campus and urgent care offering into their regional competitive positioning and referral network strategy well ahead of the 2027 opening.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Map Covenant OrthoExpress's planned service area against your existing MSK urgent care and walk-in catchment zones to identify potential referral and patient flow implications ahead of the 2027 opening</li>
+          <li>Track Covenant's orthopedic service line expansion as a competitive intelligence milestone, incorporating it into your 3-year strategic plan and market analysis for mid-Michigan</li>
+          <li>Evaluate whether a differentiated urgent MSK care offering could be deployed in your market to capture walk-in orthopedic volume before Covenant's new OrthoExpress clinic opens</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's ASC Review</span>
+      <a class="source-link" href="https://www.beckersasc.com/new-asc-development/covenant-to-build-25m-orthopedic-facility-in-michigan/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 7 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Orthopedic ASCs Adapt Strategies Amid Payer Cuts and Rising Implant Costs</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">ASC Intelligence</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Orthopedic ASCs face a convergence of financial pressures in 2026, including expanding payer prior authorization requirements, rising implant and pharmaceutical costs, and a widening "cost of getting paid" in revenue cycle management. The Medicare ASC-to-hospital outpatient payment gap persists—with the ASC conversion factor at $56.32 versus $91.42 for hospital outpatient departments—while implant vendor pricing and surgeon preference items continue to drive case-by-case profitability volatility. Industry leaders are responding through data analytics investment, renegotiated implant contracts, and standardized clinical pathways to reduce cost variability.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan orthopedic ASCs must proactively address implant cost exposure and prior authorization workflows to protect margins in an environment where reimbursement increases consistently lag behind operational cost growth. The persistent ASC-to-HOPD payment gap makes quality reporting compliance and clinical throughput efficiency non-negotiable financial priorities for sustainable operations.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Benchmark your implant cost per case against ASC industry averages for your top-5 orthopedic procedures and initiate renegotiation with top implant vendors based on volume commitments and contract terms</li>
+          <li>Conduct a payer prior authorization audit to identify procedures with the highest denial and delay rates, and implement proactive pre-authorization workflows with dedicated revenue cycle staff support</li>
+          <li>Evaluate revenue cycle staffing and technology investments—including AI-assisted coding and denial management tools—needed to reduce administrative cost per claim and improve net collection rates</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's ASC Review</span>
+      <a class="source-link" href="https://www.beckersasc.com/asc-news/how-orthopedic-ascs-are-redefining-value-amid-payer-cuts-rising-costs/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- ── LOW PRIORITY ── -->
+  <div class="section-label">🟢 Low Priority</div>
+
+  <!-- CARD 8 -->
+  <article class="card low">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Peer-Reviewed Review Finds AI Reshaping Precision Orthopedic Surgery in 2026</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟢</span>
+          <span class="badge badge-low">LOW</span>
+          <span class="badge badge-category">Technology &amp; Innovation</span>
+        </div>
+      </div>
+
+      <p class="card-summary">A narrative review published April 14, 2026 in Frontiers in Bioengineering and Biotechnology examines how artificial intelligence and robotic technologies are reshaping orthopedic surgery across diagnosis, surgical planning, and intraoperative execution. The review highlights advances in deep learning-based bone segmentation—using architectures such as Enhanced Attention Res-UNet and 3D U-Net models—for high-fidelity 3D surgical planning and prosthesis matching. AI-based tracking and deep learning-driven assessment methods are also being applied to characterize surgical actions, instrument motion, and procedural consistency across orthopedic specialties.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan orthopedic programs that integrate AI-assisted surgical planning and robotic systems stand to improve clinical outcomes, implant fit accuracy, and OR efficiency—advantages that are increasingly becoming competitive differentiators in payer network negotiations and BCBSM Blue Distinction Center applications. The evidence base in this peer-reviewed review should inform near-term technology investment roadmaps.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Distribute the Frontiers review to your surgical and clinical informatics teams with a request to identify AI and robotic capabilities most applicable to your current case mix and patient population</li>
+          <li>Assess your current technology stack against AI-assisted surgical planning tools available from major orthopedic device vendors—including Stryker Mako, Smith+Nephew CORI, and Zimmer Biomet ROSA—and benchmark against peer institutions</li>
+          <li>Develop a 12-month technology roadmap that includes a structured pilot program for AI-enhanced operative workflows in at least one orthopedic subspecialty, with defined outcome metrics for evaluation</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Published:</span> April 14, 2026</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Frontiers in Bioengineering and Biotechnology</span>
+      <a class="source-link" href="https://www.frontiersin.org/journals/bioengineering-and-biotechnology/articles/10.3389/fbioe.2026.1765936/full" target="_blank" rel="noopener">Read Review ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 9 -->
+  <article class="card low">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">AAHKS Spring Meeting Convenes April 30–May 2 in Chicago</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟢</span>
+          <span class="badge badge-low">LOW</span>
+          <span class="badge badge-category">Orthopedic Market Trends</span>
+        </div>
+      </div>
+
+      <p class="card-summary">The American Association of Hip and Knee Surgeons (AAHKS) 2026 Spring Meeting will be held April 30 through May 2 at the Radisson Blu Hotel in Chicago, Illinois. The small-format gathering, capped at approximately 250 arthroplasty surgeons, emphasizes panel discussions and practical clinical education for surgeons at all career stages. New programming for early career surgeons, residents (PGY4-5), and fellows has been added for 2026, alongside exhibits from major orthopedic device manufacturers. Nominations for the 2026 AAHKS Lawrence D. Dorr, MD, Humanitarian Award close on April 19, 2026.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">The AAHKS Spring Meeting offers Michigan arthroplasty surgeons an intimate, high-value continuing education and networking opportunity two weeks away—at a critical moment when CMS is proposing sweeping changes to joint replacement payment models including CJR-X. Attendance provides direct access to practical arthroplasty updates and peer conversations about navigating mandatory bundled payment requirements.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Identify Michigan-based arthroplasty surgeons in your network who are registered or eligible to attend AAHKS Spring 2026 and coordinate a post-meeting debrief session to surface practice-relevant clinical and policy insights</li>
+          <li>Review the AAHKS Spring 2026 program for sessions addressing CJR-X, bundled payment preparedness, or value-based arthroplasty care to brief your team on key takeaways</li>
+          <li>Submit your AAHKS Lawrence D. Dorr, MD, Humanitarian Award nomination for a deserving Michigan colleague before the April 19, 2026 deadline</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Event Date:</span> April 30 – May 2, 2026 | Chicago, IL</span>
+        <span class="deadline-item"><span class="date-label">⚠ Nomination Deadline:</span> April 19, 2026 — AAHKS Humanitarian Award</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">American Association of Hip and Knee Surgeons (AAHKS)</span>
+      <a class="source-link" href="https://www.aahks.org/aahks-spring-meeting/" target="_blank" rel="noopener">View Meeting Details ↗</a>
+    </div>
+  </article>
+
+</main>
+
+<!-- ════════════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer>
+  <span class="footer-brand">Careteq Vantage</span>
+  <p>© 2026 Careteq Vantage. All rights reserved.</p>
+  <p style="margin-top:10px;">
+    <a href="#">Archive</a>
+    <a href="#">Preferences</a>
+    <a href="#">About</a>
+  </p>
+</footer>
+
+<script>
+  function toggleAction(btn) {
+    const icon = btn.querySelector('.toggle-icon');
+    const content = btn.nextElementSibling;
+    const isOpen = content.classList.contains('open');
+
+    if (isOpen) {
+      content.classList.remove('open');
+      icon.classList.remove('open');
+    } else {
+      content.classList.add('open');
+      icon.classList.add('open');
+    }
+  }
+</script>
+
+</body>
+</html>
