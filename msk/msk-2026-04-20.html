@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSK Executive Daily — April 20, 2026 | Careteq Vantage</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f8f9fc;
+      color: #1a1d23;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e4e7ef;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: #1a1d23;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-brand span {
+      color: #2e6be6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5a6375;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #1a1d23; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .live-badge {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .live-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #4caf7d;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .nav-date {
+      font-size: 13px;
+      color: #5a6375;
+      font-weight: 400;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0f1724 0%, #1a2d4f 60%, #1e3a5f 100%);
+      padding: 52px 32px 44px;
+      color: #ffffff;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7baaf7;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-date {
+      font-size: 15px;
+      color: #adc8f7;
+      font-weight: 400;
+    }
+
+    .hero-divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .hero-byline {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-byline strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+    }
+
+    .hero-count {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 36px 32px 60px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 1px solid #e4e7ef;
+      border-left: 5px solid #e4e7ef;
+      margin-bottom: 22px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+    .card.high   { border-left-color: #e05c5c; }
+    .card.medium { border-left-color: #d4a84b; }
+    .card.low    { border-left-color: #4caf7d; }
+
+    .card-body {
+      padding: 22px 24px 20px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .card-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 19px;
+      line-height: 1.3;
+      color: #1a1d23;
+      flex: 1;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .badge-category {
+      background: #1a1d23;
+      color: #f0f2f7;
+    }
+
+    .badge-high   { background: #fdecea; color: #c0392b; }
+    .badge-medium { background: #fdf3e0; color: #a0700a; }
+    .badge-low    { background: #e8f5ee; color: #267a52; }
+
+    .priority-emoji {
+      font-size: 15px;
+    }
+
+    .card-summary {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #3a4054;
+      margin-bottom: 14px;
+    }
+
+    .why-box {
+      background: #1a1d23;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+
+    .why-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #7baaf7;
+      margin-bottom: 5px;
+    }
+
+    .why-text {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #d0d7e8;
+    }
+
+    /* ── ACTION ITEMS (collapsible) ── */
+    .action-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2e6be6;
+      user-select: none;
+      margin-bottom: 10px;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    .action-toggle:hover { color: #1a4fb8; }
+
+    .toggle-icon {
+      font-size: 10px;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .toggle-icon.open { transform: rotate(90deg); }
+
+    .action-content {
+      display: none;
+      padding: 10px 0 6px 4px;
+    }
+
+    .action-content.open { display: block; }
+
+    .action-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .action-content ul li {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #3a4054;
+      padding: 5px 0 5px 20px;
+      position: relative;
+      border-bottom: 1px solid #f0f2f7;
+    }
+
+    .action-content ul li:last-child { border-bottom: none; }
+
+    .action-content ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #2e6be6;
+      font-weight: 700;
+    }
+
+    /* ── DATES ── */
+    .card-dates {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .date-item {
+      font-size: 12px;
+      color: #5a6375;
+    }
+
+    .date-label {
+      font-weight: 700;
+      color: #1a1d23;
+    }
+
+    .deadline-item {
+      font-size: 12px;
+      color: #c0392b;
+      font-weight: 600;
+    }
+
+    .deadline-item .date-label {
+      color: #c0392b;
+    }
+
+    /* ── FOOTER ROW ── */
+    .card-footer {
+      padding: 10px 24px 14px;
+      border-top: 1px solid #f0f2f7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .source-link {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      background: #f0f2f7;
+      border-radius: 100px;
+      text-decoration: none;
+      color: #2e6be6;
+      transition: background 0.15s;
+    }
+
+    .source-link:hover { background: #dce5f9; }
+
+    .source-name {
+      font-size: 12px;
+      color: #8892a4;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8892a4;
+      margin: 32px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e4e7ef;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1d23;
+      color: rgba(255,255,255,0.45);
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: #ffffff; }
+
+    footer .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hero { padding: 36px 16px 30px; }
+      .hero h1 { font-size: 30px; }
+      main { padding: 24px 16px 48px; }
+      .card-body { padding: 16px; }
+      .card-footer { padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Careteq <span>Vantage</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Dashboard</a></li>
+    <li><a href="#">Archive</a></li>
+    <li><a href="#">Preferences</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="live-badge">Live</span>
+    <span class="nav-date">April 20, 2026</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Michigan MSK Intelligence</div>
+    <h1>MSK Executive Daily</h1>
+    <div class="hero-meta">
+      <span class="hero-date">Monday, April 20, 2026</span>
+      <span class="hero-divider"></span>
+      <span class="hero-byline">Prepared for <strong>Santosh Mudiraj, MBBS, MPH</strong></span>
+    </div>
+    <p class="hero-count">10 briefing items — 3 HIGH priority · 5 MEDIUM priority · 2 LOW priority</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HIGH PRIORITY -->
+  <div class="section-label">🔴 High Priority</div>
+
+  <!-- CARD 1 -->
+  <article class="card high">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">CMS WISeR Model Activates 72-Hour Prior Authorization Review</h2>
+        <div class="badges">
+          <span class="priority-emoji">🔴</span>
+          <span class="badge badge-high">HIGH</span>
+          <span class="badge badge-category">Regulatory Updates</span>
+        </div>
+      </div>
+
+      <p class="card-summary">CMS's Wasteful and Inappropriate Service Reduction (WISeR) Model uses AI and machine learning alongside human clinical review to vet select Original Medicare items and services, including knee arthroscopy for osteoarthritis, electrical nerve stimulator implants, and skin/tissue substitutes. The 72-hour prior authorization turnaround requirement for requests sent to WISeR participant electronic portals applies starting January 5, 2026 for dates of service on or after January 15, 2026. The model runs for six performance years through December 31, 2031 in New Jersey, Ohio, Oklahoma, Texas, Arizona, and Washington — with Innovaccer serving as the Ohio participant.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan is not currently a WISeR state, but the Ohio deployment on Michigan's southern border creates a direct test case for MSK prior authorization policy that CMS is expected to expand nationally. Michigan orthopedic leaders should evaluate WISeR workflow requirements now, since similar knee arthroscopy and spine-adjacent scrutiny is likely to reach Michigan payers in the next authorization cycle.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Audit knee arthroscopy for osteoarthritis case volumes, documentation patterns, and medical necessity rationale to benchmark against the WISeR evidence criteria likely to drive future Michigan coverage decisions</li>
+          <li>Assign a revenue cycle lead to track WISeR denial trends and appeals data published by CMS to identify documentation gaps that would expose Michigan practices in a future expansion</li>
+          <li>Prepare a prior authorization readiness assessment covering 72-hour turnaround capability, electronic portal integration, and human clinical review workflows in anticipation of broader CMS rollout</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Effective Date:</span> January 15, 2026 (dates of service)</span>
+        <span class="deadline-item"><span class="date-label">⚠ Operational Trigger:</span> January 5, 2026 — 72-hour turnaround begins</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Centers for Medicare &amp; Medicaid Services (CMS)</span>
+      <a class="source-link" href="https://www.cms.gov/priorities/innovation/innovation-models/wiser" target="_blank" rel="noopener">WISeR Model Page ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 2 -->
+  <article class="card high">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Site-Neutral Payments Redraw Orthopedic Economics in 2026</h2>
+        <div class="badges">
+          <span class="priority-emoji">🔴</span>
+          <span class="badge badge-high">HIGH</span>
+          <span class="badge badge-category">Reimbursement &amp; Payment</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Becker's ASC reports that CMS's CY2026 OPPS rule moves Medicare further toward site-neutral payment to narrow the reimbursement gap between hospital outpatient departments, ASCs, and physician offices — where hospitals currently receive about 60% higher payments for comparable services. CMS estimates the policy will reduce OPPS spending by roughly $290 million in 2026, including $220 million in Medicare savings and $70 million in beneficiary coinsurance savings. Industry leaders expect hospital payments to fall rather than ASC rates to rise, accelerating case migration, physician model renegotiation, and consolidation across orthopedic markets.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan orthopedic groups affiliated with hospital outpatient departments face direct revenue compression as the 60% hospital facility-fee premium erodes, while independent orthopedic ASCs gain structural leverage in commercial contracting. Synergy Health and other Michigan MSK organizations should re-price their HOPD vs. ASC case economics now and prepare for employment model renegotiations through 2026.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Model the financial impact of site-neutral reimbursement on your top ten orthopedic procedures using a 60% reduction to HOPD facility fees as the baseline stress scenario</li>
+          <li>Evaluate partnership or joint-venture opportunities with independent Michigan orthopedic ASCs while HOPD valuations are repriced downward under site-neutral pressure</li>
+          <li>Engage payer contracting to audit commercial rate schedules against evolving CMS site-neutral benchmarks and renegotiate any clauses tied to hospital-rate parity</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Effective Date:</span> January 1, 2026 (CY2026 OPPS rule)</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's ASC Review</span>
+      <a class="source-link" href="https://www.beckersasc.com/orthopedics-tjr/how-site-neutral-payment-rules-could-reshape-orthopedics/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 3 -->
+  <article class="card high">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Covenant HealthCare Breaks Ground on $25M Saginaw Orthopedic Facility</h2>
+        <div class="badges">
+          <span class="priority-emoji">🔴</span>
+          <span class="badge badge-high">HIGH</span>
+          <span class="badge badge-category">Michigan Healthcare Landscape</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Saginaw-based Covenant HealthCare broke ground April 8 on a $25 million, 25,700-square-foot orthopedic facility consolidating outpatient MSK services at its Mackinaw campus, with a target opening of summer 2027. The building will house 44 exam rooms, four X-ray suites, casting and procedure rooms, orthotics and prosthetics, and a new Covenant OrthoExpress walk-in urgent care for bone, joint, and muscle injuries. The clinical team includes ten orthopedic surgeons, two podiatrists, a sports medicine physician, and seven advanced practice providers, building on the Saginaw Valley Bone and Joint clinic that joined Covenant in 2017.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Covenant's $25M investment signals intensifying consolidation of outpatient orthopedic capacity in mid-Michigan and directly increases the competitive floor for MSK care in the Saginaw market. Independent Michigan MSK practices should reassess referral relationships, musculoskeletal urgent-care positioning, and regional service-line strategy in response to the expanded Covenant platform.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Map Saginaw-area referral patterns and payer mix to quantify the commercial and Medicare Advantage exposure of your practice once Covenant's consolidated platform opens in summer 2027</li>
+          <li>Develop or expand an orthopedic-focused urgent care offering (MSK walk-in) to preserve first-touch relationships with patients who would otherwise enter Covenant OrthoExpress</li>
+          <li>Engage Covenant's sports medicine and arthroplasty leadership about co-management, orthotics/prosthetics referral, and shared-savings arrangements before competitive positions harden</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Groundbreaking:</span> April 8, 2026</span>
+        <span class="date-item"><span class="date-label">Target Opening:</span> Summer 2027</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's ASC Review</span>
+      <a class="source-link" href="https://www.beckersasc.com/new-asc-development/covenant-to-build-25m-orthopedic-facility-in-michigan/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- MEDIUM PRIORITY -->
+  <div class="section-label">🟡 Medium Priority</div>
+
+  <!-- CARD 4 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Adding Tibial Tubercle Osteotomy Fails to Improve Graft Survivorship</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">Technology &amp; Innovation</span>
+        </div>
+      </div>
+
+      <p class="card-summary">New data presented at the AAOS 2026 Annual Meeting in New Orleans and published April 17 by Healio found that adding a tibial tubercle osteotomy (TTO) to patellofemoral osteochondral allograft transplantation did not improve graft survivorship and was associated with more healing complications. Two-year Kaplan-Meier graft survivorship was 95% overall, but reoperation-free survivorship was 67% in the TTO group versus 82% without TTO — a gap driven largely by TTO-related hardware complications. A total graft diameter greater than 27.5 mm was independently predictive of graft failure.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan cartilage restoration programs and sports medicine surgeons should carefully weigh the added morbidity of augmenting patellofemoral allograft with a TTO given the absence of a survivorship benefit. This evidence supports tighter case selection and informed-consent documentation, and may influence payer coverage and ASC appropriateness criteria for combined procedures.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Update patellofemoral allograft informed-consent and indication templates to reflect the 2-year reoperation gap and the 27.5 mm graft diameter threshold for predicted failure</li>
+          <li>Circulate the Healio summary and AAOS abstract to Michigan cartilage-restoration and sports medicine surgeons for inclusion in the next departmental journal club</li>
+          <li>Review commercial and MA payer medical policies for combined TTO + OCA procedures and prepare to defend or revise protocols against evolving appropriateness criteria</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Published:</span> April 17, 2026</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Healio Orthopedics</span>
+      <a class="source-link" href="https://www.healio.com/news/orthopedics/20260417/osteochondral-allograft-transplantation-with-osteotomy-did-not-improve-graft-survivorship" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 5 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">2026 Medicare Fee Schedule Hides a 2.5% Efficiency Cut for Orthopedics</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">Reimbursement &amp; Payment</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Becker's Spine Review reports that the 2026 Medicare Physician Fee Schedule delivers a headline one-time 2.5% conversion factor increase effective January 1, but applies a 2.5% efficiency adjustment to non–time-based procedures that disproportionately hits orthopedic surgery, imaging interpretation, outpatient interventions, and interventional pain. Orthopedic surgeon compensation had already fallen 3% year over year after a 2.83% conversion factor reduction, with leaders calling the cumulative cuts unsustainable against 82% growth in labor and supply cost per FTE in physician-owned multispecialty practices from 2013 to 2022. CMS is also advancing the mandatory Ambulatory Specialty Model for orthopedics in designated geographies, with two-sided risk of up to 9% in year one and 12% later.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">The net effect of the 2026 MPFS for Michigan orthopedic practices is likely a flat-to-negative Medicare revenue profile despite the advertised increase. Synergy Health and Michigan MSK groups should build the 2.5% efficiency adjustment into their 2026 revenue forecast and begin scenario planning for the Ambulatory Specialty Model's two-sided risk exposure.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Rerun the 2026 Medicare revenue forecast with the 2.5% efficiency adjustment applied to non–time-based orthopedic CPT codes and identify procedures where net reimbursement now falls below variable cost</li>
+          <li>Convene a risk-readiness working group to evaluate downside exposure under the Ambulatory Specialty Model and identify quality and cost benchmarks that must improve before mandatory participation</li>
+          <li>Accelerate a shift of eligible cases to ASC sites of service where commercial and Medicare economics outperform in-office or HOPD interventions</li>
+        </ul>
+      </div>
+
+      <div class="card-dates">
+        <span class="date-item"><span class="date-label">Effective Date:</span> January 1, 2026</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's Spine Review</span>
+      <a class="source-link" href="https://www.beckersspine.com/orthopedic/how-medicares-fee-schedule-cuts-are-shaping-orthopedics/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 6 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Intellijoint and Insurgical Partner on Navigation + Pre-Sterilized Power</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">Technology &amp; Innovation</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Orthopedics This Week reported in April 2026 that Intellijoint Surgical and Insurgical announced a strategic partnership combining Intellijoint's open-platform, surgeon-controlled navigation system for total hip and knee arthroplasty with Insurgical's on-demand, pre-sterilized surgical power tools for large-bone orthopedic procedures. The companies are positioning the combined offering for ASC environments where workflow efficiency, instrument logistics, and capital-light technology adoption are decisive. The announcement highlights continued vendor convergence around high-volume outpatient arthroplasty economics.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan arthroplasty ASCs evaluating navigation and robotics now have a credible capital-light alternative to fully integrated robotic platforms, which matters as ASC margins tighten under site-neutral pressure. The pairing also shortens instrument turnaround time, improving capacity for high-volume same-day hip and knee programs.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Schedule a product evaluation of the combined Intellijoint + Insurgical offering against incumbent robotic and reusable instrument systems currently in your ASC</li>
+          <li>Benchmark room turnover time and sterile processing costs for current arthroplasty cases to quantify the operational savings a pre-sterilized power-tool workflow would deliver</li>
+          <li>Review capital-planning assumptions for the next 24 months to account for navigation + disposable power as a potential alternative to a full robotic platform investment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Orthopedics This Week</span>
+      <a class="source-link" href="https://ryortho.com/2026/04/intellijoint-surgical-and-insurgical-announce-strategic-partnership-to-advance-orthopaedic-technology/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 7 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Medacta Extends MyImplant Platform to Complex Hip Reconstruction</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">Technology &amp; Innovation</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Medacta announced in April 2026 the expansion of its MyImplant patient-specific platform from established shoulder applications to complex hip reconstruction, according to Orthopedics This Week. The custom-fit solution is designed to support surgeons managing cases where fixation is challenging due to extensive bone loss, periprosthetic defects, or failed prior reconstruction. The expansion reflects broader industry momentum around patient-specific instrumentation and implants for revision arthroplasty as primary joint volumes migrate to ASCs and complex revisions remain centered in tertiary facilities.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Michigan revision arthroplasty referral centers evaluating custom acetabular and hip reconstruction options now have an expanded Medacta offering to benchmark against existing patient-specific 3D-printed solutions. Adoption decisions should be weighed against implant cost pass-through, surgeon training, and revision volume thresholds for DRG and bundled-payment economics.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Request Medacta's MyImplant hip reconstruction clinical evidence package and compare failure mode, surgical time, and implant cost against current custom-triflange and 3D-printed acetabular solutions used in Michigan revision centers</li>
+          <li>Coordinate with value-analysis committees to assess commercial and Medicare DRG/bundle economics for patient-specific revision hip cases</li>
+          <li>Identify one or two revision-focused Michigan surgeons to trial the platform on high-complexity pelvic bone-loss cases under a structured outcome-tracking protocol</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Orthopedics This Week</span>
+      <a class="source-link" href="https://ryortho.com/2026/04/medacta-extends-myimplant-platform-to-complex-hip-reconstruction/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 8 -->
+  <article class="card medium">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">15 New Orthopedic Practice and Center Openings Reshape Q1 2026</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟡</span>
+          <span class="badge badge-medium">MEDIUM</span>
+          <span class="badge badge-category">Orthopedic Market Trends</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Becker's ASC reports that orthopedic practices and ASCs showed no signs of slowing in Q1 2026, with fifteen new locations opened by independent surgeon groups, major health systems, and children's hospitals. Notable openings include UF Health's Orthopaedic Surgical Center in Gainesville, Florida; a Gaithersburg, Maryland ASC opened by nine orthopedic surgeons; a new clinic at Kansas City-based Children's Mercy; a new orthopedic practice in Pascagoula, Mississippi through Singing River Health System; and a Shriners Children's Northern California extension clinic. The openings reinforce the emerging "third option" between hospital employment and fully independent private practice via physician-led platforms integrating clinic, ASC, imaging, and administrative support.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">The Q1 2026 pace confirms the continued capital migration into physician-led outpatient orthopedic platforms, giving Michigan MSK leaders a clear benchmark for facility footprint, ownership structure, and ancillary integration. Expect this trend to accelerate alongside site-neutral pressure as commercial payers favor ASC-centric delivery models.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Benchmark Synergy Health's current facility, surgeon, and ancillary footprint against the Q1 2026 cohort to identify white space in imaging, physical therapy, and musculoskeletal urgent care</li>
+          <li>Evaluate whether a physician-led MSO or integrated platform structure is viable for Michigan partners seeking independence without full private-practice burden</li>
+          <li>Track Michigan-specific new-center announcements weekly to maintain an early signal on competitive entries into Ann Arbor, Grand Rapids, and Metro Detroit markets</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's ASC Review</span>
+      <a class="source-link" href="https://www.beckersasc.com/orthopedics-tjr/15-new-orthopedic-practice-center-openings-in-q1/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- LOW PRIORITY -->
+  <div class="section-label">🟢 Low Priority</div>
+
+  <!-- CARD 9 -->
+  <article class="card low">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Orthofix Realigns Spine Leadership to Sharpen Execution</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟢</span>
+          <span class="badge badge-low">LOW</span>
+          <span class="badge badge-category">Competitive Intelligence</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Orthopedics This Week reported in April 2026 that Orthofix announced a strategic realignment of its Spine leadership team designed to accelerate profitable growth and sharpen execution across commercial and innovation priorities. The move is part of an ongoing effort by mid-cap spine manufacturers to streamline portfolios amid pricing pressure, commoditization in established segments, and rising demand for enabling technology. No specific Michigan implications were noted in the announcement.</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">Vendor leadership change signals a potential near-term shift in commercial strategy, pricing, and field coverage that could affect Michigan spine practices using Orthofix implants. Monitor Orthofix field representation and contracting behavior over the next two quarters for downstream impact on case support and rebate programs.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Ask your Orthofix account team for a post-realignment commercial and clinical support plan for Michigan spine accounts</li>
+          <li>Review rebate, consignment, and implant pricing terms on the next Orthofix purchase order to verify no unintended changes during the transition</li>
+          <li>Document any case-support coverage gaps and escalate to Orthofix leadership to maintain service-level expectations</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Orthopedics This Week</span>
+      <a class="source-link" href="https://ryortho.com/2026/04/orthofix-realigns-spine-leadership-to-strengthen-focus-and-execution/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+  <!-- CARD 10 -->
+  <article class="card low">
+    <div class="card-body">
+      <div class="card-header">
+        <h2 class="card-headline">Good News, Bad News: Orthopedic Surgery's 2026 Crossroads</h2>
+        <div class="badges">
+          <span class="priority-emoji">🟢</span>
+          <span class="badge badge-low">LOW</span>
+          <span class="badge badge-category">Orthopedic Market Trends</span>
+        </div>
+      </div>
+
+      <p class="card-summary">Becker's ASC's 2026 outlook frames orthopedic surgery at a crossroads, with tailwinds from rising demand, accelerating outpatient migration, AI-enabled planning, wearables, and smart implants balanced against headwinds from reimbursement pressure, conversion-factor cuts, staffing shortages, tightening ASC margins, and expanding administrative requirements. Orthopedic compensation fell 3% year over year after a 2.83% Medicare conversion factor reduction, and Medicare reimbursement no longer covers the true cost of high-volume procedures such as outpatient total knee replacement in some markets. Physician-led platforms integrating clinic, ASC, imaging, and administrative support are emerging as a meaningful "third option."</p>
+
+      <div class="why-box">
+        <div class="why-label">Why It Matters for Michigan MSK</div>
+        <p class="why-text">The outlook crystallizes the decision framework Michigan MSK leaders will operate under in 2026: lean into outpatient migration, AI-enabled care pathways, and physician-led platform economics while defending against reimbursement erosion. Use this piece as the strategic narrative for board-level discussions and leadership alignment.</p>
+      </div>
+
+      <button class="action-toggle" onclick="toggleAction(this)">
+        <span class="toggle-icon">▶</span> Action Items
+      </button>
+      <div class="action-content">
+        <ul>
+          <li>Circulate the Becker's outlook to your leadership team as pre-read for the next strategic planning session on outpatient migration and physician-led platform opportunities</li>
+          <li>Identify two or three high-volume procedures where Medicare reimbursement no longer covers true cost and present options ranging from payer renegotiation to service-line restructuring</li>
+          <li>Develop a concise one-page 2026 narrative aligning Synergy Health's strategy to the "third option" physician-led platform thesis for use with recruits and partners</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="source-name">Becker's ASC Review</span>
+      <a class="source-link" href="https://www.beckersasc.com/orthopedics-tjr/good-news-bad-news-for-orthopedic-surgery-in-2026/" target="_blank" rel="noopener">Read Article ↗</a>
+    </div>
+  </article>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Careteq Vantage</span>
+  <p>© 2026 Careteq Vantage. All rights reserved.</p>
+  <p style="margin-top:10px;">
+    <a href="#">Archive</a>
+    <a href="#">Preferences</a>
+    <a href="#">About</a>
+  </p>
+</footer>
+
+<script>
+  function toggleAction(btn) {
+    const icon = btn.querySelector('.toggle-icon');
+    const content = btn.nextElementSibling;
+    const isOpen = content.classList.contains('open');
+
+    if (isOpen) {
+      content.classList.remove('open');
+      icon.classList.remove('open');
+    } else {
+      content.classList.add('open');
+      icon.classList.add('open');
+    }
+  }
+</script>
+
+</body>
+</html>
