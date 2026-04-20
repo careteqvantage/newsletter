@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare Compliance Weekly — April 20, 2026 | Careteq Vantage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #f8f9fc;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1f2937;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .heading {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
+
+  /* Top nav */
+  .nav {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+  .nav-links a {
+    color: #475569;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: #0f172a; }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ecfdf5;
+    color: #047857;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .nav-date {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  /* Hero */
+  .hero {
+    max-width: 900px;
+    margin: 56px auto 40px;
+    padding: 0 32px;
+    text-align: center;
+  }
+  .hero-kicker {
+    color: #6366f1;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 56px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  .hero-date {
+    color: #475569;
+    font-size: 17px;
+    margin-bottom: 24px;
+  }
+  .hero-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    padding: 12px 24px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    font-size: 14px;
+  }
+  .hero-byline { color: #0f172a; font-weight: 600; }
+  .hero-sep { color: #cbd5e1; }
+  .hero-week { color: #475569; }
+
+  /* Cards */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px 64px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+    padding: 28px 30px;
+    margin-bottom: 20px;
+    border-left: 5px solid #e5e7eb;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  }
+  .card.priority-high { border-left-color: #dc2626; }
+  .card.priority-medium { border-left-color: #f59e0b; }
+  .card.priority-low { border-left-color: #10b981; }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .priority-emoji { font-size: 20px; line-height: 1.3; }
+  .card h2 {
+    font-size: 24px;
+    line-height: 1.25;
+    flex: 1;
+  }
+
+  .badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    margin-top: 2px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .badge.category { background: #eef2ff; color: #4338ca; }
+  .badge.priority-high { background: #fef2f2; color: #b91c1c; }
+  .badge.priority-medium { background: #fffbeb; color: #b45309; }
+  .badge.priority-low { background: #ecfdf5; color: #047857; }
+
+  .summary {
+    color: #334155;
+    font-size: 15.5px;
+    margin-bottom: 16px;
+  }
+  .why-matters {
+    background: #f8fafc;
+    border-left: 3px solid #6366f1;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .why-matters-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #6366f1;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+  .why-matters-text {
+    color: #334155;
+    font-size: 14.5px;
+  }
+
+  details.actions {
+    margin-bottom: 14px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 14px;
+  }
+  details.actions summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    user-select: none;
+  }
+  details.actions summary::-webkit-details-marker { display: none; }
+  details.actions summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: transform 0.15s;
+    color: #64748b;
+    font-size: 11px;
+  }
+  details.actions[open] summary::before { transform: rotate(90deg); }
+  details.actions ul {
+    margin-top: 10px;
+    padding-left: 22px;
+  }
+  details.actions ul li {
+    font-size: 14.5px;
+    color: #334155;
+    margin-bottom: 6px;
+  }
+
+  .dates {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #475569;
+  }
+  .date-item strong { color: #0f172a; font-weight: 600; }
+
+  .source-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding-top: 14px;
+    border-top: 1px solid #f1f5f9;
+  }
+  .source-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #f1f5f9;
+    color: #334155;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .source-pill:hover { background: #e2e8f0; color: #0f172a; }
+  .source-pill.primary { background: #eef2ff; color: #4338ca; }
+  .source-pill.primary:hover { background: #e0e7ff; }
+
+  /* Footer */
+  footer {
+    max-width: 900px;
+    margin: 40px auto 40px;
+    padding: 28px 32px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+  }
+  footer a {
+    color: #475569;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  footer a:hover { color: #0f172a; }
+  footer .copy { color: #94a3b8; }
+
+  @media (max-width: 640px) {
+    .nav { padding: 12px 20px; flex-wrap: wrap; gap: 10px; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 38px; }
+    .hero { margin-top: 36px; padding: 0 20px; }
+    .container { padding: 0 20px 48px; }
+    .card { padding: 22px; }
+    .card h2 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-brand">Careteq Vantage</div>
+  <div class="nav-links">
+    <a href="#">Dashboard</a>
+    <a href="#">Archive</a>
+    <a href="#">Preferences</a>
+  </div>
+  <div class="nav-right">
+    <span class="live-badge"><span class="live-dot"></span> Live</span>
+    <span class="nav-date">April 20, 2026</span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-kicker">Weekly Briefing</div>
+  <h1>Healthcare Compliance Weekly</h1>
+  <div class="hero-date">Monday, April 20, 2026</div>
+  <div class="hero-meta">
+    <span class="hero-byline">Santosh Mudiraj, MBBS, MPH</span>
+    <span class="hero-sep">•</span>
+    <span class="hero-week">Week of April 14, 2026</span>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ITEM 1 -->
+  <article class="card priority-high">
+    <div class="card-top">
+      <span class="priority-emoji">🔴</span>
+      <h2>Hospital Price Transparency Enforcement Tightens April 1</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">CMS Updates</span>
+      <span class="badge priority-high">High Priority</span>
+    </div>
+    <p class="summary">CMS began enforcing new and revised Hospital Price Transparency requirements on April 1, 2026, including the requirement to replace estimated allowed amounts with median allowed amounts plus 10th and 90th percentile allowed amounts in machine-readable files. Hospitals must also encode Type 2 NPIs in the MRFs. CMS updated §180.90 to reduce Civil Monetary Penalties by 35% when a hospital waives its ALJ hearing, though hospitals violating core HPT requirements are ineligible for that reduction.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan MSK and orthopedic service lines billed through hospital outpatient departments must now display median and percentile allowed amounts for standard procedures. Non-compliance risk increased materially after April 1 for HOPD-based joint, spine, and sports-medicine procedures.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Audit MRFs for median allowed amount and 10/90 percentile fields across all MSK procedure codes.</li>
+        <li>Verify each rendering NPI (Type 2) is correctly encoded per the revised schema.</li>
+        <li>Brief revenue cycle leaders on the 35% CMP reduction pathway and waiver implications.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> January 1, 2026</span>
+      <span class="date-item"><strong>Enforcement Begins:</strong> April 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.cms.gov/newsroom/fact-sheets/cy-2026-opps-ambulatory-surgical-center-final-rule-hospital-price-transparency-policy-changes" target="_blank" rel="noopener">CMS — CY 2026 OPPS/ASC Final Rule: Hospital Price Transparency Policy Changes</a>
+    </div>
+  </article>
+
+  <!-- ITEM 2 -->
+  <article class="card priority-high">
+    <div class="card-top">
+      <span class="priority-emoji">🔴</span>
+      <h2>285 Musculoskeletal Procedures Move to ASC List</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">Medicare &amp; Medicaid Policy</span>
+      <span class="badge priority-high">High Priority</span>
+    </div>
+    <p class="summary">In the CY 2026 OPPS/ASC Final Rule, CMS is phasing out the Inpatient Only (IPO) list over three years, beginning with removal of 285 mostly musculoskeletal procedures in CY 2026 and adding 271 of those codes to the ASC Covered Procedures List (CPL). CMS also revised CPL criteria and added a total of 289 procedures to the ASC CPL for 2026.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan orthopedic groups with ASC relationships gain substantial new site-of-service options for knee, hip, and spine cases that were previously inpatient-only. Practices should reassess case selection criteria, surgeon credentialing, and payer contracting for newly ASC-eligible procedures.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Map the 285 newly ASC-eligible codes against current surgical case mix.</li>
+        <li>Review ASC medical staff bylaws and patient selection protocols for the new procedures.</li>
+        <li>Engage commercial payers on contract amendments for ASC site-of-service for the expanded list.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> January 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-2026-hospital-outpatient-prospective-payment-system-opps-ambulatory-surgical-center" target="_blank" rel="noopener">CMS — CY 2026 OPPS/ASC Final Rule Fact Sheet</a>
+    </div>
+  </article>
+
+  <!-- ITEM 3 -->
+  <article class="card priority-high">
+    <div class="card-top">
+      <span class="priority-emoji">🔴</span>
+      <h2>2026 PFS Conversion Factor Split Creates Dual Rates</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">Billing &amp; Coding</span>
+      <span class="badge priority-high">High Priority</span>
+    </div>
+    <p class="summary">CMS finalized two separate 2026 Physician Fee Schedule conversion factors: $33.57 for qualifying APM participants (+3.77%) and $33.40 for non-qualifying clinicians (+3.26%), up from $32.35 in 2025. The update reflects a statutory +2.50% increase plus differential APM updates and work-RVU adjustments. A −2.5% efficiency adjustment applies to services deemed to have become more efficient over time, including several orthopedic codes.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan orthopedic practices must confirm APM participation status, since nonparticipants receive a lower conversion factor. The efficiency adjustment directly cuts RVUs on high-volume orthopedic services, requiring financial re-modeling for 2026.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Confirm each clinician's QP status for 2026 to apply the correct conversion factor.</li>
+        <li>Model 2026 reimbursement for top 20 orthopedic CPT codes with the efficiency adjustment.</li>
+        <li>Update fee schedule masters and payer contract benchmarks to the 2026 PFS.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> January 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f" target="_blank" rel="noopener">CMS — CY 2026 Medicare Physician Fee Schedule Final Rule</a>
+    </div>
+  </article>
+
+  <!-- ITEM 4 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>MLN Connects April 16 Bundles ASC and CCM Updates</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">CMS Updates</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">The April 16, 2026 MLN Connects newsletter highlights the Ambulatory Surgical Center Payment System April 2026 update, Critical Access Hospital CRNA bypass guidance for reason codes 31006 and 31007, a new monthly adjustment process for PPS Hospital Interim Billing, and Cardiac Contractility Modulation for Heart Failure guidance. CMS also extended the ACCESS initial application deadline to May 15, 2026.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan MSK practices operating ASCs should apply the Q2 2026 ASC payment rates immediately and update billing rules for the new PPS hospital interim billing adjustment if affiliated with a hospital outpatient department.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Load the April 2026 ASC payment update into billing and charge master systems.</li>
+        <li>Review the new PPS hospital interim billing monthly adjustment process with HOPD billers.</li>
+        <li>Flag the May 15, 2026 ACCESS deadline for any participating entities.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> April 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.cms.gov/training-education/medicare-learning-network/newsletter/mln-connects-newsletter-april-16-2026" target="_blank" rel="noopener">CMS — MLN Connects Newsletter for April 16, 2026</a>
+    </div>
+  </article>
+
+  <!-- ITEM 5 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>Michigan Enacts HB 5455 to Remain in IMLC</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">State Regulations Michigan</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">On March 26, 2026, Governor Whitmer signed House Bill 5455 into law as PA 6 of 2026, allowing Michigan to remain a member of the Interstate Medical Licensure Compact without interruption. Prior to the legislation, physicians would not have been able to renew Michigan Expedited Medical Compact licenses after March 28, 2026.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Multistate orthopedic groups with telemedicine or traveling-consultant operations can continue using IMLC-expedited licensure in Michigan. Practices should verify renewal timelines for affected physicians.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Audit all IMLC-expedited Michigan licenses held by employed or contracted physicians.</li>
+        <li>Communicate continued compact eligibility to physician recruiters and credentialing staff.</li>
+        <li>Monitor LARA and MSMS for implementation guidance following PA 6 of 2026.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> March 26, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.michigan.gov/lara/bureau-list/bpl/health/hp-lic-health-prof/medical" target="_blank" rel="noopener">LARA — Medicine (Michigan)</a>
+    </div>
+  </article>
+
+  <!-- ITEM 6 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>MSMS Reimbursement Alert: McLaren Preauth Changes June 1</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">State Regulations Michigan</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">MSMS's April 2026 Reimbursement Advocate Alert summarizes several Michigan payer changes, including McLaren Health Plan's new upcoming preauthorization changes for Medicare effective June 1, 2026. The alert also notes that Health Alliance Plan of Michigan (HAP) requires prior authorization for all gene therapy across Commercial and Medicare Advantage lines, and CMS has clarified insulin and insulin pump coverage under Part B.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">McLaren Medicare preauthorization changes directly affect Michigan orthopedic practices that treat McLaren Medicare members, especially for high-cost imaging, injections, and surgical procedures. Advance preparation protects June cash flow.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Request McLaren's updated Medicare preauth code list and workflow before June 1.</li>
+        <li>Train front-office and auth-team staff on the HAP gene-therapy preauth requirement.</li>
+        <li>Publish an internal Michigan payer matrix summarizing the April 2026 MSMS alert items.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Compliance Deadline:</strong> June 1, 2026 (McLaren)</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.msms.org/news/reimbursement-advocate-alert-april-2026" target="_blank" rel="noopener">MSMS — Reimbursement Advocate Alert: April 2026</a>
+    </div>
+  </article>
+
+  <!-- ITEM 7 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>MDHHS Loads Q1 2026 APC/ASC Software; Claims Recycling</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">State Regulations Michigan</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">MDHHS loaded the January 2026 Quarterly APC & ASC software into CHAMPS on March 21, 2026 and announced in an April 1, 2026 alert that it will recycle outpatient hospital and ASC claims processed under the previous quarter's software. Providers should monitor remittance advices for reprocessed claims and balance adjustments.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan orthopedic ASCs and HOPD-affiliated practices will see adjustments on previously processed Q1 claims, affecting Medicaid receivables reporting and potentially producing refund requests or additional payments.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Reconcile April–May remittances to identify recycled APC and ASC claim adjustments.</li>
+        <li>Update financial forecasts to account for retroactive Medicaid payment changes.</li>
+        <li>Flag any negative adjustments for appeal review within MDHHS timelines.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> April 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank" rel="noopener">MDHHS — April 1, 2026 Outpatient Hospital Providers APC and ASC Updates</a>
+    </div>
+  </article>
+
+  <!-- ITEM 8 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>HIPAA Security Rule NPRM Advances Toward Finalization</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">HIPAA &amp; Data Security</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">HHS OCR's December 2024 HIPAA Security Rule Notice of Proposed Rulemaking would eliminate the distinction between "required" and "addressable" implementation specifications, require written and regularly tested policies, and better align the rule with modern cybersecurity practices. OCR cites a 102% increase in large breaches and a 1,002% increase in individuals affected from 2018–2023. Finalization is pending.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan orthopedic practices — which store imaging, operative plans, and implant registries — face materially higher technical and administrative safeguard expectations if the NPRM is finalized as proposed. Early gap analyses avoid rushed remediation later.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Commission a HIPAA Security Rule gap analysis against the NPRM requirements.</li>
+        <li>Document written policies, testing cadence, and risk-analysis updates.</li>
+        <li>Confirm business associate agreements address the expected strengthened controls.</li>
+      </ul>
+    </details>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.hhs.gov/hipaa/for-professionals/security/hipaa-security-rule-nprm/factsheet/index.html" target="_blank" rel="noopener">HHS — HIPAA Security Rule NPRM Fact Sheet</a>
+    </div>
+  </article>
+
+  <!-- ITEM 9 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>Medicare Advantage Prior Auth Rules Reshape 2026</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">Medicare &amp; Medicaid Policy</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">Effective January 1, 2026, impacted payers must issue prior authorization decisions within 72 hours for urgent requests and seven calendar days for standard requests, and must provide a specific reason for denials. The 2026 MA final rule also restricts plans from reopening approved inpatient admissions absent obvious error or fraud and extends the organization-determination definition to concurrent service decisions.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan orthopedic groups with frequent joint replacement and spine admissions now have stronger leverage to hold MA plans to approved inpatient authorizations. Documentation of concurrent decisions drives appeal and denial strategy.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Track MA plan turnaround times against the 72-hour urgent and 7-day standard windows.</li>
+        <li>Escalate any MA attempts to reopen approved inpatient admissions outside error or fraud.</li>
+        <li>Preserve documentation of concurrent service decisions to support appeals.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> January 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.healthcarefinancenews.com/news/medicare-advantage-final-rule-updates-coverage-decisions" target="_blank" rel="noopener">Healthcare Finance News — Medicare Advantage Final Rule Updates Coverage Decisions</a>
+    </div>
+  </article>
+
+  <!-- ITEM 10 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>Spring 2026 ICD-10-PCS Update Adds Spinal Device Codes</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">Billing &amp; Coding</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">CMS posted the Spring 2026 ICD-10-PCS update materials, with procedure codes effective April 1, 2026 through September 30, 2026. The update includes a new device value for carbon/PEEK spinal stabilization devices applicable to cervical and thoracic fusion procedures and a new substance value for recombinant human bone morphogenetic protein-2 with collagen scaffold.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan spine surgeons and hospital coders must capture the new device and substance values to document implant specificity and support appropriate DRG assignment for cervical and thoracic fusions.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Train inpatient coders on the new carbon/PEEK and rhBMP-2 device/substance values.</li>
+        <li>Update operative note templates to document device material and substance use.</li>
+        <li>Verify chargemaster and HIM encoders reflect the April 1, 2026 PCS updates.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> April 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.cms.gov/medicare/coding-billing/icd-10-codes/icd-10-coordination-maintenance-committee-materials" target="_blank" rel="noopener">CMS — ICD-10 Coordination and Maintenance Committee Materials</a>
+    </div>
+  </article>
+
+  <!-- ITEM 11 -->
+  <article class="card priority-medium">
+    <div class="card-top">
+      <span class="priority-emoji">🟡</span>
+      <h2>OCR MMG Fusion HIPAA Settlement Covers 15M Individuals</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">HIPAA &amp; Data Security</span>
+      <span class="badge priority-medium">Medium Priority</span>
+    </div>
+    <p class="summary">On March 5, 2026, OCR announced a resolution agreement with MMG Fusion, LLC over a breach affecting approximately 15 million individuals. OCR found potential violations of the HIPAA Privacy, Security, and Breach Notification Rules, including failure to conduct an accurate and thorough risk analysis and failure to notify affected covered entities. MMG agreed to a three-year corrective action plan monitored by OCR and a $10,000 payment.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">The settlement underscores continued OCR focus on business associate risk analyses and breach notification obligations — both relevant to Michigan orthopedic practices that share data with scheduling, RCM, and imaging vendors.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Verify current risk analysis is documented, current, and covers all ePHI systems.</li>
+        <li>Review BAA terms for breach notification timing and downstream obligations.</li>
+        <li>Test incident response playbooks with a tabletop exercise this quarter.</li>
+      </ul>
+    </details>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.hhs.gov/press-room/ocr-mmg-fusion-hipaa-agreement.html" target="_blank" rel="noopener">HHS — OCR Settles HIPAA Investigation with MMG Fusion, LLC</a>
+    </div>
+  </article>
+
+  <!-- ITEM 12 -->
+  <article class="card priority-low">
+    <div class="card-top">
+      <span class="priority-emoji">🟢</span>
+      <h2>AMA Releases CPT 2026 Code Set With 288 New Codes</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">Billing &amp; Coding</span>
+      <span class="badge priority-low">Low Priority</span>
+    </div>
+    <p class="summary">The AMA released the CPT 2026 code set with 288 new codes, 84 deletions, and 46 revisions, for 418 total changes. Updates include remote monitoring of responses to musculoskeletal and respiratory therapies, five new short-period remote monitoring codes (2–15 days within a 30-day period), and two codes that report remote monitoring treatment management at a 10-minute threshold.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan MSK practices running remote therapeutic monitoring programs for post-op joint and spine patients can now bill under the new shorter-period codes, improving revenue capture for condensed recovery windows.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Review new RTM codes against current post-operative monitoring workflows.</li>
+        <li>Update superbills and EHR code lists with the 2026 additions, deletions, and revisions.</li>
+        <li>Educate billers on the 10-minute management threshold to avoid under-coding.</li>
+      </ul>
+    </details>
+    <div class="dates">
+      <span class="date-item"><strong>Effective Date:</strong> January 1, 2026</span>
+    </div>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.ama-assn.org/press-center/ama-press-releases/ama-releases-cpt-2026-code-set" target="_blank" rel="noopener">AMA — Releases CPT 2026 Code Set</a>
+    </div>
+  </article>
+
+  <!-- ITEM 13 -->
+  <article class="card priority-low">
+    <div class="card-top">
+      <span class="priority-emoji">🟢</span>
+      <h2>AHLA April 2026 Policy Supplement Adds 60+ Tools</h2>
+    </div>
+    <div class="badges">
+      <span class="badge category">Regulatory &amp; Legal</span>
+      <span class="badge priority-low">Low Priority</span>
+    </div>
+    <p class="summary">AHLA's April 2026 Supplement to its Policies adds more than 60 new resources — checklists, templates, and compliance tools — covering AI scribes, False Claims Act, HIPAA enforcement, physician compensation, and labor and employment. The supplement serves as a practical reference library for compliance officers managing an expanding regulatory agenda.</p>
+    <div class="why-matters">
+      <div class="why-matters-label">Why It Matters</div>
+      <div class="why-matters-text">Michigan orthopedic practices using AI-assisted documentation tools and those renegotiating physician compensation arrangements will find ready-made templates that accelerate compliance work without reinventing controls.</div>
+    </div>
+    <details class="actions">
+      <summary>View Action Items</summary>
+      <ul>
+        <li>Download the AI scribe and physician compensation templates relevant to the practice.</li>
+        <li>Map HIPAA enforcement checklists against current privacy program controls.</li>
+        <li>Assign policy ownership for each new tool adopted from the supplement.</li>
+      </ul>
+    </details>
+    <div class="source-pills">
+      <a class="source-pill primary" href="https://www.healthlawyers.org/" target="_blank" rel="noopener">AHLA — American Health Law Association</a>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <span class="copy">© 2026 Careteq Vantage</span>
+  <a href="#">Archive</a>
+  <a href="#">Preferences</a>
+</footer>
+
+<script>
+  // Expand all Action Items sections when pressing "E"
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'e' || e.key === 'E') {
+      if (e.target === document.body) {
+        document.querySelectorAll('details.actions').forEach(function(d) { d.open = true; });
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
