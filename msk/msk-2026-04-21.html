@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MSK Executive Daily — April 21, 2026 | Careteq Vantage</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,1132 +11,571 @@
     :root {
       --bg: #f8f9fc;
       --card-bg: #ffffff;
-      --nav-bg: #1a1f2e;
-      --hero-bg: #1a1f2e;
-      --text-primary: #1a1f2e;
-      --text-secondary: #5a6278;
-      --text-muted: #8a94a6;
-      --border: #e8ebf2;
-      --red: #e05c5c;
-      --yellow: #d4a84b;
-      --green: #4caf7d;
-      --red-bg: #fdf1f1;
-      --yellow-bg: #fdf9ef;
-      --green-bg: #f1faf5;
-      --inset-bg: #1a1f2e;
-      --inset-text: #e8ebf2;
-      --badge-bg: #1a1f2e;
-      --badge-text: #ffffff;
-      --pro-gold: #d4a84b;
-      --shadow: 0 2px 12px rgba(26,31,46,0.08);
-      --radius: 12px;
+      --border: #e4e7ef;
+      --text: #1a1d2e;
+      --muted: #6b7280;
+      --accent-red: #e05c5c;
+      --accent-yellow: #d4a84b;
+      --accent-green: #4caf7d;
+      --navy: #1c2a4a;
+      --inset-bg: #1e2535;
+      --inset-text: #c8d2e8;
     }
 
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
-      color: var(--text-primary);
+      color: var(--text);
       font-size: 15px;
       line-height: 1.65;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'DM Serif Display', serif;
-    }
-
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      background: var(--nav-bg);
+      background: var(--navy);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 28px;
-      height: 56px;
+      height: 52px;
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
-    .nav-brand {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem;
-      color: #fff;
-      letter-spacing: 0.01em;
-    }
-    .nav-brand span { color: var(--pro-gold); }
-    .nav-links {
-      display: flex;
-      gap: 24px;
-    }
-    .nav-links a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.15s;
-    }
+    .nav-brand { font-family: 'DM Serif Display', serif; font-size: 17px; letter-spacing: .3px; color: #fff; }
+    .nav-links { display: flex; gap: 24px; font-size: 13px; font-weight: 500; }
+    .nav-links a { color: #a8b8d8; text-decoration: none; }
     .nav-links a:hover { color: #fff; }
-    .nav-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .live-badge {
-      background: #2ecc71;
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      padding: 3px 8px;
-      border-radius: 20px;
-      text-transform: uppercase;
-    }
-    .nav-date {
-      color: rgba(255,255,255,0.55);
-      font-size: 0.82rem;
-    }
+    .nav-right { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #a8b8d8; }
+    .live-badge { background: #e05c5c; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; letter-spacing: .6px; text-transform: uppercase; }
 
-    /* ── HERO ── */
-    .hero {
-      background: var(--hero-bg);
-      padding: 52px 28px 44px;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -80px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse at center, rgba(212,168,75,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--pro-gold);
-      margin-bottom: 12px;
-    }
-    .hero h1 {
-      font-size: 2.6rem;
-      color: #fff;
-      line-height: 1.15;
-      margin-bottom: 10px;
-    }
-    .hero-date {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 6px;
-    }
-    .hero-byline {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.4);
-    }
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-top: 28px;
-    }
-    .hero-stat {
-      text-align: center;
-    }
-    .hero-stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem;
-      color: var(--pro-gold);
-    }
-    .hero-stat-label {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.45);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
+    /* HERO */
+    .hero { background: var(--navy); color: #fff; padding: 44px 40px 38px; text-align: center; }
+    .hero-label { font-size: 11px; font-weight: 600; letter-spacing: 1.6px; text-transform: uppercase; color: #a8b8d8; margin-bottom: 10px; }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: 40px; line-height: 1.15; margin-bottom: 10px; }
+    .hero-date { font-size: 16px; color: #c8d2e8; margin-bottom: 6px; }
+    .hero-byline { font-size: 13px; color: #7d8fb8; }
+    .hero-note { margin-top: 14px; font-size: 11.5px; color: #8a9bbf; font-style: italic; max-width: 640px; margin-left: auto; margin-right: auto; }
 
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 36px 20px 60px;
-    }
+    /* LAYOUT */
+    main { max-width: 860px; margin: 36px auto 60px; padding: 0 20px; }
+    .section-label { font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); margin: 36px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 36px 0 20px;
-    }
-    .section-divider-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-    .section-divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+    /* CARD */
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px 22px 28px; margin-bottom: 18px; position: relative; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+    .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 10px 0 0 10px; }
+    .card.high::before { background: var(--accent-red); }
+    .card.medium::before { background: var(--accent-yellow); }
+    .card.low::before { background: var(--accent-green); }
 
-    /* ── CARDS ── */
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
-      border-left: 5px solid var(--border);
-      overflow: hidden;
-      transition: box-shadow 0.2s;
-    }
-    .card:hover { box-shadow: 0 4px 20px rgba(26,31,46,0.12); }
-    .card.priority-high { border-left-color: var(--red); }
-    .card.priority-medium { border-left-color: var(--yellow); }
-    .card.priority-low { border-left-color: var(--green); }
+    .card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .badge-category { background: #1e2535; color: #9fb3d8; }
+    .badge-high { background: #fce8e8; color: #c0392b; }
+    .badge-medium { background: #fdf3dc; color: #9a6d1a; }
+    .badge-low { background: #e8f6ed; color: #2e7d50; }
 
-    .card-header {
-      padding: 22px 24px 0;
-    }
-    .card-meta {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-    .badge-category {
-      background: var(--badge-bg);
-      color: var(--badge-text);
-    }
-    .badge-high {
-      background: var(--red-bg);
-      color: var(--red);
-      border: 1px solid rgba(224,92,92,0.25);
-    }
-    .badge-medium {
-      background: var(--yellow-bg);
-      color: #9a7020;
-      border: 1px solid rgba(212,168,75,0.3);
-    }
-    .badge-low {
-      background: var(--green-bg);
-      color: #2d7a50;
-      border: 1px solid rgba(76,175,125,0.25);
-    }
-    .badge-pro {
-      background: var(--pro-gold);
-      color: #fff;
-      font-weight: 700;
-    }
+    .card-headline { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; line-height: 1.3; margin-bottom: 12px; color: var(--text); }
+    .card-summary { font-size: 14.5px; color: #374151; margin-bottom: 14px; }
 
-    .card-headline {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      line-height: 1.3;
-      margin-bottom: 14px;
-    }
-    .card-body {
-      padding: 0 24px 20px;
-    }
-    .card-summary {
-      color: var(--text-secondary);
-      margin-bottom: 16px;
-      font-size: 0.93rem;
-    }
+    .inset { background: var(--inset-bg); color: var(--inset-text); border-radius: 7px; padding: 14px 16px; font-size: 13.5px; margin-bottom: 14px; }
+    .inset strong { display: block; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: #7d8fb8; margin-bottom: 5px; }
 
-    .inset-box {
-      background: var(--inset-bg);
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin-bottom: 16px;
-    }
-    .inset-box-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--pro-gold);
-      margin-bottom: 6px;
-    }
-    .inset-box p {
-      color: var(--inset-text);
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
+    .actions-toggle { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; font-size: 13px; font-weight: 500; color: var(--muted); cursor: pointer; width: 100%; text-align: left; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; font-family: 'DM Sans', sans-serif; }
+    .actions-toggle:hover { background: #f4f6fb; color: var(--text); }
+    .actions-toggle .chevron { transition: transform .2s; font-size: 11px; }
+    .actions-toggle.open .chevron { transform: rotate(180deg); }
+    .actions-body { display: none; background: #f8f9fc; border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; padding: 12px 16px 14px; margin-bottom: 10px; }
+    .actions-body.open { display: block; }
+    .actions-body ul { list-style: none; padding: 0; }
+    .actions-body ul li { font-size: 13.5px; padding: 6px 0 6px 20px; position: relative; border-bottom: 1px solid var(--border); color: #1a1d2e; }
+    .actions-body ul li:last-child { border-bottom: none; }
+    .actions-body ul li::before { content: '→'; position: absolute; left: 0; color: var(--muted); font-size: 12px; top: 8px; }
 
-    .action-toggle {
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 9px 16px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 0;
-      width: 100%;
-      text-align: left;
-      transition: background 0.15s, border-color 0.15s;
-    }
-    .action-toggle:hover {
-      background: var(--bg);
-      border-color: #c8cdd8;
-    }
-    .action-toggle .arrow {
-      margin-left: auto;
-      transition: transform 0.2s;
-      font-size: 0.75rem;
-    }
-    .action-toggle.open .arrow { transform: rotate(180deg); }
+    .card-meta-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+    .effective-date { background: #f0f4ff; border: 1px solid #d0d9f0; border-radius: 4px; padding: 3px 8px; font-size: 11.5px; color: #3a4a7a; }
+    .compliance { background: #fff3e0; border: 1px solid #ffd180; border-radius: 4px; padding: 3px 8px; font-size: 11.5px; color: #7a4500; }
+    .source-pill { display: inline-block; background: #f0f4ff; border: 1px solid #cdd5ef; border-radius: 4px; padding: 3px 10px; font-size: 11.5px; font-weight: 500; color: #2e4090; text-decoration: none; }
+    .source-pill:hover { background: #dce6ff; }
 
-    .action-items {
-      display: none;
-      margin-top: 10px;
-      padding: 14px 18px;
-      background: #f4f6fb;
-      border-radius: 8px;
-    }
-    .action-items.open { display: block; }
-    .action-items ul {
-      list-style: none;
-      padding: 0;
-    }
-    .action-items ul li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 8px;
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-    .action-items ul li:last-child { margin-bottom: 0; }
-    .action-items ul li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--pro-gold);
-      font-weight: 700;
-    }
-
-    .card-footer {
-      padding: 14px 24px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .card-meta-dates {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      flex: 1;
-    }
-    .card-meta-dates strong { color: var(--text-secondary); }
-    .source-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .source-pill {
-      display: inline-block;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 3px 11px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: background 0.15s, border-color 0.15s;
-    }
-    .source-pill:hover {
-      background: var(--badge-bg);
-      color: #fff;
-      border-color: var(--badge-bg);
-    }
-
-    /* ── TIER 2 BLOCK ── */
-    .tier2-toggle {
-      width: 100%;
-      background: none;
-      border: 1px dashed var(--border);
-      border-radius: var(--radius);
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      margin-bottom: 20px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      transition: background 0.15s, border-color 0.15s;
-      text-align: left;
-    }
-    .tier2-toggle:hover {
-      background: rgba(212,168,75,0.05);
-      border-color: var(--pro-gold);
-      color: var(--text-secondary);
-    }
-    .tier2-toggle .arrow {
-      margin-left: auto;
-      font-size: 0.75rem;
-      transition: transform 0.2s;
-    }
-    .tier2-toggle.open .arrow { transform: rotate(180deg); }
-
-    .tier2-content {
-      display: none;
-      background: #fff;
-      border: 1px dashed var(--border);
-      border-top: none;
-      border-radius: 0 0 var(--radius) var(--radius);
-      padding: 16px 20px 20px;
-      margin-top: -20px;
-      margin-bottom: 20px;
-    }
-    .tier2-content.open { display: block; }
-
-    .tier2-category-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--pro-gold);
-      margin-bottom: 10px;
-      margin-top: 16px;
-    }
+    /* TIER 2 */
+    .tier2-toggle { width: 100%; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; text-align: left; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: 'DM Sans', sans-serif; }
+    .tier2-toggle:hover { background: #f4f6fb; }
+    .tier2-toggle .t2-left { display: flex; align-items: center; gap: 10px; }
+    .tier2-toggle .t2-chevron { font-size: 11px; transition: transform .2s; }
+    .pro-badge { background: #d4a84b; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; letter-spacing: .8px; }
+    .tier2-body { display: none; border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; background: #fefefe; padding: 14px 18px 16px; margin-bottom: 24px; }
+    .tier2-body.open { display: block; }
+    .tier2-category-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin: 14px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
     .tier2-category-label:first-child { margin-top: 0; }
-    .tier2-item {
-      margin-bottom: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-    .tier2-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .tier2-item-title {
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-    .tier2-item-title a {
-      color: inherit;
-      text-decoration: none;
-    }
-    .tier2-item-title a:hover { text-decoration: underline; color: var(--red); }
-    .tier2-item-source {
-      font-size: 0.73rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-    .tier2-item-summary {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-    .fetch-failed {
-      display: inline-block;
-      background: #fff3cd;
-      border: 1px solid #f0c36d;
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: #856404;
-      margin-left: 6px;
-    }
+    .tier2-item { margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--border); }
+    .tier2-item a { font-weight: 600; font-size: 13.5px; color: #1e3a8a; text-decoration: none; }
+    .tier2-item a:hover { text-decoration: underline; }
+    .t2-source { font-size: 11.5px; color: var(--muted); margin-bottom: 2px; }
+    .t2-source a { color: var(--muted); }
+    .tier2-item p { font-size: 13px; color: #4b5563; margin-top: 3px; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--nav-bg);
-      color: rgba(255,255,255,0.45);
-      text-align: center;
-      padding: 28px 20px;
-      font-size: 0.8rem;
-    }
-    footer a {
-      color: rgba(255,255,255,0.55);
-      text-decoration: none;
-      margin: 0 10px;
-    }
+    /* FOOTER */
+    footer { background: var(--navy); color: #6b7a99; text-align: center; padding: 28px 20px; font-size: 12.5px; margin-top: 60px; }
+    footer a { color: #8a9bbf; text-decoration: none; margin: 0 10px; }
     footer a:hover { color: #fff; }
-    .footer-brand {
-      font-family: 'DM Serif Display', serif;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 6px;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.9rem; }
-      .nav-links { display: none; }
-      .hero-stats { gap: 20px; }
-    }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- NAVIGATION -->
 <nav>
-  <div class="nav-brand">Careteq <span>Vantage</span></div>
+  <span class="nav-brand">Careteq Vantage</span>
   <div class="nav-links">
     <a href="#">Dashboard</a>
     <a href="#">Archive</a>
     <a href="#">Preferences</a>
   </div>
-  <div class="nav-meta">
+  <div class="nav-right">
     <span class="live-badge">Live</span>
-    <span class="nav-date">April 21, 2026</span>
+    <span>Tuesday, April 21, 2026</span>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <div class="hero-label">Executive Intelligence Briefing</div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Careteq Vantage Intelligence</div>
   <h1>MSK Executive Daily</h1>
-  <p class="hero-date">Tuesday, April 21, 2026</p>
-  <p class="hero-byline">Compiled for Santosh Mudiraj, MBBS, MPH</p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">8</div>
-      <div class="hero-stat-label">Briefing Items</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">2</div>
-      <div class="hero-stat-label">High Priority</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">3</div>
-      <div class="hero-stat-label">Medium Priority</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">3</div>
-      <div class="hero-stat-label">Low Priority</div>
-    </div>
-  </div>
-</section>
+  <div class="hero-date">Tuesday, April 21, 2026</div>
+  <div class="hero-byline">Curated for Santosh Mudiraj, MBBS, MPH</div>
+  <p class="hero-note">Note: Direct RSS feed access was unavailable this cycle due to network restrictions. All content was sourced via indexed web search. Summaries reflect only verifiable facts from identified sources.</p>
+</div>
 
-<div class="container">
+<!-- MAIN CONTENT -->
+<main>
 
-  <!-- ════════════════════════════════════════
-       SECTION: REIMBURSEMENT & PAYMENT
-  ═══════════════════════════════════════════ -->
-  <div class="section-divider">
-    <span class="section-divider-label">Reimbursement &amp; Payment</span>
-    <div class="section-divider-line"></div>
-  </div>
+  <!-- ═══════════════════════════════════════════════
+       MICHIGAN HEALTHCARE LANDSCAPE
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">Michigan Healthcare Landscape</div>
 
-  <!-- Card 1: CJR-X -->
-  <div class="card priority-high">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Reimbursement &amp; Payment</span>
-        <span class="badge badge-high">🔴 HIGH PRIORITY</span>
-      </div>
-      <h2 class="card-headline">CMS Proposes Mandatory Nationwide Joint Replacement Bundle Starting October 2027</h2>
+  <div class="card high">
+    <div class="card-meta">
+      <span class="badge badge-category">Michigan Healthcare Landscape</span>
+      <span class="badge badge-high">🔴 HIGH</span>
     </div>
-    <div class="card-body">
-      <p class="card-summary">On April 10, 2026, CMS published the FY 2027 IPPS proposed rule introducing CJR-X (Comprehensive Care for Joint Replacement Expanded), a mandatory nationwide episode-based payment model for hip, knee, and ankle replacements. Most hospitals paid under IPPS would be required to participate beginning October 1, 2027, with 90-day episodes covering all related post-acute care costs — from the procedure through follow-up visits and physical therapy. Critically, ankle replacement is included for the first time, expanding the model's scope beyond the original CJR program. The prior CJR model generated an estimated $112.7 million in net Medicare savings in performance years 6–7 (2021–2023). CMS will accept public comments through June 9, 2026.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>Michigan orthopedic practices operating in IPPS-paid hospitals will be automatically enrolled in CJR-X unless they already participate in the TEAM model. The mandatory 90-day episode accountability creates direct financial risk tied to post-acute care costs — particularly skilled nursing facility utilization, readmissions, and home health — and places pressure on orthopedic service lines to tightly manage the full care continuum for every joint replacement patient. This is the first mandatory nationwide episode payment model in CMS history and represents a structural shift in how orthopedic volume is monetized.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Submit formal comments to CMS by June 9, 2026 — document your hospital's current episode cost profile for LEJR patients, model projected target price exposure for hip, knee, and ankle replacements, and identify specific provisions that affect your patient population or payer mix.</li>
-          <li>Assess whether your hospital's participation in TEAM (if applicable) would provide exemption from CJR-X and run a side-by-side financial scenario comparison of total risk and upside under each model before October 2027 implementation.</li>
-          <li>Convene orthopedic service line and post-acute care leadership to map current 90-day episode cost drivers, renegotiate SNF and home health partnerships, and establish standardized care pathways designed to reduce post-acute utilization without compromising outcomes.</li>
-        </ul>
-      </div>
+    <div class="card-headline">McLaren and BCBSM Roll Out Preauthorization Changes Affecting Michigan Orthopedic Providers</div>
+    <div class="card-summary">
+      The Michigan State Medical Society's April 2026 Reimbursement Advocate Alert reports that McLaren Health Plan has announced new preauthorization requirements for Medicare services, effective June 1, 2026. Blue Cross Blue Shield of Michigan also issued provider guidance urging use of Availity Essentials and its e-referral system to accelerate prior authorization turnaround, noting that three high-volume call types account for the majority of authorization delays affecting Michigan physicians.
     </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        <strong>Effective Date:</strong> October 1, 2027 (proposed) &nbsp;|&nbsp;
-        <strong>Compliance Deadline:</strong> June 9, 2026 (CMS comment period closes)
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://www.cms.gov/priorities/innovation/innovation-models/cjr-x" target="_blank">CMS CJR-X</a>
-        <a class="source-pill" href="https://www.aha.org/news/headline/2026-04-10-cms-issues-hospital-ipps-proposed-rule-fy-2027" target="_blank">AHA News</a>
-        <a class="source-pill" href="https://skillednursingnews.com/2026/04/cms-proposed-new-cjr-model-aims-to-drive-hospital-skilled-nursing-coordination-nationwide/" target="_blank">Skilled Nursing News</a>
-      </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      For Michigan orthopedic and MSK practices, the McLaren Medicare preauth changes create a firm June 1 deadline to update billing workflows and train staff — particularly for orthopedic CPT codes newly requiring approval across a major state payer. BCBSM's parallel guidance signals a broader payer push toward electronic authorization tooling that will affect front-desk throughput and revenue cycle efficiency.
+    </div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Identify all McLaren Medicare-covered orthopedic CPT codes requiring updated preauthorization under the June 1 policy and revise scheduling and billing workflows before May 20.</li>
+        <li>Enroll billers, schedulers, and front-desk staff in Availity Essentials and BCBSM's e-referral portal to reduce authorization call volume and turnaround delays.</li>
+        <li>Convene a payer-policy readiness meeting with your RCM team before May 15 to build a go-live checklist and confirm authorization audit procedures for the June 1 McLaren change.</li>
+      </ul>
+    </div>
+    <div class="card-meta-bottom">
+      <span class="effective-date">📅 Effective: June 1, 2026 — McLaren Medicare preauth changes</span>
+      <a href="https://www.msms.org/news/reimbursement-advocate-alert-april-2026" target="_blank" class="source-pill">Michigan State Medical Society</a>
     </div>
   </div>
 
-  <!-- Card 4: 285 MSK from IPO -->
-  <div class="card priority-medium">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Reimbursement &amp; Payment</span>
-        <span class="badge badge-medium">🟡 MEDIUM PRIORITY</span>
-      </div>
-      <h2 class="card-headline">CMS 2026 Rule Removes 285 MSK Procedures From Inpatient-Only List; ASC Coverage Expands by 289</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-summary">Effective January 1, 2026, the finalized CMS OPPS/ASC rule removed 285 procedures — predominantly musculoskeletal — from the Medicare Inpatient-Only (IPO) list and added 289 procedures to the ASC Covered Procedures List. A new Level 7 Musculoskeletal APC was created to accommodate complex outpatient MSK cases previously restricted to inpatient settings. CMS is phasing out the IPO list entirely over a three-year period and extended parity between ASC and Hospital Outpatient Department (HOPD) annual payment updates beginning in 2026. Simultaneously, the rule advances site-neutral payment policy by reducing the long-standing payment differential between hospital outpatient departments and physician offices — a shift Congress is actively considering expanding through legislative action.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>For Michigan orthopedic and MSK ASCs, this is the largest single expansion of ASC-eligible procedure codes in recent memory. Practices that have not yet updated case selection criteria, credentialing, or billing workflows to capture newly eligible complex joint and spine cases may be leaving significant volume and revenue on the table. Site-neutral payment convergence also diminishes hospital-affiliated practices' traditional reimbursement advantage, accelerating the competitive case for ASC-based care delivery.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Pull the complete list of 289 newly ASC-eligible procedure codes and cross-reference against your current case volume to identify procedures now eligible for ASC-rate reimbursement that are still being routed to hospital outpatient settings.</li>
-          <li>Coordinate with ASC compliance, billing, and coding teams to update charge masters, payer contracts, and pre-authorization workflows to reflect the newly eligible procedure categories under the Level 7 Musculoskeletal APC.</li>
-          <li>Evaluate OR block time, implant vendor contracts, and anesthesia coverage capacity to scale up complex MSK procedures in your ASC as new cases migrate from inpatient settings over the remainder of 2026.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        <strong>Effective Date:</strong> January 1, 2026
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-2026-hospital-outpatient-prospective-payment-system-opps-ambulatory-surgical-center" target="_blank">CMS Fact Sheet</a>
-        <a class="source-pill" href="https://www.asco.org/news-initiatives/policy-news-analysis/2026-hospital-payment-rule-finalizes-payment-rates-site-neutrality-changes-inpatient-only-list" target="_blank">ASCO Analysis</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card 5: Michigan Medicaid APC/ASC Update -->
-  <div class="card priority-medium">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Reimbursement &amp; Payment</span>
-        <span class="badge badge-medium">🟡 MEDIUM PRIORITY</span>
-      </div>
-      <h2 class="card-headline">Michigan Medicaid APC/ASC Software Updated in CHAMPS; Claims Being Recycled</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-summary">The Michigan Department of Health and Human Services (MDHHS) loaded the January 2026 quarterly APC and ASC payment software update into the CHAMPS claims processing system on March 21, 2026, effective April 1, 2026. Claims previously processed under the prior quarter's software are being recycled and reprocessed under the updated rate tables, which may affect reimbursement calculations for outpatient hospital and ASC providers billing Michigan Medicaid for orthopedic and MSK procedures.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>Michigan MSK and orthopedic practices with Medicaid billing activity in Q1 2026 should proactively audit remittances from April 1 forward to catch any unexpected rate changes, underpayments, or claim denials triggered by the CHAMPS software transition. Undetected discrepancies left unaddressed may result in lost revenue or compliance exposure on recycled claims.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Direct your billing team to pull all Michigan Medicaid remittances from April 1, 2026 forward and compare reimbursement rates against the prior quarter for key MSK and orthopedic procedure codes, flagging any variance for investigation.</li>
-          <li>Contact MDHHS or your billing vendor to obtain the specific APC and ASC rate changes incorporated in the January 2026 quarterly software update and confirm which procedure codes were affected.</li>
-          <li>Flag unexpected underpayments or denial patterns resulting from the CHAMPS software transition and initiate timely appeal or correction requests within the applicable MDHHS reconsideration window.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        <strong>Effective Date:</strong> April 1, 2026
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">MDHHS Alert</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── TIER 2: REIMBURSEMENT & PAYMENT ── -->
   <button class="tier2-toggle" onclick="toggleTier2(this)">
-    ★ PRO &nbsp;|&nbsp; Also in the News — Reimbursement &amp; Payment (Becker's — fetch restricted) <span class="arrow">▼</span>
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — Michigan Healthcare Landscape</span>
+    <span class="t2-chevron">▼</span>
   </button>
-  <div class="tier2-content">
-    <div class="tier2-category-label">Reimbursement &amp; Payment</div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckershospitalreview.com/finance/cms-pitches-2-4-hospital-pay-bump-mandatory-joint-replacement-model-7-things-to-know/" target="_blank">CMS Pitches 2.4% Hospital Pay Bump, Mandatory Joint Replacement Model: 7 Things to Know</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's Hospital Review · beckershospitalreview.com</div>
-      <div class="tier2-item-summary">CMS proposed a 2.4% IPPS payment increase alongside the mandatory CJR-X joint replacement bundle in its FY 2027 proposed rule; Becker's breaks down seven key implications for hospital finance and orthopedic service lines. Review manually for hospital-specific action steps.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckershospitalreview.com/finance/outpatient-volumes-are-surging-and-orthopedics-is-leading-the-way/" target="_blank">Outpatient Volumes Are Surging, and Orthopedics Is Leading the Way</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's Hospital Review · beckershospitalreview.com</div>
-      <div class="tier2-item-summary">Demand for outpatient services continues to soar while inpatient services remain a persistent drag on hospital margins; orthopedic volume is identified as the leading growth driver in the outpatient shift, with ASC migration accelerating across joint replacement and spine.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersasc.com/orthopedics-tjr/how-site-neutral-payment-rules-could-reshape-orthopedics/" target="_blank">How Site-Neutral Payment Rules Could Reshape Orthopedics</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's ASC · beckersasc.com</div>
-      <div class="tier2-item-summary">Site-neutral payment policies are advancing through both CMS rulemaking and Congressional legislation, threatening to narrow the reimbursement advantage of hospital outpatient departments relative to ASCs and physician offices for orthopedic and MSK procedures.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersasc.com/asc-coding-billing-and-collections/cms-site-neutral-reform-poised-to-upend-hospital-asc-dynamics/" target="_blank">CMS' Site-Neutral Reform Poised to Upend Hospital-ASC Dynamics</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's ASC · beckersasc.com</div>
-      <div class="tier2-item-summary">CMS site-neutral reform is accelerating structural changes in the relationship between hospital outpatient departments and ASCs, with orthopedics among the specialties most exposed to payment recalibration as Medicare equalizes rates across care settings.</div>
-    </div>
-  </div>
-
-  <!-- ════════════════════════════════════════
-       SECTION: MICHIGAN HEALTHCARE LANDSCAPE
-  ═══════════════════════════════════════════ -->
-  <div class="section-divider">
-    <span class="section-divider-label">Michigan Healthcare Landscape</span>
-    <div class="section-divider-line"></div>
-  </div>
-
-  <!-- Card 2: Michigan Medicine / BCBSM -->
-  <div class="card priority-high">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Michigan Healthcare Landscape</span>
-        <span class="badge badge-high">🔴 HIGH PRIORITY</span>
-      </div>
-      <h2 class="card-headline">Michigan Medicine vs. BCBSM: 300,000 Patients Face Coverage Disruption by July 1</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-summary">Michigan Medicine and Blue Cross Blue Shield of Michigan (BCBSM) have been unable to reach a contract renewal agreement, with a hard deadline of June 30, 2026. Michigan Medicine states BCBSM proposed a 30% reduction in reimbursement; BCBSM counters that Michigan Medicine demanded a 44% increase. If no agreement is reached, approximately 300,000 BCBSM commercial plan subscribers would lose in-network access at University Hospital, C.S. Mott Children's Hospital, Von Voigtlander Women's Hospital, the D. Dan and Betty Kahn Health Care Pavilion, and the Frankel Cardiovascular Center. Medicare Advantage and Medicaid plans are not affected by the current dispute. All specialty services — including orthopedic surgery, MSK care, and sports medicine — at the affected academic medical center facilities would be impacted for commercial BCBSM enrollees.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>This dispute signals intensifying payer-provider tension on reimbursement rates across Michigan's entire healthcare market. For MSK practices and Synergy Health, a Michigan Medicine network exit for commercial BCBSM plans could generate significant patient migration to competing orthopedic providers — representing both a volume opportunity and a complex prior-authorization and care continuity challenge for patients mid-treatment.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Identify the proportion of your patient population covered by BCBSM commercial plans and model capacity to absorb potential inflow of patients displaced from Michigan Medicine orthopedic, MSK, and sports medicine services if the contract lapses July 1.</li>
-          <li>Communicate proactively with BCBSM-insured referral sources — primary care physicians, urgent care centers, and physical therapists — about your network availability, service capabilities, and scheduling capacity starting no later than June 1.</li>
-          <li>Monitor the June 30 deadline closely; prepare contingency communications and patient outreach materials that can be activated quickly if the contract expires, covering continuity of care for patients currently mid-treatment at Michigan Medicine facilities.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        <strong>Compliance Deadline:</strong> June 30, 2026 (contract expiration / network disruption date)
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://eu.detroitnews.com/story/business/2026/03/04/blue-cross-michigan-medicine-contract-dispute-could-affect-300000/88986056007/" target="_blank">Detroit News</a>
-        <a class="source-pill" href="https://bridgemi.com/michigan-health-watch/blue-cross-michigan-medicine-dispute-leaves-300000-patients-in-lurch/" target="_blank">Bridge Michigan</a>
-        <a class="source-pill" href="https://www.wxyz.com/news/michigan-medicine-to-drop-some-blue-cross-plans-if-contract-deal-not-reached-by-june-30" target="_blank">WXYZ / ABC7</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── TIER 2: MICHIGAN HEALTHCARE ── -->
-  <button class="tier2-toggle" onclick="toggleTier2(this)">
-    ★ PRO &nbsp;|&nbsp; Also in the News — Michigan Healthcare Landscape <span class="arrow">▼</span>
-  </button>
-  <div class="tier2-content">
+  <div class="tier2-body">
     <div class="tier2-category-label">Michigan Healthcare Landscape</div>
-
     <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.mha.org/newsroom/mha-monday-report-april-20-2026/" target="_blank">MHA Monday Report — April 20, 2026</a>
-      </div>
-      <div class="tier2-item-source">Michigan Health &amp; Hospital Association · mha.org</div>
-      <div class="tier2-item-summary">This week's MHA report highlights CMS's release of the FY 2027 IPPS proposed rule, the opening of applications for the 2026–27 MHA Excellence in Governance Fellowship, the launch of the MHA Keystone Center Quality and Safety Dashboard, and a May 7 webinar on AI-powered clinical documentation improvement hosted by SmarterDx in partnership with ACDIS.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.mha.org/newsroom/mha-center-of-rural-excellence/" target="_blank">MHA Establishes MHA Center of Rural Excellence</a>
-      </div>
-      <div class="tier2-item-source">Michigan Health &amp; Hospital Association · mha.org</div>
-      <div class="tier2-item-summary">Announced April 10, the MHA Center of Rural Excellence is a new 501(c)(6) organization created to formalize and strengthen the collective voice of rural hospitals in Michigan, addressing unique access, workforce, and financial viability challenges facing rural health systems.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.michigan.gov/whitmer/news/proclamations/2026/04/01/april-2026-medicaid-awareness-month" target="_blank">April 2026 Proclaimed Medicaid Awareness Month in Michigan</a>
-      </div>
-      <div class="tier2-item-source">State of Michigan · michigan.gov</div>
-      <div class="tier2-item-summary">Governor Whitmer proclaimed April 2026 as Medicaid Awareness Month in Michigan, highlighting the program's role in covering over 2.5 million Michigan residents and supporting the state's healthcare safety net — relevant context for MSK practices with Medicaid patient populations.</div>
+      <div class="t2-source">Michigan Health &amp; Hospital Association · <a href="https://www.mha.org/newsroom/mha-monday-report-april-20-2026/" target="_blank">mha.org</a></div>
+      <a href="https://www.mha.org/newsroom/mha-monday-report-april-20-2026/" target="_blank">MHA Monday Report — April 20, 2026</a>
+      <p>Applications are open for the 2026–27 MHA Excellence in Governance Fellowship for hospital and health system trustees, running October 2026 through June 2027. A webinar on AI-powered clinical documentation improvement — covering Jefferson Health's CDI implementation across 32 hospitals — is scheduled for May 7 via SmarterDx.</p>
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════
-       SECTION: WORKFORCE & TALENT
-  ═══════════════════════════════════════════ -->
-  <div class="section-divider">
-    <span class="section-divider-label">Workforce &amp; Talent</span>
-    <div class="section-divider-line"></div>
-  </div>
 
-  <!-- Card 3: Nurse Overtime Ban -->
-  <div class="card priority-medium">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Workforce &amp; Talent</span>
-        <span class="badge badge-medium">🟡 MEDIUM PRIORITY</span>
-      </div>
-      <h2 class="card-headline">Michigan Senate Passes Mandatory Nurse Overtime Ban 21–16; House Vote Pending</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-summary">On April 15, 2026, the Michigan Senate passed Senate Bills 296 and 297 in a 21–16 bipartisan vote, prohibiting hospitals from requiring registered nurses to work beyond their scheduled shift hours except in declared public health emergencies or mass casualty events. The legislation mandates a minimum of 8 hours off-duty following a 12-hour shift and protects nurses from retaliation for refusing mandatory overtime. Hospitals that violate the law would face fines up to $10,000. The bills were co-sponsored by Sen. Stephanie Chang (D-Detroit) and Sen. Ed McBroom (R-Waucedah Twp.) and now head to the Republican-controlled Michigan House for consideration before reaching Governor Whitmer's desk.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>Michigan MSK and orthopedic facilities — both ASCs and hospital-based programs — routinely rely on RN overtime to manage perioperative staffing surges during high-volume surgical periods and case backlogs. If signed into law, this legislation would require immediate restructuring of OR, PACU, and pre-op scheduling models and could increase per-case labor costs or create capacity constraints during peak utilization periods.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Audit current RN overtime utilization across perioperative, PACU, and post-anesthesia care settings at all affiliated facilities to quantify baseline operational exposure if SB 296/297 are signed into law.</li>
-          <li>Begin modeling alternative staffing configurations — including expanded PRN RN pools, cross-training of surgical technologists, and selective use of agency staffing — to replace mandatory overtime coverage without reducing OR throughput or adding disproportionate cost.</li>
-          <li>Engage your MHA state advocacy contacts and facility HR and CNO leadership to provide substantive feedback to the Michigan House on implementation concerns specific to high-volume orthopedic and surgical facilities before the House votes.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        Senate passage: April 15, 2026 &nbsp;|&nbsp; Michigan House vote: pending
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://michiganadvance.com/2026/04/15/michigan-senate-passes-bills-prohibiting-mandatory-overtime-for-nurses-after-nurses-union-rally/" target="_blank">Michigan Advance</a>
-        <a class="source-pill" href="https://www.crainsdetroit.com/politics-policy/cdb-michigan-senate-nurse-overtime-bills-20260415/" target="_blank">Crain's Detroit</a>
-        <a class="source-pill" href="https://www.michiganpublic.org/politics-government/2026-04-15/michigan-senate-votes-to-block-mandatory-overtime-for-nurses" target="_blank">Michigan Public Radio</a>
-      </div>
-    </div>
-  </div>
+  <!-- ═══════════════════════════════════════════════
+       ASC INTELLIGENCE
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">ASC Intelligence</div>
 
-  <!-- ════════════════════════════════════════
-       SECTION: TECHNOLOGY & INNOVATION
-  ═══════════════════════════════════════════ -->
-  <div class="section-divider">
-    <span class="section-divider-label">Technology &amp; Innovation</span>
-    <div class="section-divider-line"></div>
-  </div>
-
-  <!-- Card 6: Robossis Alpha -->
-  <div class="card priority-low">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Technology &amp; Innovation</span>
-        <span class="badge badge-low">🟢 LOW PRIORITY</span>
-      </div>
-      <h2 class="card-headline">Robossis Alpha: First Robotic System for Minimally Invasive Long-Bone Fracture Alignment Enters Pre-Trial Phase</h2>
+  <div class="card high">
+    <div class="card-meta">
+      <span class="badge badge-category">ASC Intelligence</span>
+      <span class="badge badge-high">🔴 HIGH</span>
     </div>
-    <div class="card-body">
-      <p class="card-summary">Rowan University researchers unveiled Robossis Alpha in March 2026, described as the world's first robotic surgical system designed specifically for minimally invasive alignment of fractured long bones. The advanced prototype is nearing clinical trial readiness, following a wave of 2026 orthopedic robotics advances that include FDA-cleared systems for spine surgery and AI-guided platforms achieving 97–99% Grade A implant placement accuracy. Separately, LEM Surgical's Dynamis system — a surgical humanoid cleared by the FDA — is entering clinical use for spinal and orthopedic procedures with sub-millimeter multi-arm accuracy.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>Emerging robotic platforms for orthopedic trauma represent both a future clinical opportunity and a competitive positioning decision — early-adopter MSK programs that integrate robotics for trauma and complex joint cases may differentiate on outcomes, attract complex fracture referrals, and strengthen their market position as these platforms approach commercial availability and adoption by leading academic centers.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Track Robossis Alpha's clinical trial timeline and FDA submission progress — add to your technology pipeline watch list for potential future investment, partnership, or clinical trial participation evaluation over the next 12–24 months.</li>
-          <li>Conduct a current-state assessment of your robotic surgery portfolio across trauma, joint replacement, and spine subspecialties to identify capability gaps where next-generation AI-guided or robotic platforms could improve surgical outcomes or competitive positioning.</li>
-          <li>Designate a quarterly technology evaluation cadence within your orthopedic service line leadership to systematically review and prioritize robotic and AI platform investments against clinical evidence, capital availability, and strategic priorities.</li>
-        </ul>
-      </div>
+    <div class="card-headline">Congress Introduces Bipartisan Bill to Permanently Stabilize ASC Medicare Reimbursements</div>
+    <div class="card-summary">
+      Reps. Beth Van Duyne (R-TX) and John Larson (D-CT) introduced the Outpatient Surgery Access Act of 2026 on March 25, 2026, which would permanently align Medicare ASC payment updates with hospital outpatient department rates using the hospital market basket and eliminate ASC-specific budget neutrality adjustments that suppress payments. The Ambulatory Surgery Center Association (ASCA) is the bill's lead industry backer, warning that the current HOPD-parity update policy is set to expire at the end of 2026 — and would revert ASC payment growth to a less favorable inflation index without congressional action.
     </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        Robossis Alpha: March 2026 unveiling &nbsp;|&nbsp; Clinical trials: pending
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://today.rowan.edu/news/2026/03/introducing-robossis-alpha-breakthrough-orthopedic-surgery.html" target="_blank">Rowan University</a>
-        <a class="source-pill" href="https://interestingengineering.com/ai-robotics/surgical-humanoid-brings-ai-precision-to-surgery" target="_blank">Interesting Engineering</a>
-      </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Without permanent legislation, Michigan orthopedic and spine ASCs face a steeper margin decline after 2026 — precisely as payer pressures and supply costs intensify. Engaging congressional representatives now, before the legislative window closes, is the most cost-effective near-term advocacy action for ASC operators.
     </div>
-  </div>
-
-  <!-- ── TIER 2: TECH & INNOVATION ── -->
-  <button class="tier2-toggle" onclick="toggleTier2(this)">
-    ★ PRO &nbsp;|&nbsp; Also in the News — Technology &amp; Innovation <span class="arrow">▼</span>
-  </button>
-  <div class="tier2-content">
-    <div class="tier2-category-label">Technology &amp; Innovation</div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://ryortho.com/2026/04/the-biologics-wake-up-call-nobody-wanted-to-give/" target="_blank">The Biologics Wake-Up Call Nobody Wanted to Give</a>
-      </div>
-      <div class="tier2-item-source">Orthopedics This Week (RyOrtho) · ryortho.com</div>
-      <div class="tier2-item-summary">A candid industry assessment arguing that the osteobiologics segment has been "coasting for a decade" — raising questions about clinical evidence standards, innovation velocity, and what a market reset would mean for orthopedic practices and ASCs that rely on biologics as a revenue line.</div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Contact Michigan's congressional delegation to advocate for the Outpatient Surgery Access Act, highlighting your ASC's role in delivering lower-cost orthopedic care and the margin risk of a rate reversion.</li>
+        <li>Model the post-2026 financial impact of a reimbursement rate reversion to quantify margin exposure and support payer negotiation targets if the bill does not advance.</li>
+        <li>Register for ASCA advocacy updates and participate in fly-in campaigns or comment letter drives when activated to increase legislative momentum.</li>
+      </ul>
     </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://ryortho.com/2026/04/bending-not-breaking-a-new-spine-player-tries-to-soften-the-game/" target="_blank">Bending Not Breaking: A New Spine Player Tries to Soften the Game</a>
-      </div>
-      <div class="tier2-item-source">Orthopedics This Week (RyOrtho) · ryortho.com</div>
-      <div class="tier2-item-summary">A profile of a new entrant in the spine implant market introducing flexible, motion-preserving spinal implant technology designed to reduce adjacent-segment stress — an emerging clinical category relevant to spine surgeons evaluating implant partnerships and technology differentiation.</div>
+    <div class="card-meta-bottom">
+      <span class="compliance">⚠️ Policy Expiry Risk: ASC market basket parity expires end of 2026 without legislation</span>
+      <a href="https://vanduyne.house.gov/2026/3/reps-van-duyne-and-larson-introduce-the-outpatient-surgery-access-act-of-2026" target="_blank" class="source-pill">Rep. Van Duyne Office</a>
+      <a href="https://www.ascfocus.org/ascfocus/content/articles-content/articles/2026/digital-debut/house-introduces-bipartisan-bill-to-stabilize-asc-reimbursements" target="_blank" class="source-pill">ASC Focus Magazine</a>
     </div>
-  </div>
-
-  <!-- ════════════════════════════════════════
-       SECTION: FINANCIAL & INVESTMENT
-  ═══════════════════════════════════════════ -->
-  <div class="section-divider">
-    <span class="section-divider-label">Financial &amp; Investment</span>
-    <div class="section-divider-line"></div>
-  </div>
-
-  <!-- Card 7: Orthofix -->
-  <div class="card priority-low">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Financial &amp; Investment</span>
-        <span class="badge badge-low">🟢 LOW PRIORITY</span>
-      </div>
-      <h2 class="card-headline">Orthofix Realigns Spine Leadership Team as Q1 2026 Revenue Reaches $196.7M</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-summary">Orthofix Medical Inc. announced a strategic realignment of its spine leadership team on April 9, 2026, designed to accelerate profitable growth and sharpen commercial and innovation execution across its spine product portfolio. The company simultaneously reported preliminary Q1 2026 net sales of approximately $196.7 million — a 0.4% increase on a reported basis and 3% growth on a non-GAAP pro forma constant currency basis compared to Q1 2025. The restructuring follows broader market dynamics in the spine implant segment where several manufacturers are consolidating leadership teams to improve commercial focus amid moderating growth rates.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>Michigan orthopedic and spine practices using Orthofix products should monitor for any changes in sales territory coverage, device availability, or contract terms following the leadership realignment. Disruption to commercial organization — including rep turnover or account transition periods — can affect implant supply, pricing agreements, and surgeon support during complex spine cases.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Contact your Orthofix sales representative to confirm continuity of account coverage and identify whether your facility will be assigned to a new or transitioning rep as part of the leadership restructuring.</li>
-          <li>Review your spine implant vendor diversification strategy in light of this realignment — assess whether concentration in Orthofix products creates operational risk if commercial disruption affects device availability or pricing.</li>
-          <li>Monitor Orthofix's Q1 2026 earnings call and investor communications for pipeline changes, product discontinuations, or distribution model shifts relevant to your spine surgery program before making long-term implant purchasing commitments.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        Announcement date: April 9, 2026
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://ryortho.com/2026/04/orthofix-realigns-spine-leadership-to-strengthen-focus-and-execution/" target="_blank">Orthopedics This Week</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── TIER 2: FINANCIAL & INVESTMENT ── -->
-  <button class="tier2-toggle" onclick="toggleTier2(this)">
-    ★ PRO &nbsp;|&nbsp; Also in the News — Financial &amp; Investment &amp; Competitive Intelligence <span class="arrow">▼</span>
-  </button>
-  <div class="tier2-content">
-    <div class="tier2-category-label">Financial &amp; Investment</div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckershospitalreview.com/orthopedics/17-orthopedic-mso-updates/" target="_blank">17 Orthopedic MSO Updates</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's Hospital Review · beckershospitalreview.com</div>
-      <div class="tier2-item-summary">Becker's compiles 17 recent management services organization updates in the orthopedic sector, including private equity-backed MSO formations, new physician group affiliations, and ASC network expansions — tracking the accelerating consolidation wave reshaping orthopedic practice ownership nationally.</div>
-    </div>
-
-    <div class="tier2-category-label">Competitive Intelligence</div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://ryortho.com/2026/04/indiana-orthopedic-institute-expanding-clinic-specialties-and-surgeons/" target="_blank">Indiana Orthopedic Institute Expanding Clinic, Specialties, and Surgeons</a>
-      </div>
-      <div class="tier2-item-source">Orthopedics This Week (RyOrtho) · ryortho.com</div>
-      <div class="tier2-item-summary">Indiana Orthopedic Institute announced expansion of its clinical footprint, additional specialty services, and surgeon recruitment — part of a broader Midwest orthopedic group growth trend as independent and PE-backed orthopedic practices compete to expand regional market share ahead of payer and bundled payment pressures.</div>
-    </div>
-  </div>
-
-  <!-- ════════════════════════════════════════
-       SECTION: ORTHOPEDIC MARKET TRENDS
-  ═══════════════════════════════════════════ -->
-  <div class="section-divider">
-    <span class="section-divider-label">Orthopedic Market Trends</span>
-    <div class="section-divider-line"></div>
-  </div>
-
-  <!-- Card 8: Healio OCA Study -->
-  <div class="card priority-low">
-    <div class="card-header">
-      <div class="card-meta">
-        <span class="badge badge-category">Orthopedic Market Trends</span>
-        <span class="badge badge-low">🟢 LOW PRIORITY</span>
-      </div>
-      <h2 class="card-headline">Tibial Osteotomy Does Not Improve Graft Survivorship in Patellofemoral OCA Transplantation</h2>
-    </div>
-    <div class="card-body">
-      <p class="card-summary">A retrospective study of 103 patients who underwent patellofemoral osteochondral allograft (OCA) transplantation between 2001 and 2023 found that concomitant tibial tubercle osteotomy did not improve graft survivorship among patients undergoing the procedure. The findings, presented in New Orleans and published in Healio Orthopedics on April 17, 2026, challenge the assumption that adding a tibial tubercle osteotomy to patellofemoral OCA transplantation improves long-term outcomes — suggesting that simpler, less invasive surgical approaches may achieve equivalent graft survivorship without the added complexity, recovery burden, and operative time of concomitant osteotomy.</p>
-      <div class="inset-box">
-        <div class="inset-box-label">⚡ Why It Matters for Michigan MSK</div>
-        <p>Michigan MSK and sports medicine surgeons performing cartilage restoration procedures can use this evidence to refine patient selection criteria and surgical planning for patellofemoral OCA cases — potentially simplifying procedures, reducing operative time and complications, and lowering episode cost without compromising outcomes, which is increasingly relevant under episode-based payment models.</p>
-      </div>
-      <button class="action-toggle" onclick="toggleActions(this)">
-        ▶ Action Items (click to expand) <span class="arrow">▼</span>
-      </button>
-      <div class="action-items">
-        <ul>
-          <li>Review your current surgical protocol for patellofemoral OCA transplantation and assess whether concomitant tibial tubercle osteotomy is being performed routinely versus selectively based on individual patient anatomy and biomechanics — and whether the evidence supports a more selective approach.</li>
-          <li>Present this study at your next MSK or sports medicine case conference and update clinical decision-making criteria for patellofemoral OCA case selection based on the 103-patient retrospective dataset.</li>
-          <li>Incorporate this finding into patient consent conversations for complex cartilage restoration procedures to set appropriate outcome expectations and provide evidence-based surgical rationale for technique selection.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="card-meta-dates">
-        Published: April 17, 2026
-      </div>
-      <div class="source-pills">
-        <a class="source-pill" href="https://www.healio.com/news/orthopedics/20260417/osteochondral-allograft-transplantation-with-osteotomy-did-not-improve-graft-survivorship" target="_blank">Healio Orthopedics</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── TIER 2: ORTHOPEDIC MARKET TRENDS ── -->
-  <button class="tier2-toggle" onclick="toggleTier2(this)">
-    ★ PRO &nbsp;|&nbsp; Also in the News — Orthopedic Market Trends <span class="arrow">▼</span>
-  </button>
-  <div class="tier2-content">
-    <div class="tier2-category-label">Orthopedic Market Trends</div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersspine.com/orthopedic/good-news-bad-news-for-orthopedic-surgery-in-2026/" target="_blank">Good News, Bad News for Orthopedic Surgery in 2026</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's Spine Review · beckersspine.com</div>
-      <div class="tier2-item-summary">Becker's Spine examines the dual forces shaping orthopedic surgery in 2026 — expanded ASC procedure eligibility and CMS payment rate improvements on the positive side, versus reimbursement efficiency cuts, payer prior authorization burdens, and workforce shortages on the negative side.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersspine.com/orthopedic/how-msk-leaders-define-success-beyond-surgical-wins/" target="_blank">How MSK Leaders Define Success Beyond Surgical Wins</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's Spine Review · beckersspine.com</div>
-      <div class="tier2-item-summary">Interviews with MSK and orthopedic leaders reveal how top programs are redefining success metrics beyond volume and surgical outcomes to include care coordination, patient experience, total episode cost, and team-based care models — particularly relevant as bundled payment models expand.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersspine.com/orthopedic/how-orthopedic-surgeons-are-practicing-differently-in-2026/" target="_blank">How Orthopedic Surgeons Are Practicing Differently in 2026</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's Spine Review · beckersspine.com</div>
-      <div class="tier2-item-summary">Orthopedic surgeons are adapting to 2026 market realities through expanded use of automation, mobile tools, and AI to address staffing shortages, reduce administrative burden, and improve patient access, with many shifting volume toward ASC settings to optimize reimbursement under evolving CMS rules.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersspine.com/orthopedic/5-forces-shaping-orthopedics-in-2026/" target="_blank">5 Forces Shaping Orthopedics in 2026</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's Spine Review · beckersspine.com</div>
-      <div class="tier2-item-summary">Becker's identifies five macro forces reshaping orthopedic practice in 2026: AI and robotic integration, bundled payment expansion, ASC migration acceleration, workforce constraints, and private equity consolidation — forces that are simultaneously creating opportunity and disruption for Michigan MSK leaders.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.aahks.org/aahks-spring-meeting/" target="_blank">AAHKS Spring Meeting — April 30–May 2, 2026, Chicago</a>
-      </div>
-      <div class="tier2-item-source">American Association of Hip and Knee Surgeons · aahks.org</div>
-      <div class="tier2-item-summary">The 2026 AAHKS Spring Meeting convenes April 30–May 2 in Chicago, offering an intimate, discussion-focused forum on hip and knee arthroplasty for surgeons at all practice levels — including sessions on clinical tips, practice management, and the evolving payment landscape for joint replacement.</div>
-    </div>
-  </div>
-
-  <!-- ── TIER 2: ASC INTELLIGENCE ── -->
-  <div class="section-divider">
-    <span class="section-divider-label">ASC Intelligence</span>
-    <div class="section-divider-line"></div>
   </div>
 
   <button class="tier2-toggle" onclick="toggleTier2(this)">
-    ★ PRO &nbsp;|&nbsp; Also in the News — ASC Intelligence (Becker's — fetch restricted) <span class="arrow">▼</span>
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — ASC Intelligence</span>
+    <span class="t2-chevron">▼</span>
   </button>
-  <div class="tier2-content">
+  <div class="tier2-body">
     <div class="tier2-category-label">ASC Intelligence</div>
-
     <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersasc.com/outpatient-spine/ascs-to-define-the-future-of-spine-surgery/" target="_blank">ASCs to Define the Future of Spine Surgery</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's ASC · beckersasc.com</div>
-      <div class="tier2-item-summary">As technology and instrumentation advances allow more high-acuity spine cases to move to outpatient settings, ASCs are increasingly positioned as the site of care that will define the future of spine surgery — with implications for physician-owned ASC development and hospital spine program strategy.</div>
+      <div class="t2-source">Orthopedics This Week · <a href="https://ryortho.com/2026/04/restor3d-announces-full-commercial-release-of-the-aeros-modular-stem-system/" target="_blank">ryortho.com</a></div>
+      <a href="https://ryortho.com/2026/04/restor3d-announces-full-commercial-release-of-the-aeros-modular-stem-system/" target="_blank">restor3d Announces Full Commercial Release of the Aeros™ Modular Stem System</a>
+      <p>restor3d launched full commercial availability of the Aeros™ Modular Stem System for stemmed total ankle replacement on April 2, 2026. The modular design is intended to expand ankle arthroplasty options in ASC and outpatient settings.</p>
     </div>
-
     <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersasc.com/new-asc-development/the-turning-point-for-this-orthopedic-groups-asc-network/" target="_blank">The Turning Point for This Orthopedic Group's ASC Network</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's ASC · beckersasc.com</div>
-      <div class="tier2-item-summary">A profile of an orthopedic group's strategic inflection point in developing its ASC network, exploring the operational, financial, and competitive considerations that informed their growth decisions — relevant reading for Michigan orthopedic practices evaluating ASC ownership or expansion.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://www.beckersasc.com/new-asc-development/orthopedic-asc-proposed-in-massachusetts/" target="_blank">Orthopedic ASC Proposed in Massachusetts</a>
-        <span class="fetch-failed">FETCH FAILED — review manually</span>
-      </div>
-      <div class="tier2-item-source">Becker's ASC · beckersasc.com</div>
-      <div class="tier2-item-summary">A new orthopedic ASC has been proposed in Massachusetts, reflecting continued national growth in physician-owned orthopedic ambulatory surgery center development as reimbursement policy changes make ASC-based orthopedic care increasingly financially advantageous.</div>
-    </div>
-
-    <div class="tier2-item">
-      <div class="tier2-item-title">
-        <a href="https://ascnews.com/2026/02/top-ambulatory-surgery-center-trends-for-2026/" target="_blank">Top Ambulatory Surgery Center Trends for 2026</a>
-      </div>
-      <div class="tier2-item-source">ASC News · ascnews.com</div>
-      <div class="tier2-item-summary">ASC News identifies the top trends shaping ambulatory surgery centers in 2026, including expanded procedure eligibility under CMS rules, technology-driven care delivery, workforce recruitment challenges, and payer strategy evolution — an essential forward-looking read for ASC operators and orthopedic practice managers.</div>
+      <div class="t2-source">Orthopedics This Week · <a href="https://ryortho.com/2026/04/joimax-celebrates-25-years-of-advancing-endoscopic-spine-surgery/" target="_blank">ryortho.com</a></div>
+      <a href="https://ryortho.com/2026/04/joimax-celebrates-25-years-of-advancing-endoscopic-spine-surgery/" target="_blank">joimax® Marks 25 Years of Endoscopic Spine Surgery Innovation</a>
+      <p>joimax celebrated its 25th anniversary on April 13, 2026, highlighting its role in advancing minimally invasive endoscopic spine techniques increasingly performed in ASC settings worldwide.</p>
     </div>
   </div>
 
-</div><!-- /container -->
 
-<!-- ── FOOTER ── -->
+  <!-- ═══════════════════════════════════════════════
+       COMPETITIVE INTELLIGENCE
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">Competitive Intelligence</div>
+
+  <div class="card medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Competitive Intelligence</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">DOJ Sues NewYork-Presbyterian for Using Payer Contracts to Block Patient Steering to ASCs</div>
+    <div class="card-summary">
+      On March 26, 2026, the U.S. Department of Justice filed a civil antitrust lawsuit against NewYork-Presbyterian Hospital, alleging the system used "all-or-nothing" payer contracts to force insurers to include all NYP facilities in nearly every network — effectively preventing health plans from offering lower-cost benefit designs that would direct patients to ambulatory surgery centers. The DOJ filing explicitly identified ASCs as appropriate, cost-effective alternatives that patients should be able to access through their insurers.
+    </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      A favorable ruling in this case would create a powerful legal precedent that could embolden Michigan payers to build ASC-steerage benefit designs for commercially insured patients — presenting an orthopedic volume opportunity for independent and physician-owned ASCs positioned to accept that traffic.
+    </div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Monitor case proceedings in the SDNY and prepare payer-relations talking points that document your ASC's cost-per-episode and quality outcomes compared to local hospital outpatient departments.</li>
+        <li>Audit current Michigan payer network agreements for "all-or-nothing" or anti-steering language that may conflict with emerging DOJ enforcement expectations and flag clauses for renegotiation.</li>
+        <li>Consult healthcare legal counsel to identify any Michigan-specific payer contract terms limiting patient access to your ASC and map those to upcoming contract renewal windows.</li>
+      </ul>
+    </div>
+    <div class="card-meta-bottom">
+      <a href="https://ascnews.com/2026/03/doj-suit-against-newyork-presbyterian-has-implications-for-asc-steering/" target="_blank" class="source-pill">ASC News</a>
+      <a href="https://www.justice.gov/opa/pr/justice-department-sues-new-york-presbyterian-hospital-anticompetitive-contracts-increase" target="_blank" class="source-pill">U.S. Dept. of Justice</a>
+    </div>
+  </div>
+
+  <button class="tier2-toggle" onclick="toggleTier2(this)">
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — Competitive Intelligence</span>
+    <span class="t2-chevron">▼</span>
+  </button>
+  <div class="tier2-body">
+    <div class="tier2-category-label">Competitive Intelligence</div>
+    <div class="tier2-item">
+      <div class="t2-source">Becker's Hospital Review · <a href="https://www.beckershospitalreview.com/orthopedics/17-orthopedic-mso-updates/" target="_blank">beckershospitalreview.com</a></div>
+      <a href="https://www.beckershospitalreview.com/orthopedics/17-orthopedic-mso-updates/" target="_blank">17 Orthopedic MSO Updates</a>
+      <p>The roundup covers 17 recent moves in orthopedic management services organizations including Fox Valley Orthopedics (Geneva, IL) joining Sequel Ortho MSO, Growth Orthopedics naming a new VP of Operations, and an MSO-affiliated ASC set to open in April 2026 with eight operating suites.</p>
+    </div>
+    <div class="tier2-item">
+      <div class="t2-source">Becker's Hospital Review · <a href="https://www.beckershospitalreview.com/orthopedics/22-hospitals-health-systems-expanding-orthopedics-so-far-this-year/" target="_blank">beckershospitalreview.com</a></div>
+      <a href="https://www.beckershospitalreview.com/orthopedics/22-hospitals-health-systems-expanding-orthopedics-so-far-this-year/" target="_blank">22 Hospitals and Health Systems Expanding Orthopedics in 2026</a>
+      <p>A live tracker documenting hospital and health system investments in orthopedic expansion through new facilities, service line build-outs, and technology upgrades — signaling continued institutional competition for MSK market share nationally.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TECHNOLOGY & INNOVATION
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">Technology &amp; Innovation</div>
+
+  <div class="card medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Technology &amp; Innovation</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">World's First ASC Deploys Stryker's Handheld Mako RPS Robot for Total Knee Arthroplasty</div>
+    <div class="card-summary">
+      Surgery Center at Pelham in Greer, South Carolina became the first ASC in the world to perform a total knee arthroplasty using Stryker's Mako Robotic Power System (RPS). The handheld device is engineered specifically for ambulatory settings — it delivers image-free intraoperative planning and robotic guidance without cutting blocks, and has a significantly smaller physical footprint than conventional cart-based robotic platforms. Stryker conducted its first cases with the Mako RPS in January 2026, launched a limited market release in February, and plans full commercial rollout in the second half of 2026.
+    </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      The Mako RPS removes two historically prohibitive barriers to robotic TKA adoption in ASCs — physical space and imaging infrastructure. Michigan orthopedic ASCs should assess platform fit now, ahead of full commercial launch, to avoid capacity and credentialing delays when cases ramp.
+    </div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Contact Stryker's regional representative to request a Mako RPS evaluation opportunity during the limited market release and position your ASC for priority placement in the H2 2026 full launch.</li>
+        <li>Commission a total cost of ownership analysis comparing Mako RPS to your current TKA workflow, factoring in OR space, capital cost, training burden, and Michigan ASC reimbursement levels.</li>
+        <li>Monitor published clinical outcomes and surgeon testimonials from early-adopter ASC sites over the next 90 days to build an evidence-based adoption brief for physician and board review.</li>
+      </ul>
+    </div>
+    <div class="card-meta-bottom">
+      <span class="effective-date">📅 Limited Release: Feb. 2026 | Full Release: H2 2026 (expected)</span>
+      <a href="https://www.beckersasc.com/orthopedics-tjr/south-carolina-asc-becomes-1st-in-world-to-use-strykers-mako-robotic-power-system/" target="_blank" class="source-pill">Becker's ASC</a>
+    </div>
+  </div>
+
+  <div class="card medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Technology &amp; Innovation</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">First Post-FDA-Approval Synergy Disc Procedure Performed at Beverly Hills ASC — Three-Level Cervical Arthroplasty</div>
+    <div class="card-summary">
+      Surgeons Todd Lanman, MD, and Joel Beckett, MD, performed the first post-FDA-approval Synergy Disc case at Advanced Surgery Center of Beverly Hills on April 8, 2026 — five weeks after the device received FDA premarket approval for single-level cervical disc replacement (C3–C7). The procedure involved a three-level cervical disc replacement. The Synergy Disc features a built-in 6-degree lordotic core designed to preserve spinal motion and improve sagittal alignment, and it demonstrated superiority over ACDF on its U.S. IDE study primary composite endpoint at 24 months.
+    </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Rapid first-case translation to an ASC setting underscores the accelerating migration of complex cervical spine procedures to outpatient environments. Michigan spine-forward ASCs and practices should monitor newly approved disc replacement devices as competitive differentiators in cervical arthroplasty offerings.
+    </div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Engage your spine surgeons in a quarterly new device review to evaluate the Synergy Disc and other recently cleared cervical arthroplasty options relative to your current device contract portfolio.</li>
+        <li>Track FDA PMA and 510(k) clearance activity for cervical and lumbar disc replacement devices and map coverage and reimbursement timing for your Michigan payer mix.</li>
+        <li>Monitor real-world outcomes data from early-adopter sites as payer and CMS coverage decisions begin to form for the Synergy Disc indication.</li>
+      </ul>
+    </div>
+    <div class="card-meta-bottom">
+      <span class="effective-date">📅 First post-approval case: April 8, 2026</span>
+      <a href="https://www.beckersasc.com/asc-news/california-asc-performs-1st-case-with-new-spine-disc/" target="_blank" class="source-pill">Becker's ASC</a>
+    </div>
+  </div>
+
+  <button class="tier2-toggle" onclick="toggleTier2(this)">
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — Technology &amp; Innovation</span>
+    <span class="t2-chevron">▼</span>
+  </button>
+  <div class="tier2-body">
+    <div class="tier2-category-label">Technology &amp; Innovation</div>
+    <div class="tier2-item">
+      <div class="t2-source">Orthopedics This Week · <a href="https://ryortho.com/2026/04/oury-medical-announces-the-acquisition-of-cefimeca-a-leading-french-manufacturer-serving-the-orthopedic-and-spinal-markets/" target="_blank">ryortho.com</a></div>
+      <a href="https://ryortho.com/2026/04/oury-medical-announces-the-acquisition-of-cefimeca-a-leading-french-manufacturer-serving-the-orthopedic-and-spinal-markets/" target="_blank">Oury Medical Acquires Céfiméca, Expanding Orthopedic and Spinal Manufacturing Base</a>
+      <p>Oury Medical announced the acquisition of Céfiméca, a leading French manufacturer of orthopedic and spinal instruments and implants, to expand its manufacturing footprint and global supply chain reach in the orthopedic and spine device market.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FINANCIAL & INVESTMENT
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">Financial &amp; Investment</div>
+
+  <div class="card medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Financial &amp; Investment</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">Osteoboost Raises $8M to Scale FDA-Cleared Prescription Wearable for Low Bone Density</div>
+    <div class="card-summary">
+      Osteoboost Health closed an $8 million financing round on April 15, 2026, to scale manufacturing, expand clinical research, and broaden the commercial distribution of its FDA-cleared prescription wearable for patients with osteopenia and osteoporosis. The device delivers targeted vibration therapy as a non-pharmacological bone health intervention. The capital will fund manufacturing scale-up and deepening of the clinical evidence base supporting the technology.
+    </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Osteoporosis and osteopenia are primary upstream drivers of fragility fractures, orthopedic revision volume, and MSK comorbidity burden. Capital-backed non-surgical bone health devices gaining traction in the market may reshape referral patterns and patient expectations at Michigan orthopedic practices — representing both a care coordination opportunity and a potential competitive pressure on surgical volume.
+    </div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Evaluate integrating bone density screening into your MSK intake workflow to identify at-risk patients for early intervention and emerging FDA-cleared device referral pathways.</li>
+        <li>Monitor Osteoboost's commercial expansion for Michigan market availability and explore value-based care or co-management partnerships with primary care and endocrinology referral sources.</li>
+        <li>Develop a bone health patient education program to strengthen your practice's preventive MSK positioning with referring primary care providers and deepen your community health footprint.</li>
+      </ul>
+    </div>
+    <div class="card-meta-bottom">
+      <span class="effective-date">📅 Funding closed: April 15, 2026</span>
+      <a href="https://ryortho.com/2026/04/osteoboost-secures-8m-to-expand-access-to-its-fda-cleared-prescription-wearable-for-bone-health/" target="_blank" class="source-pill">Orthopedics This Week</a>
+    </div>
+  </div>
+
+  <button class="tier2-toggle" onclick="toggleTier2(this)">
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — Financial &amp; Investment</span>
+    <span class="t2-chevron">▼</span>
+  </button>
+  <div class="tier2-body">
+    <div class="tier2-category-label">Financial &amp; Investment</div>
+    <div class="tier2-item">
+      <div class="t2-source">McDermott+ · <a href="https://www.mcdermottplus.com/blog/healthcare-preview/healthcare-preview-for-the-week-of-april-20-2026/" target="_blank">mcdermottplus.com</a></div>
+      <a href="https://www.mcdermottplus.com/blog/healthcare-preview/healthcare-preview-for-the-week-of-april-20-2026/" target="_blank">Healthcare Preview — Week of April 20, 2026: Senate Budget Reconciliation and Medicare Pay</a>
+      <p>Senate vote-a-rama on the federal budget resolution could begin as early as April 22, with healthcare-related amendments possible. The House budget bill includes a 2.25% Medicare physician pay update; Senate leadership appears focused on a narrower scope. HHS Secretary Kennedy is testifying before the Senate Finance and HELP Committees this week.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ORTHOPEDIC MARKET TRENDS
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">Orthopedic Market Trends</div>
+
+  <div class="card low">
+    <div class="card-meta">
+      <span class="badge badge-category">Orthopedic Market Trends</span>
+      <span class="badge badge-low">🟢 LOW</span>
+    </div>
+    <div class="card-headline">Cemented and Cementless TKA with Patella Resurfacing Show Equivalent Clinical Outcomes</div>
+    <div class="card-summary">
+      Research presented at the AAOS 2026 Annual Meeting found that cemented and cementless total knee arthroplasty with patella resurfacing yielded statistically similar revision rates, reoperation rates, and patient-reported outcome measures. The findings indicate fixation type alone does not determine outcomes in patella resurfacing cases, and that surgeon preference and patient-specific factors can appropriately guide implant selection.
+    </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Equivalent outcomes across fixation methods provide Michigan orthopedic surgeons and ASC administrators greater flexibility in implant procurement and contract negotiations — enabling cost optimization and portfolio standardization without compromising TKA quality benchmarks.
+    </div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Share this evidence with orthopedic surgeons to inform implant standardization discussions and identify contract consolidation or preferred pricing opportunities with device vendors.</li>
+        <li>Review your TKA implant contracts for opportunities to leverage cemented-cementless equivalence in cost negotiations without compromising surgeon preference or patient outcomes.</li>
+        <li>Incorporate comparative fixation outcome data into patient education and shared decision-making materials for TKA candidates, particularly those with higher revision-risk profiles.</li>
+      </ul>
+    </div>
+    <div class="card-meta-bottom">
+      <a href="https://www.healio.com/news/orthopedics/20260417/cemented-uncemented-tka-with-patella-resurfacing-had-similar-outcomes" target="_blank" class="source-pill">Healio Orthopedics</a>
+    </div>
+  </div>
+
+  <div class="card low">
+    <div class="card-meta">
+      <span class="badge badge-category">Orthopedic Market Trends</span>
+      <span class="badge badge-low">🟢 LOW</span>
+    </div>
+    <div class="card-headline">Study: Elevated BMI Does Not Increase Complication Risk in MPFL Reconstruction</div>
+    <div class="card-summary">
+      Research presented at the AAOS 2026 Annual Meeting found that elevated BMI was not associated with increased complication risk in patients undergoing medial patellofemoral ligament (MPFL) reconstruction, challenging widespread assumptions that obesity meaningfully amplifies risk for this procedure. Authors noted that BMI is an imperfect proxy — it does not capture body composition, musculoskeletal strength, or functional status, which are the factors most directly relevant to surgical outcomes.
+    </div>
+    <div class="inset">
+      <strong>Why It Matters for Michigan MSK</strong>
+      These findings support broadening MPFL reconstruction candidacy for Michigan MSK patients with elevated BMI, potentially expanding the eligible patient population at practices serving regions with above-average obesity prevalence and improving care equity for patients currently excluded by BMI-based screening thresholds.
+    </div>
+    <button class="actions-toggle" onclick="toggleActions(this)">
+      ▸ Action Items <span class="chevron">▼</span>
+    </button>
+    <div class="actions-body">
+      <ul>
+        <li>Audit MPFL reconstruction screening protocols to assess whether BMI-based soft exclusion criteria remain evidence-based in light of this and related emerging research.</li>
+        <li>Brief orthopedic surgeons on the growing evidence base challenging BMI-driven outcome assumptions across MSK procedures to support protocol updates grounded in current literature.</li>
+        <li>Strengthen clinical documentation to capture functional status, body composition, and musculoskeletal strength data beyond BMI to build more robust preauthorization evidence packages for payers.</li>
+      </ul>
+    </div>
+    <div class="card-meta-bottom">
+      <a href="https://www.healio.com/news/orthopedics/20260415/obesity-may-not-increase-complication-risk-in-patients-undergoing-mpfl-reconstruction" target="_blank" class="source-pill">Healio Orthopedics</a>
+    </div>
+  </div>
+
+  <button class="tier2-toggle" onclick="toggleTier2(this)">
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — Orthopedic Market Trends</span>
+    <span class="t2-chevron">▼</span>
+  </button>
+  <div class="tier2-body">
+    <div class="tier2-category-label">Orthopedic Market Trends</div>
+    <div class="tier2-item">
+      <div class="t2-source">Healio Orthopedics · <a href="https://www.healio.com/news/orthopedics/20260410/more-treatments-expand-personalized-ankle-cartilage-repair" target="_blank">healio.com</a></div>
+      <a href="https://www.healio.com/news/orthopedics/20260410/more-treatments-expand-personalized-ankle-cartilage-repair" target="_blank">More Treatments Expand Personalized Ankle Cartilage Repair Options</a>
+      <p>New and emerging approaches are expanding individualized treatment options for ankle cartilage damage, providing orthopedic surgeons a broader toolkit for patient-specific repair strategies across a range of lesion types, patient profiles, and outpatient settings.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       WORKFORCE & TALENT (Tier 2 only)
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">Workforce &amp; Talent</div>
+
+  <button class="tier2-toggle" onclick="toggleTier2(this)">
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — Workforce &amp; Talent</span>
+    <span class="t2-chevron">▼</span>
+  </button>
+  <div class="tier2-body">
+    <div class="tier2-category-label">Workforce &amp; Talent</div>
+    <div class="tier2-item">
+      <div class="t2-source">Orthopedics This Week · <a href="https://ryortho.com/2026/04/ucsf-taps-rajiv-sethi-to-lead-spine-surgery/" target="_blank">ryortho.com</a></div>
+      <a href="https://ryortho.com/2026/04/ucsf-taps-rajiv-sethi-to-lead-spine-surgery/" target="_blank">UCSF Appoints Rajiv Sethi, MD, PhD as Chief of Orthopaedic Spine Surgery</a>
+      <p>UC San Francisco appointed nationally recognized spine surgeon Rajiv Sethi, M.D., Ph.D., as Chief of Orthopaedic Spine Surgery, underscoring continued academic health system investment in spine surgery program leadership and research.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       REGULATORY UPDATES (Tier 2 only)
+  ═══════════════════════════════════════════════ -->
+  <div class="section-label">Regulatory Updates</div>
+
+  <button class="tier2-toggle" onclick="toggleTier2(this)">
+    <span class="t2-left"><span class="pro-badge">★ PRO</span>&nbsp; Also in the News This Week — Regulatory Updates</span>
+    <span class="t2-chevron">▼</span>
+  </button>
+  <div class="tier2-body">
+    <div class="tier2-category-label">Regulatory Updates</div>
+    <div class="tier2-item">
+      <div class="t2-source">McDermott+ · <a href="https://www.mcdermottplus.com/blog/healthcare-preview/healthcare-preview-for-the-week-of-april-20-2026/" target="_blank">mcdermottplus.com</a></div>
+      <a href="https://www.mcdermottplus.com/blog/healthcare-preview/healthcare-preview-for-the-week-of-april-20-2026/" target="_blank">Senate Budget Reconciliation Vote-a-Rama Could Begin This Week; Healthcare Amendments Possible</a>
+      <p>Senate budget reconciliation vote-a-rama may begin as early as April 22. Senate Majority Leader Thune is focused on a narrow resolution, but healthcare-related amendments — potentially including Medicaid adjustments — may be introduced. HHS Secretary Kennedy is testifying before the Senate Finance and HELP Committees this week. The 2027 marketplace Notice of Benefit and Payment Parameters final rule remains pending.</p>
+    </div>
+    <div class="tier2-item">
+      <div class="t2-source">American Medical Association · <a href="https://www.ama-assn.org/health-care-advocacy/advocacy-update/april-3-2026-national-advocacy-update" target="_blank">ama-assn.org</a></div>
+      <a href="https://www.ama-assn.org/health-care-advocacy/advocacy-update/april-3-2026-national-advocacy-update" target="_blank">AMA National Advocacy Update — April 2026: Medicare Pay, Medicaid, and Prior Authorization</a>
+      <p>The AMA's April advocacy update covers the proposed 2.25% Medicare physician pay update in the House budget bill, AMA-backed legislation to stabilize physician payment, and Medicaid provisions under consideration in budget reconciliation affecting orthopedic and MSK providers.</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">Careteq Vantage</div>
-  <p>© 2026 Careteq Vantage. Executive intelligence for Michigan MSK leaders.</p>
-  <div style="margin-top: 10px;">
+  <p>© 2026 Careteq Vantage · Executive Intelligence for Michigan MSK &amp; Orthopedic Leaders</p>
+  <p style="margin-top: 8px;">
     <a href="#">Archive</a>
     <a href="#">Preferences</a>
-    <a href="#">Unsubscribe</a>
-  </div>
+    <a href="#">About Careteq Vantage</a>
+  </p>
+  <p style="margin-top: 10px; font-size: 11px; color: #4a5568;">
+    This briefing is for informational purposes only and does not constitute legal, financial, or clinical advice.<br/>
+    Prepared for Santosh Mudiraj, MBBS, MPH by Careteq Vantage intelligence.
+  </p>
 </footer>
 
 <script>
   function toggleActions(btn) {
-    const panel = btn.nextElementSibling;
     btn.classList.toggle('open');
-    panel.classList.toggle('open');
+    const body = btn.nextElementSibling;
+    body.classList.toggle('open');
   }
 
   function toggleTier2(btn) {
-    const panel = btn.nextElementSibling;
     btn.classList.toggle('open');
-    panel.classList.toggle('open');
+    const chevron = btn.querySelector('.t2-chevron');
+    if (chevron) chevron.style.transform = btn.classList.contains('open') ? 'rotate(180deg)' : '';
+    const body = btn.nextElementSibling;
+    body.classList.toggle('open');
   }
 </script>
 
