@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MSK Executive Daily — April 22, 2026 | Careteq Vantage</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f8f9fc;
+      color: #1a1e2e;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      background: #1a1e2e;
+      color: #fff;
+      padding: 0 32px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    .nav-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-links a {
+      color: #b0b8d4;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .live-badge {
+      background: #2dca72;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .nav-date {
+      color: #b0b8d4;
+      font-size: 13px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1e2e 0%, #2c3355 100%);
+      color: #fff;
+      padding: 52px 32px 44px;
+      text-align: center;
+    }
+    .hero-label {
+      font-size: 11.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #8899cc;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 40px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .hero-date {
+      font-size: 16px;
+      color: #b0bdd8;
+      margin-bottom: 8px;
+    }
+    .hero-byline {
+      font-size: 13.5px;
+      color: #8899cc;
+      font-style: italic;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 28px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #8899cc;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 36px 0 20px;
+    }
+    .section-divider h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: #1a1e2e;
+      white-space: nowrap;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: #d8dce8;
+    }
+
+    /* ── BRIEFING CARD ── */
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+      border-left: 5px solid #4caf7d;
+      position: relative;
+    }
+    .card.priority-high { border-left-color: #e05c5c; }
+    .card.priority-medium { border-left-color: #d4a84b; }
+    .card.priority-low { border-left-color: #4caf7d; }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .badge-category {
+      background: #1a1e2e;
+      color: #fff;
+    }
+    .badge-high { background: #fdf0f0; color: #c0392b; border: 1px solid #f5c6c6; }
+    .badge-medium { background: #fdf8ec; color: #a07000; border: 1px solid #f0dfa0; }
+    .badge-low { background: #edf8f2; color: #2e7d4f; border: 1px solid #b2dfc5; }
+
+    .card-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: #1a1e2e;
+    }
+    .card-summary {
+      color: #3d4460;
+      margin-bottom: 14px;
+      font-size: 14.5px;
+    }
+
+    .why-matters {
+      background: #1a1e2e;
+      color: #c8cfe8;
+      border-radius: 7px;
+      padding: 13px 17px;
+      font-size: 13.5px;
+      margin-bottom: 14px;
+    }
+    .why-matters strong {
+      color: #fff;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .action-toggle {
+      background: none;
+      border: 1px solid #d0d5e8;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      color: #3d5a8a;
+      cursor: pointer;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background .15s;
+    }
+    .action-toggle:hover { background: #f0f3fa; }
+    .action-toggle .caret { transition: transform .2s; display: inline-block; }
+    .action-toggle.open .caret { transform: rotate(90deg); }
+
+    .action-items {
+      display: none;
+      background: #f6f7fb;
+      border-radius: 7px;
+      padding: 13px 17px;
+      margin-bottom: 12px;
+    }
+    .action-items.visible { display: block; }
+    .action-items ul {
+      list-style: none;
+      padding: 0;
+    }
+    .action-items ul li {
+      padding: 5px 0 5px 18px;
+      position: relative;
+      font-size: 13.5px;
+      color: #2c3355;
+    }
+    .action-items ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #5b73b0;
+      font-weight: 700;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .card-meta-note {
+      font-size: 12px;
+      color: #8a93b0;
+    }
+    .card-meta-note span {
+      font-weight: 600;
+      color: #5b6280;
+    }
+    .source-pill {
+      display: inline-block;
+      background: #f0f3fa;
+      color: #3d5a8a;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      border: 1px solid #ccd5ee;
+      transition: background .15s;
+    }
+    .source-pill:hover { background: #e0e7f7; }
+
+    /* ── TIER 2 ALSO IN THE NEWS BLOCK ── */
+    .tier2-block {
+      background: #f2f4f9;
+      border-left: 4px solid #9e9e9e;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      margin-top: -4px;
+    }
+    .tier2-heading {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: #6b7280;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #d8dce8;
+    }
+    .tier2-category {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: #4b5568;
+      margin-bottom: 8px;
+      margin-top: 12px;
+    }
+    .tier2-category:first-of-type { margin-top: 0; }
+    .tier2-item {
+      margin-bottom: 10px;
+      padding-left: 14px;
+      position: relative;
+    }
+    .tier2-item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #9e9e9e;
+    }
+    .tier2-item a {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #2c3355;
+      text-decoration: none;
+    }
+    .tier2-item a:hover { text-decoration: underline; }
+    .tier2-item .tier2-source {
+      font-size: 12px;
+      color: #6b7280;
+      font-style: italic;
+    }
+    .tier2-item p {
+      font-size: 13px;
+      color: #4b5568;
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1e2e;
+      color: #8899cc;
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+    footer a {
+      color: #b0bdd8;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    footer a:hover { color: #fff; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav class="nav">
+  <a class="nav-brand" href="#">Careteq Vantage</a>
+  <div class="nav-links">
+    <a href="#">Dashboard</a>
+    <a href="#">Archive</a>
+    <a href="#">Preferences</a>
+  </div>
+  <div class="nav-right">
+    <span class="live-badge">Live</span>
+    <span class="nav-date">April 22, 2026</span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-label">Careteq Vantage Intelligence Service</div>
+  <h1>MSK Executive Daily</h1>
+  <div class="hero-date">Wednesday, April 22, 2026</div>
+  <div class="hero-byline">Prepared for Santosh Mudiraj, MBBS, MPH</div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Briefing Items</div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label">High Priority</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">Medium Priority</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Low Priority</div></div>
+  </div>
+</section>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="main">
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: REIMBURSEMENT & PAYMENT
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Reimbursement &amp; Payment</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- CARD 1: BCBSM Modifier 25 Pause — HIGH -->
+  <div class="card priority-high">
+    <div class="card-meta">
+      <span class="badge badge-category">Reimbursement &amp; Payment</span>
+      <span class="badge badge-high">🔴 HIGH</span>
+    </div>
+    <div class="card-headline">BCBSM Pauses May 1 Modifier 25 Payment Cut for Michigan Physicians</div>
+    <div class="card-summary">
+      Blue Cross Blue Shield of Michigan and Blue Care Network officially paused their planned May 1, 2026 implementation of a policy that would have reduced E&amp;M payments by 50% for codes billed with modifier 25 alongside minor procedures with global periods of 0 or 10 days. The pause was announced April 15, 2026 following significant pressure from physician organizations including the Michigan State Medical Society and Michigan Osteopathic Association. No new implementation date has been set, and providers do not need to alter current billing practices at this time.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Michigan orthopedic and MSK practices that routinely bill modifier 25 — covering same-day E&amp;M visits during minor procedures — face significant revenue exposure if this policy ultimately takes effect. A 50% cut to these E&amp;M services could cost an active orthopedic practice tens of thousands of dollars annually; practices should quantify their risk and stay engaged with advocacy channels as BCBSM has not permanently withdrawn the policy.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Conduct a billing audit this week to quantify your practice's exact revenue exposure from modifier 25 claims paired with minor procedures — pull the last 90 days of claims.</li>
+        <li>Engage with Michigan State Medical Society advocacy campaigns urging permanent withdrawal of this policy; document your practice's volume impact in writing to share with payer relations contacts.</li>
+        <li>Brief your billing team on current status: modifier 25 billing can continue unchanged until further notice, but prepare contingency workflows for the possibility of a revised implementation date announcement.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <div class="card-meta-note"><span>Compliance Deadline:</span> Original May 1, 2026 deadline paused — no new date announced</div>
+    </div>
+    <div class="card-footer" style="margin-top:10px;">
+      <a class="source-pill" href="https://distilinfo.com/2026/04/20/bcbsm-pauses-new-modifier-25-reimbursement-policy/" target="_blank">DistilINFO · Apr 20, 2026</a>
+      <a class="source-pill" href="https://www.msms.org/news/bcbsm-pauses-implementation-modifier-25-policy" target="_blank">MSMS</a>
+      <a class="source-pill" href="https://www.beckershospitalreview.com/finance/bcbs-michigan-to-cut-50-from-some-e-m-payments-with-modifier-25/" target="_blank">Becker's Hospital Review</a>
+    </div>
+  </div>
+
+  <!-- CARD 2: Outpatient Surgery Access Act — MEDIUM -->
+  <div class="card priority-medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Reimbursement &amp; Payment</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">Bipartisan Bill Seeks to Permanently Stabilize ASC Medicare Payments</div>
+    <div class="card-summary">
+      Representatives Van Duyne (R-TX) and Larson (D-CT) introduced the Outpatient Surgery Access Act of 2026 on March 25, which would permanently align ASC Medicare payment updates with the hospital market basket rate beginning in 2027 and remove a budget-neutrality adjustment that has historically depressed ASC reimbursements. The Ambulatory Surgery Center Association (ASCA) formally endorsed the legislation. The bill argues that the CPI-U inflation tracking currently used for ASCs fails to capture healthcare-specific cost pressures — wages, equipment, malpractice — that the hospital market basket methodology is designed to reflect.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Michigan orthopedic ASC operators stand to gain predictable, inflation-appropriate reimbursement increases if this bill passes, strengthening the financial case for continued MSK procedure migration to outpatient settings. Combined with the expanded ASC covered procedure list and complex joint replacement approvals, this legislation could meaningfully improve per-case margins and ASC valuation.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Contact your Congressional representatives in Michigan to express support for the Outpatient Surgery Access Act of 2026 and provide data on ASC cost efficiency in your market.</li>
+        <li>Model the financial impact of permanent hospital market basket parity on your ASC's 5-year projections and share with your board or investor partners.</li>
+        <li>Coordinate with your ASC management company or ASCA membership to track legislative progress and add collective advocacy weight through the comment and lobbying process.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <a class="source-pill" href="https://ascnews.com/2026/03/asc-payment-fight-returns-as-lawmakers-move-to-preserve-hospital-market-basket-update/" target="_blank">ASC News · March 2026</a>
+      <a class="source-pill" href="https://vanduyne.house.gov/2026/3/reps-van-duyne-and-larson-introduce-the-outpatient-surgery-access-act-of-2026" target="_blank">Rep. Van Duyne Press Release</a>
+      <a class="source-pill" href="https://www.ascassociation.org/news-2026-final-payment-rule" target="_blank">ASCA</a>
+    </div>
+  </div>
+
+  <!-- TIER 2: Reimbursement & Payment -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Reimbursement &amp; Payment</div>
+    <div class="tier2-item">
+      <a href="https://distilinfo.com/2026/03/09/bcbsm-modifier-25-cut-still-hurts-physicians/" target="_blank">BCBSM Modifier 25 Cut Still Hurts Physicians</a>
+      <span class="tier2-source"> — DistilINFO</span>
+      <p>Before the April pause, physicians reported the 50% modifier 25 cut significantly impacted revenue; advocacy by MSMS and the Michigan Osteopathic Association ultimately succeeded in pausing the policy.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckershospitalreview.com/finance/bcbs-michigan-to-cut-50-from-some-e-m-payments-with-modifier-25/" target="_blank">BCBS Michigan to Cut 50% from Some E/M Payments with 'Modifier 25'</a>
+      <span class="tier2-source"> — Becker's Hospital Review</span>
+      <p>Original reporting on the BCBSM policy covering E/M codes 99202–99205 (new patients) and 99212–99215 (established patients) that prompted widespread physician opposition across primary care, dermatology, orthopedics, and surgery.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.ascfocus.org/ascfocus/content/articles-content/articles/2026/digital-debut/house-introduces-bipartisan-bill-to-stabilize-asc-reimbursements" target="_blank">House Introduces Bipartisan Bill to Stabilize ASC Reimbursements</a>
+      <span class="tier2-source"> — ASC Focus Magazine</span>
+      <p>Detailed legislative analysis of the Outpatient Surgery Access Act provisions, including permanent hospital market basket alignment for ASC rates and removal of the budget-neutrality adjustment beginning in 2027.</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: REGULATORY UPDATES
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Regulatory Updates</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- CARD 3: CMS April 2026 ASC Payment Update — MEDIUM -->
+  <div class="card priority-medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Regulatory Updates</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">CMS April 2026 ASC Update Activates Expanded MSK Procedure Codes</div>
+    <div class="card-summary">
+      CMS released the April 2026 Ambulatory Surgical Center Payment System update (MLN MM14445), implementing the expanded CY 2026 ASC Covered Procedures List that added 547 procedures and migrated 266 predominantly musculoskeletal codes off the Inpatient-Only list. The update introduces a new Level 7 Musculoskeletal Procedures APC classification and extends separate non-opioid pain management device payments through December 2027. ASCs meeting ASCQR quality reporting requirements receive the full 2.6% payment rate update; non-compliant facilities face a statutory 2-percentage-point reduction.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Michigan orthopedic ASCs now have the billing infrastructure and Medicare reimbursement authority to perform previously inpatient-only MSK procedures in the outpatient setting. Practices that rapidly validate their chargemaster coding, confirm ASCQR compliance, and operationalize new procedure pathways will capture significant incremental case volume and revenue in 2026.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Review the full list of 266 newly added musculoskeletal procedures and identify which your surgeons can perform in your ASC setting — prioritize complex spine and joint replacement cases with the highest revenue potential.</li>
+        <li>Update your chargemaster and billing system to reflect the new Level 7 Musculoskeletal Procedures APC codes effective April 1, 2026, and verify payer contract alignment for newly added codes.</li>
+        <li>Confirm your ASCQR quality reporting compliance status to ensure you receive the full 2.6% update rather than the penalized 0.6% rate — contact your quality reporting coordinator immediately if compliance is in question.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <div class="card-meta-note"><span>Effective Date:</span> April 1, 2026</div>
+    </div>
+    <div class="card-footer" style="margin-top:10px;">
+      <a class="source-pill" href="https://www.cms.gov/files/document/mm14445-ambulatory-surgical-center-payment-system-april-2026-update.pdf" target="_blank">CMS MLN MM14445</a>
+      <a class="source-pill" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-2026-hospital-outpatient-prospective-payment-system-opps-ambulatory-surgical-center" target="_blank">CMS Fact Sheet CY 2026</a>
+    </div>
+  </div>
+
+  <!-- TIER 2: Regulatory Updates -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Regulatory Updates</div>
+    <div class="tier2-item">
+      <a href="https://www.michigan.gov/mdhhs/assistance-programs/medicaid/portalhome/medicaid-providers/medicaid-provider-alerts/data/all-alerts-and-updates/april-1-2026-outpatient-hospital-providers-apc-and-asc-updates" target="_blank">April 1, 2026 Outpatient Hospital Providers APC and ASC Updates</a>
+      <span class="tier2-source"> — Michigan MDHHS</span>
+      <p>The January 2026 Quarterly APC &amp; ASC software was loaded into CHAMPS on March 21, 2026, with April 1 effective date for outpatient hospital and ASC billing systems in Michigan Medicaid. [FETCH FAILED — review manually: michigan.gov]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.hklaw.com/en/insights/publications/2025/11/cms-releases-cy-2026-hospital-opps-and-ambulatory-surgical-center" target="_blank">CMS Releases CY 2026 Hospital OPPS and Ambulatory Surgical Center Final Rule</a>
+      <span class="tier2-source"> — Holland &amp; Knight</span>
+      <p>Comprehensive legal analysis of the CY 2026 OPPS/ASC final rule, covering the 2.6% payment rate update, 547 new ASC covered procedures, and the three-year phase-out plan for the Inpatient-Only list with 266 musculoskeletal procedures removed in year one.</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: ASC INTELLIGENCE
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>ASC Intelligence</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- CARD 4: Complex Joint Replacements in ASCs — MEDIUM -->
+  <div class="card priority-medium">
+    <div class="card-meta">
+      <span class="badge badge-category">ASC Intelligence</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">CMS Greenlights Complex Joint Replacements and Revisions in the ASC Setting</div>
+    <div class="card-summary">
+      CMS finalized approval for complex joint replacement procedures — including revision total hip arthroplasty, total knee arthroplasty revisions, and partial shoulder revisions — to be performed in ASCs beginning in 2026. The policy, part of the CY 2026 OPPS/ASC final rule, removed five regulatory exclusion criteria and shifted case-level clinical judgment to the operating physician. Successful ASC implementation requires orthopedic-focused anesthesia, advanced technology, trained surgical teams, and a equitable distribution of financial benefit across the care team, according to orthopedic leaders quoted by Healio.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Michigan orthopedic ASCs that establish infrastructure to safely perform complex revision joint replacements will capture higher-acuity, higher-margin cases previously reserved for hospital ORs. Early movers who credential staff, build anesthesia coverage, and develop patient selection protocols will hold a significant competitive advantage — particularly as major new Michigan orthopedic facilities (OAM, Covenant) come online in 2026–2027.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Identify which revision and complex joint replacement procedures are now billable in your ASC and which of your surgeons can be credentialed — create a list within the next 30 days.</li>
+        <li>Conduct a formal ASC readiness assessment for complex cases: confirm anesthesia support availability, 23-hour stay capability, and documented emergency transfer protocols to a partner hospital.</li>
+        <li>Model the revenue impact of adding 2–4 complex revision cases per month to your ASC schedule at current Medicare and commercial payer rates for the new procedure codes.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <div class="card-meta-note"><span>Effective Date:</span> January 1, 2026</div>
+    </div>
+    <div class="card-footer" style="margin-top:10px;">
+      <a class="source-pill" href="https://www.healio.com/news/orthopedics/20260112/complex-joint-replacements-revisions-approved-for-ascs-in-2026" target="_blank">Healio Orthopedics · Jan 2026</a>
+      <a class="source-pill" href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-2026-hospital-outpatient-prospective-payment-system-opps-ambulatory-surgical-center" target="_blank">CMS Fact Sheet</a>
+    </div>
+  </div>
+
+  <!-- TIER 2: ASC Intelligence -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">ASC Intelligence</div>
+    <div class="tier2-item">
+      <a href="https://www.beckersasc.com/asc-news/the-10-biggest-disruptions-to-ascs-to-prepare-for-in-2026/" target="_blank">The 10 Biggest Disruptions to ASCs to Prepare for in 2026</a>
+      <span class="tier2-source"> — Becker's ASC</span>
+      <p>ASC leaders identify anesthesia cost and availability, payer denials, wage inflation, and workforce shortages as top operational disruptions; 67% of respondents now rank anesthesia coverage in their top three financial challenges. [FETCH FAILED — review manually: beckersasc.com]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckersasc.com/asc-news/asc-leaders-cite-top-growth-threats-for-2026/" target="_blank">ASC Leaders Cite Top Growth Threats for 2026</a>
+      <span class="tier2-source"> — Becker's ASC</span>
+      <p>Forty ASC leaders identified reimbursement erosion, staffing constraints, and administrative burden as the most significant headwinds; several cited growing payer prior-authorization delays as the single biggest threat to surgical throughput. [FETCH FAILED — review manually: beckersasc.com]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckersasc.com/orthopedics-tjr/15-new-orthopedic-practice-center-openings-in-q1/" target="_blank">15 New Orthopedic Practice and Center Openings in Q1 2026</a>
+      <span class="tier2-source"> — Becker's ASC</span>
+      <p>Orthopedic practices and ASCs showed no signs of slowing growth in early 2026, with 15 new locations opening across the country in Q1, including UF Health's UF Health Orthopaedic Surgical Center and a nine-surgeon ASC in Gaithersburg, MD. [FETCH FAILED — review manually: beckersasc.com]</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: MICHIGAN HEALTHCARE LANDSCAPE
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Michigan Healthcare Landscape</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- CARD 5: OAM + UM Health-West — MEDIUM -->
+  <div class="card priority-medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Michigan Healthcare Landscape</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">Grand Rapids Orthopedic Surgery Center on Track for Mid-2026 Clinical Opening</div>
+    <div class="card-summary">
+      Orthopaedic Associates of Michigan (OAM), in partnership with University of Michigan Health-West and U-M Health, is progressing toward the mid-2026 opening of clinical space at its new outpatient orthopedic center in Wyoming, Michigan. The facility at 1900 Metro Court SW will feature eight operating rooms, two procedure rooms, orthopedic urgent care, occupational therapy, and 23-hour stay capability. The surgical center component is expected to open fall 2027. The joint venture structure includes UM Health-West holding a minority ownership stake, with the initiative approved by the University of Michigan Board of Regents following the sale of 8.9 acres for $5.99 million to an OAM-affiliated entity.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      A major new academically affiliated, eight-OR orthopedic ASC opening in the Grand Rapids market is a significant competitive development for existing West Michigan MSK providers. The OAM/UM partnership — combining independent physician group scale with academic health system credibility and a 23-hour stay capability — sets a template for practice consolidation and outpatient MSK strategy in Michigan.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Assess your Grand Rapids / West Michigan patient panel for potential migration risk to the new OAM/UM facility once clinical operations begin mid-2026 — focus on primary care referral relationships.</li>
+        <li>Review your orthopedic urgent care, OrthoNow, or same-day access strategy to maintain competitive positioning before the OAM OrthoUrgent offering becomes fully operational.</li>
+        <li>Monitor the OAM joint venture structure — particularly the minority health system ownership model — as a potential template for your own group or system partnership strategies in Michigan.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <a class="source-pill" href="https://uofmhealthwest.org/news/oam-breaks-ground-on-outpatient-surgery-center-with-um-health-west-and-u-m-health/" target="_blank">UM Health-West News</a>
+      <a class="source-pill" href="https://www.crainsgrandrapids.com/news/health-care/wyoming-board-backs-oams-major-orthopedic-center-at-um-health-west/" target="_blank">Crain's Grand Rapids</a>
+    </div>
+  </div>
+
+  <!-- CARD 6: Covenant Healthcare $25M Facility — MEDIUM -->
+  <div class="card priority-medium">
+    <div class="card-meta">
+      <span class="badge badge-category">Michigan Healthcare Landscape</span>
+      <span class="badge badge-medium">🟡 MEDIUM</span>
+    </div>
+    <div class="card-headline">Covenant HealthCare Breaks Ground on $25M Saginaw Orthopedic Center</div>
+    <div class="card-summary">
+      Covenant HealthCare broke ground April 8, 2026 on a 25,700-square-foot, $25 million orthopedic outpatient facility in Saginaw Township, Michigan, expected to open summer 2027. The facility will consolidate Covenant's outpatient orthopedic services with 44 exam rooms, four X-ray suites, casting and procedure rooms, and orthotics and prosthetics services. A key feature is Covenant OrthoExpress — described as the only orthopedic urgent care in mid-Michigan — which will provide walk-in care for acute bone, joint, and muscle injuries as an emergency room alternative. The center will be staffed by 10 orthopedic surgeons, two podiatrists, a sports medicine physician, and seven advanced practice providers.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Covenant's investment establishes a comprehensive orthopedic outpatient hub in mid-Michigan, raising the bar for MSK access and convenience in the Saginaw/Bay City/Flint corridor. The OrthoExpress walk-in orthopedic urgent care model — capturing acute injuries before they reach the ER — is a patient acquisition strategy that other Michigan MSK practices should seriously evaluate for replication in their own markets.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Evaluate whether an orthopedic urgent care or "OrthoExpress"-type walk-in model makes strategic sense for your market and patient population — model volume, staffing, and payer mix assumptions.</li>
+        <li>Review your Saginaw/mid-Michigan referral relationships and outreach strategy ahead of Covenant's 2027 opening to retain referring primary care physicians and emergency departments.</li>
+        <li>Benchmark your patient access metrics (same-day/next-day availability, urgent appointment capacity) against the walk-in convenience Covenant's OrthoExpress will offer.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <div class="card-meta-note"><span>Groundbreaking:</span> April 8, 2026 &nbsp;|&nbsp; <span>Expected Opening:</span> Summer 2027</div>
+    </div>
+    <div class="card-footer" style="margin-top:10px;">
+      <a class="source-pill" href="https://midmichigannow.com/news/local/covenant-healthcare-breaks-ground-on-new-orthopedics-facility" target="_blank">Mid Michigan Now</a>
+      <a class="source-pill" href="https://www.beckersasc.com/new-asc-development/covenant-to-build-25m-orthopedic-facility-in-michigan/" target="_blank">Becker's ASC</a>
+      <a class="source-pill" href="https://www.abc12.com/news/health/covenant-healthcare-building-new-25-million-orthopedics-facility/article_c9ec1305-6a23-4128-99fa-1562ac0c471a.html" target="_blank">ABC12 Flint</a>
+    </div>
+  </div>
+
+  <!-- TIER 2: Michigan Healthcare Landscape -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Michigan Healthcare Landscape</div>
+    <div class="tier2-item">
+      <a href="https://www.mha.org/newsroom/news-to-know-april-20-2026/" target="_blank">News to Know — April 20, 2026</a>
+      <span class="tier2-source"> — Michigan Health &amp; Hospital Association</span>
+      <p>Michigan Hospital Association's weekly roundup of statewide health policy, legislative, and regulatory developments for Michigan healthcare executives. [FETCH FAILED — review manually: mha.org]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.michiganmedicine.org/news-release/michigan-medicine-resists-significant-cuts-blue-cross-blue-shield-michigan-would-limit-patient" target="_blank">Michigan Medicine Resists Significant Cuts by Blue Cross Blue Shield of Michigan</a>
+      <span class="tier2-source"> — Michigan Medicine</span>
+      <p>Michigan Medicine's formal resistance to BCBSM reimbursement cuts that administrators say would limit patient access; reflects the broader payer tension facing Michigan health systems and orthopedic practices in 2026.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.wgvunews.org/news/2025-12-04/orthopaedic-associates-of-michigan-breaks-ground-on-new-center-with-u-m-health-west" target="_blank">Orthopaedic Associates of Michigan Breaks Ground on New Center with U-M Health West</a>
+      <span class="tier2-source"> — WGVU News</span>
+      <p>OAM's December 2025 groundbreaking ceremony for the new outpatient orthopedic surgery center in Wyoming, Michigan; facility partnership structure includes eight ORs, OrthoUrgent care, and occupational therapy under the joint venture with UM Health-West.</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: TECHNOLOGY & INNOVATION
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Technology &amp; Innovation</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- CARD 7: Osteoboost $8M — LOW -->
+  <div class="card priority-low">
+    <div class="card-meta">
+      <span class="badge badge-category">Technology &amp; Innovation</span>
+      <span class="badge badge-low">🟢 LOW</span>
+    </div>
+    <div class="card-headline">Osteoboost Raises $8M to Scale FDA-Cleared Wearable for Bone Loss</div>
+    <div class="card-summary">
+      Osteoboost Health closed an $8 million financing round led by Ambit Health Ventures to scale manufacturing and expand commercial reach of its FDA-cleared prescription wearable for low bone density. The device delivers targeted low-magnitude vibration therapy to the lumbar spine and hips, and was proven in a double-blind clinical trial at the University of Nebraska to slow bone density loss by 85% in the spine and 55% in the hips for patients using it three times weekly. The round included participation from Emmeline Ventures, Disrupt Health Impact Fund, Esplanade Ventures, and Portfolia. Osteoboost is the first and only FDA-cleared, non-pharmacologic treatment for osteopenia in postmenopausal women.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      For Michigan MSK practices managing postmenopausal patients with osteopenia — a direct precursor to fragility fractures and complex orthopedic cases — Osteoboost represents an emerging prescribable, non-drug treatment option that could strengthen bone health pathways and reduce fracture incidence in your patient population. Growing investor interest signals accelerating commercialization and potential payer coverage movement ahead.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Review Osteoboost's clinical trial data and prescription pathway for potential inclusion in your bone health and fragility fracture prevention protocols for appropriate postmenopausal patients.</li>
+        <li>Connect with an Osteoboost representative to evaluate current coverage and reimbursement pathways, as this device class is at an early commercialization stage with evolving payer coverage.</li>
+        <li>Consider formalizing bone density monitoring workflows within your MSK practice to identify and proactively treat at-risk patients before fragility fractures generate complex surgical cases.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <a class="source-pill" href="https://ryortho.com/2026/04/osteoboost-secures-8m-to-expand-access-to-its-fda-cleared-prescription-wearable-for-bone-health/" target="_blank">Orthopedics This Week · Apr 2026</a>
+    </div>
+  </div>
+
+  <!-- CARD 8: Intellijoint + Insurgical — LOW -->
+  <div class="card priority-low">
+    <div class="card-meta">
+      <span class="badge badge-category">Technology &amp; Innovation</span>
+      <span class="badge badge-low">🟢 LOW</span>
+    </div>
+    <div class="card-headline">Navigation and Single-Use Power Tool Firms Partner for Cost-Efficient Joint Replacement</div>
+    <div class="card-summary">
+      Intellijoint Surgical and Insurgical announced a strategic partnership on April 13, 2026 to bundle Intellijoint's open-platform navigation system for total hip and knee arthroplasty with Insurgical's single-use, factory-sterilized power tools. The partnership's commercial arrangement allows Intellijoint's US sales team to offer Insurgical's power tools alongside the navigation system, while a co-development initiative will explore integrating Intellijoint's tracking technology into Insurgical's next-generation power tool platform. The combination is designed to enable consistent, navigation-guided joint replacements without large capital equipment commitments or implant volume restrictions.
+    </div>
+    <div class="why-matters">
+      <strong>Why It Matters for Michigan MSK</strong>
+      Michigan orthopedic ASCs facing margin pressure from capital equipment costs and implant vendor lock-in have a new option: navigation-guided surgery with a lower cost structure, combining an open-platform nav system with sterile-ready, no-reprocessing single-use power tools. This is particularly relevant as ASCs absorb more complex joint replacement cases under the 2026 CMS approvals.
+    </div>
+    <button class="action-toggle" onclick="toggleActions(this)"><span class="caret">▶</span> Action Items</button>
+    <div class="action-items">
+      <ul>
+        <li>Evaluate Intellijoint's open-platform navigation system as a capital-light alternative to large robotics system investments — request a cost-per-case comparison against your current navigation or robotics arrangement.</li>
+        <li>Assess single-use power tool economics against your current power tool reprocessing costs and instrument set maintenance overhead to determine if the Insurgical model improves margins.</li>
+        <li>Schedule a demonstration of the combined Intellijoint/Insurgical workflow for your surgical leadership team and invite OR staff for workflow feedback ahead of any contracting decision.</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <a class="source-pill" href="https://ryortho.com/2026/04/intellijoint-surgical-and-insurgical-announce-strategic-partnership-to-advance-orthopaedic-technology/" target="_blank">Orthopedics This Week · Apr 13, 2026</a>
+      <a class="source-pill" href="https://orthospinenews.com/2026/04/15/intellijoint-surgical-and-insurgical-announce-strategic-partnership-to-advance-orthopaedic-technology/" target="_blank">Ortho Spine News</a>
+    </div>
+  </div>
+
+  <!-- TIER 2: Technology & Innovation -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Technology &amp; Innovation</div>
+    <div class="tier2-item">
+      <a href="https://ryortho.com/2026/04/orthalign-accelerates-global-growth-strategy-with-announcement-of-ce-mark-in-europe/" target="_blank">OrthAlign Accelerates Global Growth Strategy with CE Mark in Europe</a>
+      <span class="tier2-source"> — Orthopedics This Week</span>
+      <p>OrthAlign announced April 20, 2026 that it received CE Mark under EU MDR for its full portfolio of navigation solutions, expanding its surgical navigation footprint into Europe and signaling continued momentum for handheld, capital-light nav systems.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://ryortho.com/2026/04/restor3d-announces-full-commercial-release-of-the-aeros-modular-stem-system/" target="_blank">restor3d Announces Full Commercial Release of the Aeros™ Modular Stem System</a>
+      <span class="tier2-source"> — Orthopedics This Week</span>
+      <p>restor3d launched the Aeros Modular Stem System for stemmed total ankle replacement, a 3D-printed implant designed to enhance stability and preserve bone; full commercial availability signals growing ortho implant innovation activity in early 2026.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://ryortho.com/2026/04/medacta-extends-myimplant-platform-to-complex-hip-reconstruction/" target="_blank">Medacta Extends MyImplant Platform to Complex Hip Reconstruction</a>
+      <span class="tier2-source"> — Orthopedics This Week</span>
+      <p>Medacta announced April 2, 2026 the expansion of its custom-fit MyImplant platform from shoulder to hip reconstruction, providing surgeon-specific implant solutions for complex primary and revision hip cases.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12188104/" target="_blank">Artificial Intelligence in Orthopedic Surgery: Current Applications, Challenges, and Future Directions</a>
+      <span class="tier2-source"> — PMC / MedComm</span>
+      <p>Peer-reviewed narrative review covering AI applications in orthopedic imaging, surgical planning, intraoperative guidance, and post-op outcomes prediction; notes that AI-guided systems achieve over 97% Grade A implant placement accuracy versus freehand technique.</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: ORTHOPEDIC MARKET TRENDS
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Orthopedic Market Trends</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- TIER 2: Orthopedic Market Trends -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Orthopedic Market Trends</div>
+    <div class="tier2-item">
+      <a href="https://www.beckersasc.com/orthopedics-tjr/good-news-bad-news-for-orthopedic-surgery-in-2026/" target="_blank">Good News, Bad News for Orthopedic Surgery in 2026</a>
+      <span class="tier2-source"> — Becker's ASC</span>
+      <p>Orthopedic surgery enters 2026 with strong patient demand and expanding outpatient opportunity, but faces intensifying financial pressure — reimbursement erosion, administrative burden, and consolidation reshaping how groups structure their practices. [FETCH FAILED — review manually: beckersasc.com]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckersspine.com/orthopedic/5-forces-shaping-orthopedics-in-2026-2/" target="_blank">5 Forces Shaping Orthopedics in 2026</a>
+      <span class="tier2-source"> — Becker's Spine Review</span>
+      <p>Five key forces — practice consolidation, ASC migration, AI integration, payer pressure, and workforce constraints — are identified by orthopedic leaders as the defining dynamics reshaping the specialty in 2026. [FETCH FAILED — review manually: beckersspine.com]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckersspine.com/orthopedic/how-orthopedic-surgeons-are-practicing-differently-in-2026/" target="_blank">How Orthopedic Surgeons Are Practicing Differently in 2026</a>
+      <span class="tier2-source"> — Becker's Spine Review</span>
+      <p>Surgeons report increased use of AI scribes, tighter payer utilization management, greater ASC migration, and shifting employment models as the defining operational changes characterizing orthopedic practice in 2026. [FETCH FAILED — review manually: beckersspine.com]</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: FINANCIAL & INVESTMENT
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Financial &amp; Investment</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- TIER 2: Financial & Investment -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Financial &amp; Investment</div>
+    <div class="tier2-item">
+      <a href="https://www.beckersasc.com/private-equity/private-equitys-healthcare-strategy-has-shifted-these-5-deals-explain-why/" target="_blank">Private Equity's Healthcare Strategy Has Shifted — These 5 Deals Explain Why</a>
+      <span class="tier2-source"> — Becker's ASC</span>
+      <p>Private equity is increasingly aligning MSO infrastructure with outpatient site-of-care assets like ASCs rather than pursuing ASC-only platform builds, with recent deals showing PE backing physician-led groups that control both the management layer and the surgery center. [FETCH FAILED — review manually: beckersasc.com]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckershospitalreview.com/orthopedics/17-orthopedic-mso-updates/" target="_blank">17 Orthopedic MSO Updates</a>
+      <span class="tier2-source"> — Becker's Hospital Review</span>
+      <p>A new ASC backed by US Orthopaedic Partners opened in Louisiana with eight operating suites; Evolve Orthopedic Partners formed as a physician-led MSO backed by Zenyth Partners with OrthoNY as foundational partner — consolidation activity in orthopedics continues at a rapid pace nationally. [FETCH FAILED — review manually: beckershospitalreview.com]</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: COMPETITIVE INTELLIGENCE
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Competitive Intelligence</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- TIER 2: Competitive Intelligence -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Competitive Intelligence</div>
+    <div class="tier2-item">
+      <a href="https://ryortho.com/2026/04/orthofix-realigns-spine-leadership-to-strengthen-focus-and-execution/" target="_blank">Orthofix Realigns Spine Leadership to Strengthen Focus and Execution</a>
+      <span class="tier2-source"> — Orthopedics This Week</span>
+      <p>Orthofix Medical announced a strategic realignment of its Spine leadership team on April 9, 2026, designed to accelerate profitable growth and sharpen execution; signals potential increased competitive activity in the spine implant market in H2 2026.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://ryortho.com/2026/04/oury-medical-announces-the-acquisition-of-cefimeca-a-leading-french-manufacturer-serving-the-orthopedic-and-spinal-markets/" target="_blank">Oury Medical Acquires Céfiméca, French Orthopedic and Spinal Manufacturer</a>
+      <span class="tier2-source"> — Orthopedics This Week</span>
+      <p>Oury Medical announced the acquisition of Céfiméca, a leading French manufacturer of orthopedic and spinal instruments and implants, signaling continued global consolidation in the orthopedic supply chain.</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckershospitalreview.com/orthopedics/orthopedic-supergroups-growth-plans/" target="_blank">Orthopedic Supergroup's Growth Plans</a>
+      <span class="tier2-source"> — Becker's Hospital Review</span>
+      <p>National orthopedic supergroups continue to expand geographic footprints and service lines in 2026; strategies increasingly focus on integrated MSO-plus-ASC structures that combine physician management services with surgery center ownership. [FETCH FAILED — review manually: beckershospitalreview.com]</p>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════
+       CATEGORY: WORKFORCE & TALENT
+       ════════════════════════════════════════════ -->
+  <div class="section-divider">
+    <h2>Workforce &amp; Talent</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- TIER 2: Workforce & Talent -->
+  <div class="tier2-block">
+    <div class="tier2-heading">── Also in the News This Week ──────────────────────────────────</div>
+    <div class="tier2-category">Workforce &amp; Talent</div>
+    <div class="tier2-item">
+      <a href="https://www.beckersasc.com/anesthesia/the-crna-workforce-in-2026-10-things-to-know/" target="_blank">The CRNA Workforce in 2026: 10 Things to Know</a>
+      <span class="tier2-source"> — Becker's ASC</span>
+      <p>The projected shortage of anesthesiologists will reach 6,300 by 2036; ASCs paying anesthesia stipends jumped from 28% in 2024 to 44% in 2025, with 67% of respondents citing anesthesia coverage among their top three financial challenges for 2026. [FETCH FAILED — review manually: beckersasc.com]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://www.beckersasc.com/asc-news/the-next-big-staffing-crisis-in-ascs/" target="_blank">The Next Big Staffing Crisis in ASCs</a>
+      <span class="tier2-source"> — Becker's ASC</span>
+      <p>Surgical technologist and registered nurse shortages remain severe in the ASC sector as centers struggle to compete with hospital wage scales that rose sharply post-COVID; staffing constraints are limiting case volume and growth capacity at orthopedic ASCs nationally. [FETCH FAILED — review manually: beckersasc.com]</p>
+    </div>
+    <div class="tier2-item">
+      <a href="https://ryortho.com/2026/04/ucsf-taps-rajiv-sethi-to-lead-spine-surgery/" target="_blank">UCSF Taps Rajiv Sethi, MD, PhD, to Lead Spine Surgery Division</a>
+      <span class="tier2-source"> — Orthopedics This Week</span>
+      <p>UC San Francisco appointed Rajiv Sethi as Chief of Orthopaedic Spine Surgery in April 2026, reflecting continued academic medical center investment in spine surgery leadership amid growing demand for complex outpatient spine care.</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div>© 2026 Careteq Vantage · All rights reserved</div>
+  <div style="margin-top:8px;">
+    <a href="#">Archive</a>
+    <a href="#">Preferences</a>
+    <a href="#">Contact</a>
+  </div>
+  <div style="margin-top:8px; font-size:11px; color:#5b6a88;">
+    Prepared for Michigan MSK &amp; Orthopedic Healthcare Executives · Not for redistribution
+  </div>
+</footer>
+
+<script>
+  function toggleActions(btn) {
+    const actionsDiv = btn.nextElementSibling;
+    const isOpen = actionsDiv.classList.contains('visible');
+    actionsDiv.classList.toggle('visible', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.querySelector('.caret').textContent = isOpen ? '▶' : '▼';
+  }
+</script>
+
+</body>
+</html>
